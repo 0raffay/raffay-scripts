@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <style>
+        .flex {
+            display: flex;
+        }
+
+
+        .align-items-center {
+            align-items: center;
+        }
+
+        .justify-content-center {
+            justify-content: center;
+        }
+
+        .justify-content-space {
+            justify-content: space-between;
+        }
+
+        .gap-5 {
+            gap: 5px;
+        }
+
+        .gap-15 {
+            gap: 15px;
+        }
+
+        .gap-20 {
+            gap: 20px;
+        }
+
+        .gap-30 {
+            gap: 30px;
+        }
+
+        .gap-40 {
+            gap: 40px;
+        }
+
+        .gap-50 {
+            gap: 50px;
+        }
+
+        .no-padding {
+            padding: 0 !important;
+        }
+
+        .container {
+            max-width: 1185px;
+            padding: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 30px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 14px;
+            height: auto;
+            width: auto;
+            border-radius: 0;
+        }
+
+        .btn:hover {
+            background-color: var(--bg-btn);
+            opacity: 0.8;
+        }
+
+        .btn-primary {
+            border: none;
+            background-color: var(--bg-btn);
+            color: var(--fc-btn);
+        }
+
+        .dashedTitle {
+            font-style: normal;
+            font-weight: 400;
+            font-size: clamp(14px, 20px, 20px);
+            line-height: 18px;
+            letter-spacing: 0.05px;
+            color: #000000;
+            margin-bottom: 25px;
+        }
+
+        .hugeTxt {
+            font-weight: 800;
+            font-size: 250px;
+            line-height: 200px;
+            letter-spacing: 0.05px;
+            color: #262626;
+        }
+
+        .hugeTxtTitle {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 25px;
+            line-height: 30px;
+            letter-spacing: 0.05px;
+            color: #262626;
+            padding-left: 66px;
+        }
+
+        /* Utilities End */
+
+        /* Header Start */
+
+        header {
+            padding: 34px 149px 57px 151px;
+        }
+
+        .mainHeader {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navList {
+            list-style: none;
+        }
+
+        .navList li {
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        .navList li a {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 14px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        .mobile-nav {
+            display: none;
+        }
+
+        .burger-menu {
+            /* justify-self: flex-end; */
+            position: absolute;
+            right: 10.5%;
+            display: none;
+            cursor: pointer;
+        }
+
+        .burger-menu>div {
+            width: 45px;
+            height: 8px;
+            border-radius: 20px;
+            margin-bottom: 5px;
+            background-color: #000;
+        }
+
+
+        .mobileLogo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+
+        .cross {
+            outline: none;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+        }
+
+        .mobileNavList {
+            list-style-type: none;
+        }
+
+        .mobileNavList li {
+            padding: 22px 0;
+            font-size: 20px;
+            color: #fff;
+            font-weight: 500;
+            border-bottom: 1px solid #000;
+            width: 100%;
+        }
+
+        .mobileNavList li a {
+            color: #000 !important;
+        }
+
+        .mobileNavList li:last-child {
+            border: none;
+        }
+
+        .mobileNavList li a ion-icon {
+            margin-right: 8px;
+        }
+
+
+        .mobileNavList li:nth-of-type(4) {
+            margin-bottom: 40px;
+        }
+
+        @media only screen and (max-width: 991px) {
+
+            body {
+                position: relative;
+                width: 100%;
+            }
+
+
+            .topNav {
+                padding: 28px 40px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .bottomNav {
+                position: static;
+            }
+
+
+            .navBtn {
+                display: none;
+            }
+
+            .burger-menu {
+                display: block;
+            }
+
+            .mobile-nav {
+                /* display: block; */
+                position: absolute;
+                top: 0;
+                width: 100%;
+                max-width: 80%;
+                background-color: #fff;
+                height: 100%;
+                z-index: 1;
+                padding: 40px 30px;
+                left: 0;
+            }
+
+
+        }
+
+        @media only screen and (max-width: 587px) {
+            .mobile-nav {
+                width: 100%;
+            }
+
+            .mobile-nav {
+                max-width: 100%;
+            }
+
+            .mobileNavList li {
+                font-size: 14px;
+                /* width: ; */
+            }
+
+            .headSocialIcons {
+                gap: 10px;
+            }
+
+            .bankDetails a {
+                font-size: 12px;
+            }
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="mainHeader">
+            <div class="logo">
+                <img src="./assets/images/logo.png" alt="logo">
+            </div>
+            <nav>
+                <ul class="navList">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#testemonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="navBtn">
+                <a href="#" class="btn btn-primary">Hire me!</a>
+            </div>
+
+
+            <div class="burger-menu" id="menu-toggle">
+                <div></div>
+                <div></div>
+                <div></div>
+
+            </div>
+
+            <div class="mobile-nav">
+                <div class="mobileLogo">
+                    <img src="assets/images/logo.png" alt="logo">
+                    <button class="cross" id="crossNav"><img src="./assets/images/cross-img.png" alt="cross"></button>
+                </div>
+
+                <ul class="mobileNavList">
+                    <li><a href="#"><ion-icon name="brush-outline"></ion-icon>Home</a></li>
+                    <li><a href="#"><ion-icon name="hammer-outline"></ion-icon>About</a></li>
+                    <li><a href="#"><ion-icon name="pricetags-outline"></ion-icon>Appeals</a></li>
+                    <li><a href="#"><ion-icon name="cube-outline"></ion-icon>Get involved</a></li>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </header>
+
+
+
+    <script>
+        const toggle = $('#menu-toggle')
+        const cross = $('#crossNav')
+        const navbar = $('.mobile-nav')
+        var nav = false;
+
+
+        cross.click(function () {
+            navbar.fadeOut('fast')
+            nav = false;
+        })
+
+        toggle.click(function () {
+            if (nav == false) {
+                $('.mobile-nav').fadeIn('fast');
+                nav = true
+            }
+            else {
+                $('.mobile-nav').fadeOut('fast');
+                nav = false
+            }
+
+        })
+
+    </script>
+
+
+</body>
+
+</html>

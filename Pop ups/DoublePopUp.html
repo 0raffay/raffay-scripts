@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap css  -->
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            border: none;
+            outline: none;
+        }
+
+        .btn-small {
+            padding: 15px 20px !important;
+        }
+
+        .btn-primary {
+            background: #F7C332;
+            color: var(--fc-primary);
+        }
+
+        .gap-30 {
+            gap: 30px;
+            justify-content: center;
+        }
+
+
+
+
+        .modalStep .btn {
+            display: block;
+            border-radius: 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border: none;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 30px;
+        }
+
+
+        .pay3_title {
+            font-size: 14px !important;
+            font-weight: 400 !important;
+        }
+
+
+        /* PopUps */
+        .giftPopUpBody {
+            background-color: #fff;
+            padding: 25px 40px;
+            text-align: center !important;
+            border-radius: 35px;
+            height: 455px;
+            max-width: 360px;
+        }
+
+        .giftPopUpBody .flex {
+            align-items: center;
+            justify-content: space-around !important;
+            align-items: column-reverse;
+            display: block;
+        }
+
+        .giftPopUpTitle {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 34px;
+            color: #141515;
+            margin-bottom: 15px;
+        }
+
+        .giftPopUpTitle img {
+            width: 35px;
+            margin-top: 10px;
+        }
+
+        .giftPopUpTitle img {
+            position: relative;
+            top: -9px;
+        }
+
+        .giftPopUpTitle+button {
+            position: relative;
+            top: -10px;
+            cursor: pointer;
+        }
+
+        .giftPopUpBody h2 {
+            font-style: normal;
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 36px;
+            letter-spacing: -1.04px;
+            margin-bottom: 21px;
+        }
+
+        .giftPopUpBody h2 span {
+            color: #FFCC05;
+        }
+
+        .giftPopUpBody p {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            color: rgba(0, 0, 0, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .giftPopUpBody h2 {
+            font-size: 20px;
+            line-height: 30px;
+            text-align: left;
+            margin-bottom: 7px;
+        }
+
+
+        /* custom popUP */
+        .popupOverlay {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* DonateInfo */
+        .donateInfo {
+            width: 100%;
+            max-width: 667px;
+            background: #FFFFFF;
+            box-shadow: 0px 42px 71px rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+        }
+
+        .donateInfo div:nth-child(1) img {
+            max-width: 100%;
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
+        }
+
+        .donateInfo div:nth-child(2) img {
+            margin: 21px 0 18px;
+            width: 67px;
+            height: 67px;
+            align-self: left;
+        }
+
+        .DonateInfoTxt {
+            padding: 0 20px 0 30px;
+        }
+
+        .DonateInfoTxt h4 {
+            font-style: normal;
+            font-size: 30px;
+            font-weight: 700;
+            color: #2D2D2D;
+            line-height: 36px;
+        }
+
+        .DonateInfoTxt p {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 29px;
+            color: #6F7775;
+        }
+
+        /* donateInfo DIv complete */
+        .modal-dialog {
+            max-width: 1170px !important;
+            pointer-events: all !important;
+        }
+
+        /* step 1 */
+        .PaymentPopUp_1 {
+            width: 100%;
+            max-width: 448px;
+        }
+
+        .popUpStepMain .giftPopUpBody {
+            height: 100%;
+            width: 100%;
+            width: 360px !important;
+            position: relative;
+        }
+
+        .PaymentPopUp_1 img {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* step 2 */
+        .paymentnPopUpForm select,
+        .paymentnPopUpForm input,
+        .paymentnPopUpForm textarea {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            color: #000;
+            border-radius: 121px;
+            background: rgba(234, 234, 234, 0.3);
+            border: none;
+            outline: none;
+            font-size: 15px !important;
+            margin-bottom: 13px;
+
+            border: 1px solid #e7e7e7;
+        }
+
+        .paymentnPopUpForm textarea {
+            border-radius: 35px;
+            height: 105px !important;
+        }
+
+        .paymentnPopUpForm .giftPopUp2 {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .paymentnPopUpForm .giftPopUpButton {
+            position: relative;
+            top: 0px;
+        }
+
+        /* step 3 */
+        .paymentnPopUpForm input,
+        .paymentnPopUpForm textarea {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            color: #000;
+            border-radius: 50px;
+            background: rgba(234, 234, 234, 0.3);
+            border: none;
+            outline: none;
+            font-size: 14px;
+            margin-bottom: 13px;
+        }
+
+        .paymentnPopUpForm textarea {
+            border-radius: 35px;
+            height: 155px;
+        }
+
+        .paymentnPopUpForm .giftPopUp2 {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .paymentnPopUpForm .giftPopUpButton {
+            position: relative;
+            top: 0px;
+
+        }
+
+        /* paymentPopUp 3 ____ PaymentForm */
+        .PaymentPopUp_3 .giftPopUpTitle {
+            white-space: nowrap;
+        }
+
+        .PaymentPopUp_3 .giftPopUp2 img {
+            margin-bottom: 0;
+        }
+
+        .paymentAmmountContainer {
+            padding: 15px 25px;
+            border: 1px solid #f1f1f1;
+            border-radius: 39px;
+            max-width: 280px;
+            margin-bottom: 15px;
+        }
+
+        .paymentAmmountContainer h4 {
+            font-style: normal;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 30px;
+            color: #2D2D2D;
+            /* white-space: nowrap; */
+            position: relative;
+            left: 0px;
+        }
+
+        div#card-field {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            padding: 15px 30px;
+            color: #000;
+            border-radius: 121px;
+            background: rgba(234, 234, 234, 0.3);
+            border: none;
+            outline: none;
+            font-size: 14px;
+            margin-bottom: 13px;
+        }
+
+        .paymentAmmountContainer h5 {
+            font-style: normal;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 36px;
+            margin-bottom: 0px;
+            color: #ffcc05 !important;
+        }
+
+        input.donateButton.giftPopUpButton {
+            background: #ffcc05 !important;
+        }
+
+        div.paymentnPopUpForm {
+            position: relative;
+        }
+
+        button.close.close-modal {
+            position: absolute;
+            background: #ccc;
+            top: 0px;
+            padding: 12px;
+            line-height: 20px;
+            right: 0px;
+            border-radius: 0 35px 0 15px;
+            display: block;
+        }
+
+        .paymentAmmountContainer h5:before {
+            content: "£";
+            font-size: 18px;
+        }
+
+        .text-left {
+            text-align: left !important;
+        }
+
+        .paymentAmmountContainer p {
+            text-align: left;
+        }
+
+        .counterSystem span {
+            padding: 12px 9.4px;
+            border: 1.5px solid #36104B;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 23px;
+            line-height: 60px;
+        }
+
+        .counterSystem span:nth-child(1) {
+            border-top-left-radius: 10.5px;
+            border-bottom-left-radius: 10.5px;
+        }
+
+        .counterSystem span:nth-child(3) {
+            border-top-right-radius: 10.5px;
+            border-bottom-right-radius: 10.5px;
+        }
+
+        .counterSystemContainer {
+            justify-content: space-between !important;
+        }
+
+        .counterSystemContainer>span {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 30px;
+            text-transform: uppercase;
+            color: #FFCC05;
+        }
+
+        .paymentFormContainer input,
+        .cardDetails span {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            padding: 15px 30px;
+            color: #000;
+            border-radius: 121px;
+            background: rgba(234, 234, 234, 0.3);
+            border: none;
+            outline: none;
+            font-size: 14px;
+            margin-bottom: 13px;
+        }
+
+        .paymentFormContainer {
+            margin-bottom: 20px;
+        }
+
+        .paymentFormContainer h4 {
+            text-align: center !important;
+            display: block;
+            font-size: 20px;
+        }
+
+        .card-input input {
+            flex: 1;
+            height: 30px;
+            box-sizing: border-box;
+            border: none;
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            padding: 15px 30px;
+            color: #000;
+            border-radius: 121px;
+            background: rgba(234, 234, 234, 0.3);
+            border: none;
+            outline: none;
+            font-size: 14px;
+            margin-bottom: 13px;
+            height: 51PX;
+        }
+
+        .card-input .additional-info {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: flex-end;
+            flex-basis: 30%;
+            font-style: italic;
+            color: #999;
+            padding: 5px;
+        }
+
+        .display-inline {
+            display: inline !important;
+        }
+
+        .paymentFormContainer input.paymentCheckBox {
+            width: 10% !important;
+        }
+
+        /* .paymentPopUpModal .flex > div{
+  margin: 0 auto;
+} */
+        .modal-content {
+            margin: 0 auto;
+            width: max-content !important;
+        }
+
+        .giftPopUpbody1 {
+            width: max-content;
+            margin: 0 auto;
+        }
+
+        .open-sub-modal,
+        .card-amount {
+            display: block;
+            width: max-content;
+            margin: 10px auto 0;
+
+        }
+
+
+
+        #donateInfoLogo {
+            width: 234px !important;
+            /* 	width: 300px !important; */
+            height: auto !important;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+
+
+        .regulatorNumber {
+            color: #fff;
+            font-size: 14px;
+            position: absolute;
+            bottom: 10px;
+            left: 12px;
+            opacity: 1;
+            font-weight: 600;
+            z-index: 4;
+            right: auto;
+        }
+
+        .go_to_step_2 {
+            position: absolute;
+            bottom: 20px;
+            display: block;
+            width: max-content;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+
+        .lastPopUpHeading {
+            margin-bottom: 60px !important;
+        }
+
+        .giftPopUpButton {
+            display: block;
+        }
+
+
+        .getCallForm {
+            margin-bottom: 132px;
+        }
+
+        #pay_4 .giftPopUpBody h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 11px;
+        }
+
+        .getCallForm label {
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .getCallForm input {
+            display: inline-block;
+            margin: 0;
+            width: max-content;
+            cursor: pointer;
+        }
+
+        .getCallForm .flex {
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            PADDING: 10px 0;
+            border-bottom: 0.1px solid #EEE9DB;
+        }
+
+        #pay_4 .giftPopUpBody {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .go_to_step_2 {
+            display: block !important;
+            width: 100% !important;
+            position: relative !important;
+            bottom: 0 !important;
+        }
+
+        .modal-dialog.paymentPopUpModal .flex {
+            display: flex;
+            flex-wrap: wrap-reverse;
+        }
+
+        .popup-thumb {
+            overflow: hidden;
+            position: relative;
+            margin: 0 0 30px 0;
+        }
+
+        .popup-logo {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 60px;
+            z-index: 5;
+        }
+
+        .popup-thumb:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 23px 23px 0 0;
+            width: 100%;
+            opacity: 0.45;
+            height: 100%;
+            background: #3e004c;
+            z-index: 2;
+            content: "";
+        }
+
+        .PaymentPopUp_1 {
+            max-width: 350px;
+        }
+
+        .donateInfo {
+            max-width: 515px;
+            height: 587.5px;
+            min-height: 550px;
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .gap-30 {
+            justify-content: center;
+        }
+
+        .giftPopUpBody h2 {
+            font-size: 20px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .giftPopUpTitle {
+            text-align: center;
+        }
+
+        .giftPopUpBody p {
+            text-align: left;
+        }
+
+        .DonateInfoTxt h4 {
+            font-size: 22px;
+            text-align: left;
+            line-height: 26px;
+        }
+
+        .DonateInfoTxt p {
+            font-size: 15px;
+            color: #444;
+            text-align: left;
+            line-height: 24px;
+        }
+
+        img.regulator-logos {
+            width: 234px !important;
+            height: auto !important;
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+        }
+
+        .donateInfo {
+            position: relative;
+        }
+
+        .home-donation a.donateButton:hover {
+            background: #000 !important;
+            color: #fff !important;
+        }
+
+        section.innerPage-sec-1.home-donation {
+            padding: 20px 0;
+        }
+
+        .home-donation h6 {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 70px;
+            align-items: center;
+            text-align: center;
+            letter-spacing: -1.6px;
+            color: #141515;
+        }
+
+        h5.card-title a {
+            color: #000;
+        }
+
+        .post-thumbnail img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .post-thumbnail {
+            margin-bottom: 20px;
+        }
+
+        span.backbutton {
+            position: absolute;
+            background: #ccc;
+            top: 0px;
+            padding: 12px 15px;
+            line-height: 20px;
+            left: 0px;
+            border-radius: 35px 0px 15px 0px;
+            display: block;
+            cursor: pointer;
+        }
+
+        span.backbutton i {
+            color: #7c7979;
+        }
+
+
+
+        @media only screen and (max-width: 768px) {
+            .review {
+                background-size: 100vw 30%;
+            }
+
+            #owl-demo .owl-dots.disabled,
+            #owl-demo .owl-nav.disabled {
+                display: none;
+            }
+
+
+            /* .modal-dialog.paymentPopUpModal .flex {
+    display: block;
+} */
+            .popUpStepMain {
+                margin-top: 20px;
+            }
+
+            .modal.show .modal-dialog {
+                transform: none;
+                width: 98%;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .donateInfo {
+                position: relative;
+                min-height: auto !important;
+                height: auto !important;
+            }
+
+            img.regulator-logos {
+                position: relative !important;
+                left: 0px !important;
+                margin: 0px !important;
+            }
+
+            .DonateInfoTxt p {
+                font-size: 13px;
+            }
+
+            .DonateInfoTxt h4 {
+                font-size: 18px;
+
+            }
+
+            .PaymentPopUp_1 {
+                max-width: 100%;
+            }
+
+            .modal.show .modal-dialog {
+                transform: none;
+                padding-bottom: 25px;
+                padding-top: 25px;
+            }
+
+            #defaultModal {
+                top: 10px !important;
+            }
+
+            .popUpStepMain .giftPopUpBody {
+                min-height: 587px;
+            }
+
+            #pay_4 .giftPopUpBody {
+                margin: 0 auto;
+            }
+        }
+
+        @media only screen and (max-width: 360px) {
+            .popUpStepMain .giftPopUpBody {
+                width: 100% !important;
+                max-width: 360px !important;
+            }
+        }
+    </style>
+
+    <title>Modal Demo</title>
+</head>
+
+<body>
+
+
+
+    <section>
+        <a href="javascript:;" class="open-main-modal btn btn-primary">MODAL</a>
+    </section>
+
+    <div id="defaultModal" class="modal" style="display:none; top: 50px">
+        <div class="modal-dialog paymentPopUpModal">
+            <div class="flex gap-30">
+                <div class="donateInfo">
+                    <div class="popup-thumb">
+                        <img src="https://vurks.com/mission-wp/wp-content/themes/missionTheme/assets/images/logo.png"
+                            alt="" class="popup-logo">
+                        <img src="https://vurks.com/mission-wp/wp-content/uploads/2023/05/image-2.jpg">
+                        <span class="regulatorNumber">Registered Charity Number - 1199236</span>
+                    </div>
+                    <div class="DonateInfoTxt">
+                        <h4>“The believer's shade on the Day of Resurrection will be their charity” (Tirmidhi)</h4>
+                        <p>Mission Salaam Makes Every Effort To Reach Excellence And Apply ‘Ihsan’ In Every Single
+                            Aspect Of Our Relief Work. For This Reason We Do Our Best To Deliver Over And Above
+                            Expectation. </p>
+                        <img src="https://vurks.com/mission-wp/wp-content/uploads/2023/05/modal-img-1.png"
+                            class="regulator-logos " id="donateInfoLogo">
+                        <BR>
+                    </div>
+                </div>
+                <div class="PaymentPopUp_3 popUpStepMain paymentPopUpForm modalStep" id="pay_1" style="display:none">
+                    <span class="overlay popup" style="display:none">
+                        <img src="https://vurks.com/mission-wp/wp-content/uploads/2023/05/loader.gif">
+                    </span>
+                    <div class="giftPopUpBody giftPopUp2">
+                        <div class="giftPopUpHeader flex">
+                            <h5 class="giftPopUpTitle text-center" id="exampleModalLongTitle">
+                                <img src="https://vurks.com/mission-wp/wp-content/themes/missionTheme/assets/images/secure-icon.png"
+                                    alt=""> Secure Donation
+                            </h5>
+                            <button type="button" class="close close-modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="paymentAmmountContainer">
+                            <div class="flex justify-content-between">
+                                <h5 id="paymentAmount">2500</h5>
+                                <h4 id="donationName">Water Hand Pumps</h4>
+                            </div>
+                        </div>
+                        <div class="paymentFormContainer">
+                            <h4 class="text-left mb-10">Payment Details</h4>
+                            <form method="post" id="payment-form"
+                                action="https://vurks.com/mission-wp/crm/include/charge.php">
+                                <input type="text" id="CardName" name="CardNaming" placeholder="Name on card">
+                                <p id="nameErrorMessage" style="color: red; display: none;">Fill the required field</p>
+                                <div id="card-field"></div>
+                                <input type="hidden" name="donation_key" value="">
+                                <input type="hidden" name="donation_id" value="">
+                                <input type="hidden" id="email" value="">
+                                <input type="hidden" id="firstname" value="">
+                                <input type="hidden" id="amount" value="">
+                                <span id="payment-errors"></span>
+                                <div id="card-errors"></div>
+                                <a href="javascript:;"
+                                    class="donateButton btn btn-primary giftPopUpButton go_to_personal_details go_to_step_2">Continue</a>
+                                <img src="https://vurks.com/mission-wp/wp-content/themes/missionTheme/assets/images/paypal-pic.png"
+                                    style="display: block;margin: 25px auto;">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="PaymentPopUp_2 popUpStepMain paymentnPopUpForm modalStep" id="pay_2" style="display: none;">
+                    <div class="giftPopUpBody giftPopUp2 text-center">
+                        <div class="giftPopUpHeader flex">
+                            <span class="backbutton show-pay_1">
+                                <ion-icon name="chevron-back-outline"></ion-icon>
+                            </span>
+                            <h5 class="giftPopUpTitle text-center" id="exampleModalLongTitle">
+                                <img src="https://vurks.com/mission-wp/wp-content/themes/missionTheme/assets/images/person-icon.png"
+                                    alt=""> Personal Details
+                            </h5>
+                            <button type="button" class="close close-modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="#">
+                            <input type="text" placeholder="Name" name="customer_name">
+                            <input id="emailField" type="email" placeholder="Email" name="customer_email">
+                            <p id="errorMessage" style="color: red; display: none;">Invalid Email Address</p>
+                            <input type="number" id="phone-number" inputmode="numeric" placeholder="Phone Number"
+                                name="customer_phone" />
+                            <p id="errorPhone" style="color: red; display: none;">Invalid Phone Number</p>
+                            <textarea name="customer_address" id="" cols="30" rows="10"
+                                placeholder="Address"></textarea>
+                            <input type="text" placeholder="Postcode" name="postcode">
+                            <input type="hidden" name="donation_appeal" value="" />
+                            <input type="hidden" name="donation_amount" value="" />
+                            <select name="donation_type">
+                                <option value="" disabled selected>Select Donation Type</option>
+                                <option value="General Donation">General Donation</option>
+                                <option value="Sadaqah Jariyah">Sadaqah Jariyah</option>
+                                <option value="Sadaqah">Sadaqah</option>
+                                <option value="Zakat">Zakat</option>
+                            </select>
+                        </form>
+                        <a href="javascript:;" class="btn btn-primary giftPopUpButton go_to_step_3"> Continue</a>
+                    </div>
+                </div>
+                <div class="PaymentPopUp_2 popUpStepMain paymentnPopUpForm modalStep" id="pay_3" style="display: none;">
+                    <div class="giftPopUpBody giftPopUp2 text-center">
+                        <div class="giftPopUpHeader flex">
+                            <span class="backbutton show-pay_2">
+                                <ion-icon name="chevron-back-outline"></ion-icon>
+                            </span>
+                            <h5 class="giftPopUpTitle text-center" id="exampleModalLongTitle">
+                                <img src="https://vurks.com/mission-wp/wp-content/themes/missionTheme/assets/images/person-icon.png"
+                                    alt=""> How would you like to hear from us
+                            </h5>
+                            <button type="button" class="close close-modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <h2 class="pay3_title"> We would like to contact you from time to time to keep you informed of
+                            our projects, fundraising activities and appeals. </h2>
+                        <form action="#" class="getCallForm">
+                            <div class="flex">
+                                <label for="email_checkbox"> May we contact you by email? </label>
+                                <input type="checkbox" class="hear_checkbox" id="email_checkbox" value="Email"
+                                    name="hear_from_us[]" checked>
+                            </div>
+                            <div class="flex">
+                                <label for="text_checkbox"> May we contact you by text? </label>
+                                <input type="checkbox" class="hear_checkbox" id="text_checkbox" value="Text"
+                                    name="hear_from_us[]" checked>
+                            </div>
+                            <div class="flex">
+                                <label for="phone_checkbox"> May we contact you by phone? </label>
+                                <input type="checkbox" class="hear_checkbox" id="phone_checkbox" value="Phonecall"
+                                    name="hear_from_us[]" checked>
+                            </div>
+                        </form>
+                        <a href="javascript:;" class="btn btn-primary giftPopUpButton go_to_step_4">Donate Now</a>
+                    </div>
+                </div>
+                <div class="PaymentPopUp_1 popUpStepMain modalStep" id="pay_4" style="display:none">
+                    <div class="giftPopUpBody">
+                        <span class="overlay popup" style="display:none">
+                            <img src="https://vurks.com/mission-wp/wp-content/uploads/2023/05/loader.gif">
+                        </span>
+                        <div class="giftPopUpHeader flex">
+                            <span class="backbutton show-pay_3">
+                                <ion-icon name="chevron-back-outline"></ion-icon>
+                            </span>
+                            <h5 class="giftPopUpTitle" id="exampleModalLongTitle">
+                                <img src="https://vurks.com/mission-wp/wp-content/themes/missionTheme/assets/images/gift-icon.png"
+                                    alt="">Gift Aid
+                            </h5>
+                            <button type="button" class="close close-modal">&times; </span>
+                            </button>
+                        </div>
+                        <h2>Add <span>25%</span> to your donation for free. </h2>
+                        <p class="recieveCall">
+                            <input type="checkbox" id="gift_aid_checkbox" value="1" style="margin-right:8px"> Yes, I am
+                            a UK tax payer and would like Gift Aid applied to my donations
+                        </p>
+                        <div>
+                            <img src="https://vurks.com/mission-wp/wp-content/themes/missionTheme/assets/images/paymentPopUp.png"
+                                alt="">
+                        </div>
+                        <a href="javascript:;" class="btn btn-primary giftPopUpButton endModalbtn "> Continue</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+
+
+
+        $(document).ready(function () {
+            openModal()
+            closeModal()
+            modalSteps()
+            modalBackBtn()
+        });
+
+
+        var modal = $('#defaultModal')
+        var sideDiv = $('.donateInfo')
+
+        var step1 = $('#pay_1');
+        var step2 = $('#pay_2');
+        var step3 = $('#pay_3');
+        var step4 = $('#pay_4');
+
+        var btn1 = $('.go_to_step_2')
+        var btn2 = $('.go_to_step_3')
+        var btn3 = $('.go_to_step_4')
+        var btn4 = $('.endModalbtn')
+
+        //Open Close Modals
+
+        function openModal() {
+            $('.open-main-modal').click(function () {
+                modal.fadeIn()
+                step1.fadeIn().addClass('active')
+            })
+        }
+
+        function closeModal() {
+            $('.close-modal').click(function () {
+                modal.fadeOut()
+                $('.modalStep.active').fadeOut()
+            })
+        }
+
+
+        function modalSteps() {
+            btn1.click(function () {
+                step1.hide().removeClass('active')
+                step2.show().addClass('active')
+            })
+            btn2.click(function () {
+                step2.hide().removeClass('active')
+                step3.show().addClass('active')
+            })
+            btn3.click(function () {
+                step3.hide().removeClass('active')
+                step4.show().addClass('active')
+            })
+
+            btn4.click(function () {
+                modal.hide()
+                step4.hide().removeClass('active')
+            })
+
+        }
+
+        //Step Changing Buttons
+
+        function modalBackBtn() {
+            $(".show-pay_1").click(function () {
+                step2.hide().removeClass('active')
+                step1.show().addClass('active')
+            });
+            $(".show-pay_2").click(function () {
+                step3.hide().removeClass('active')
+                step2.show().addClass('active')
+            });
+            $(".show-pay_3").click(function () {
+                step4.hide().removeClass('active')
+                step3.show().addClass('active')
+            });
+
+        }
+
+    </script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>

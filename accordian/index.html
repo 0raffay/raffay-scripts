@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+    <style>
+        .acc-container:nth-of-type(1) {
+            border-top: none;
+        }
+
+        .acc-container {
+            padding: 43px 0 22px;
+            /* border-top: 1px solid #353535; */
+            border-bottom: 1px solid #353535;
+        }
+
+
+        .acc-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .acc-head h5 {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 120.5%;
+            color: var(--fc-primary);
+            margin-bottom: 24px;
+        }
+
+        .icon-up {
+            display: none;
+        }
+
+        /* youBusiness */
+
+        .how-steps .img-wrap {
+            width: 105%;
+        }
+
+        .how-steps .img-wrap img {
+            min-height: 305px;
+        }
+
+        .steps-text {
+            padding: 20px 30px;
+        }
+
+        .steps-text .btn {
+            /* scale: 0.8; */
+        }
+
+        .sub-heading {
+            font-style: normal;
+            font-weight: 700;
+            font-size: var(--fs-large-sub-heading);
+            line-height: 42px;
+            color: var(--fc-primary);
+            margin-bottom: 35px;
+        }
+
+        .sub-heading+p {
+            font-style: normal;
+            font-weight: 400;
+            font-size: var(--fs-sm);
+            line-height: 27px;
+            color: var(--fc-secondary);
+            margin-bottom: 24px;
+
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+
+    <section class="faq" id="faqs">
+        <h4>FAQs</h4>
+        <div class="container">
+
+            <div class="accordian">
+                <div class="acc-container">
+                    <div class="acc-head">
+                        <h5>Is Loogo.io suitable for beginners with no design experience?</h5>
+                        <div class="icon-down">
+                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
+                        </div>
+                        <div class="icon-up">
+                            <ion-icon name="chevron-up-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <p>Absolutely! Loogo.io is designed to be user-friendly, making it accessible for beginners and
+                            professionals. Our intuitive interface and the step-by-step process will guide you through
+                            the logo creation journey, allowing you to design impressive logos even without prior design
+                            experience..</p>
+                    </div>
+                </div>
+                <div class="acc-container">
+                    <div class="acc-head">
+                        <h5>What if I'm not satisfied with the logo I create on Loogo.io?</h5>
+                        <div class="icon-down">
+                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
+                        </div>
+                        <div class="icon-up">
+                            <ion-icon name="chevron-up-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <p>Your satisfaction is our priority! While we strive to provide you with a seamless logo
+                            creation experience, we offer a satisfaction guarantee if you're not entirely satisfied with
+                            your design. You can customize the designed logo according to your likes, and if that’s not
+                            enough, you can generate a wholly new logo!</p>
+                    </div>
+                </div>
+                <div class="acc-container">
+                    <div class="acc-head">
+                        <h5>Are the logos created on Loogo.io high-resolution and suitable for both digital and print
+                            use?</h5>
+                        <div class="icon-down">
+                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
+                        </div>
+                        <div class="icon-up">
+                            <ion-icon name="chevron-up-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <p>Yes, indeed! When you download your logo from Loogo.io, you'll receive high-resolution files
+                            that are perfect for both digital and print applications. Rest assured that your logo will
+                            look sharp and professional across various mediums.</p>
+                    </div>
+                </div>
+                <div class="acc-container">
+                    <div class="acc-head">
+                        <h5>How long does it take to create a logo on Loogo.io?</h5>
+                        <div class="icon-down">
+                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
+                        </div>
+                        <div class="icon-up">
+                            <ion-icon name="chevron-up-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <p>Just a few minutes! With our user-friendly interface and a vast library of design elements,
+                            you can create a basic or intricate logo in just a few minutes. </p>
+                    </div>
+                </div>
+                <div class="acc-container">
+                    <div class="acc-head">
+                        <h5>What file formats can I download my logo in from Loogo.io?</h5>
+                        <div class="icon-down">
+                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
+                        </div>
+                        <div class="icon-up">
+                            <ion-icon name="chevron-up-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <p>Once your logo design is complete, you can download it in various popular file formats,
+                            including PNG, JPEG, and SVG. These formats ensure compatibility across different platforms
+                            and allow easy integration into your website, social media profiles, business cards, and
+                            more.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        const allPanels = $('.acc-container .panel').hide();
+        const allhead = $('.acc-container .acc-head')
+        $('.acc-container:nth-of-type(1) .panel').show();
+
+        $('.acc-container > .acc-head').click(function () {
+            if ($(this).hasClass("active")) {
+                return true;
+            }
+            else {
+                allPanels.slideUp();
+                $(this).next().slideDown();
+                allhead.removeClass('active');
+                $('.icon-up').css('display', 'none');
+                $('.icon-down').css('display', 'block');
+                $(this).addClass('active');
+                $(this).find('.icon-up').css('display', 'block');
+                $(this).find('.icon-down').css('display', 'none');
+                return false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
