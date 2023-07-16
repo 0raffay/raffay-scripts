@@ -14,19 +14,15 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-img,
-picture,
-video,
-canvas,
-svg {
+img{
     display: block;
     max-width: 100%;
 }
 
-button {
+button,
+input {
     outline: none;
     border: none;
-    background: none;
 }
 
 input { 
