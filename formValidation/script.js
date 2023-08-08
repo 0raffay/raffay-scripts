@@ -1,59 +1,87 @@
-$(document).ready(function () {
-    // Hide the second form initially
+function stepFormValidation() {
     $(".volunteerSecondForm").hide();
-    // Function to validate all required fields
-    function validateForm() {
-        let isValid = true;
-        $("#mv-form .req-field").each(function () {
-            if ($(this).val().trim() === "") {
-                isValid = false;
+    const allFieldsNotEmpty = $(".not-empty-field");
+    const numberField = $(".numberField");
+    const emailField = $(".emailField");
+    const $submitButton = $(".firstNextButton");
+
+    var switchThisStep = false;
+
+    function checkIfEmpty() {
+        allFieldsNotEmpty.each(function () {
+            const itsValue = $(this).val();
+            if (itsValue === "") {
                 $(this).addClass("error");
             } else {
                 $(this).removeClass("error");
             }
         });
-        return isValid;
     }
-    // Function to validate phone number
-    function validatePhoneNumber() {
-        const phoneNumberField = $("#contactNumber");
-        if (phoneNumberField.val().match(/^\d{9,}$/)) {
-            phoneNumberField.removeClass("error");
-            return true;
+
+    function numberFieldValidation() {
+        const numberFieldValue = numberField.val();
+        const numberRegex = /^\d{9,}$/;
+        if (!numberRegex.test(numberFieldValue)) {
+            numberField.addClass("error");
         } else {
-            phoneNumberField.addClass("error");
-            return false;
+            numberField.removeClass("error");
         }
     }
-    // Function to validate email address
-    function validateEmailAddress() {
-        const emailAddressField = $("#emailAddress");
-        if (emailAddressField.val().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            emailAddressField.removeClass("error");
-            return true;
+
+    function emailFieldValidation() {
+        const emailFieldValue = emailField.val();
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(emailFieldValue)) {
+            emailField.addClass("error");
         } else {
-            emailAddressField.addClass("error");
-            return false;
+            emailField.removeClass("error");
         }
     }
-    // Submit button click event
-    $(".submit-button").click(function () {
-        if (validateForm() && validatePhoneNumber() && validateEmailAddress()) {
+
+    function updateButtonStatus() {
+        let errorClassOnEmpty = allFieldsNotEmpty.hasClass("error");
+        let errorClassOnRegex = $(".regex-required-field").hasClass("error");
+
+        if (errorClassOnEmpty || errorClassOnRegex) {
+            $submitButton.prop("disabled", true);
+            switchThisStep = false;
+        } else {
+            $submitButton.prop("disabled", false);
+            switchThisStep = true;
+        }
+    }
+
+    function switchSteps() {
+        if (switchThisStep) {
             $(".volunteerFirstForm").hide();
             $(".volunteerSecondForm").show();
         }
+    }
+
+    $submitButton.click(function (e) {
+        checkIfEmpty();
+        numberFieldValidation();
+        emailFieldValidation();
+        updateButtonStatus();
+        switchSteps();
+
+        e.preventDefault();
     });
-    // Next button click event (for the first form)
-    $(".firstNextButton").click(function () {
-        if (validateForm() && validatePhoneNumber() && validateEmailAddress()) {
-            $(".volunteerFirstForm").hide();
-            $(".volunteerSecondForm").show();
-        }
+
+    allFieldsNotEmpty.change(function () {
+        $(this).removeClass("error");
+        updateButtonStatus();
     });
-    // Input field change events
-    $("#mv-form input, #mv-form select").change(function () {
-        validateForm();
-        validatePhoneNumber();
-        validateEmailAddress();
+
+    numberField.change(function () {
+        numberFieldValidation();
+        updateButtonStatus();
     });
-});
+
+    emailField.change(function () {
+        emailFieldValidation();
+        updateButtonStatus();
+    });
+}
+
+stepFormValidation();
