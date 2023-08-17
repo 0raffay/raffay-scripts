@@ -8,106 +8,37 @@
     <title>Document</title>
 
     <style>
-        @keyframes slide {
+        @keyframes scroll {
             from {
                 transform: translateX(0);
             }
 
             to {
-                transform: translateX(-100%);
+                transform: translateX(calc(-100% - var(--_gap)));
             }
         }
 
         /* utilities classes just add these */
 
-        .hr-animation-container {
-            display: inline-flex;
-            width: max-content;
-            overflow-x: hidden;
-            white-space: nowrap;
-        }
-
-        /* 
-.hr-animation-container:hover > *{
-    animation-play-state: paused;
-} */
-
-        .hr-animation-container>* {
-            animation: 11s slide infinite linear;
-        }
-
-
-
-        /* for tabs */
-
-        .tabs-box {
-            margin-bottom: 30px;
-            display: inline-block;
-            width: max-content;
+        .hr__marquee {
+            --_gap: 60px;
+            display: flex;
             overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .tabs-box div {
-            animation: 11s slide infinite linear;
-            /* animation-direction: ; */
-            /* animation-direction: alternate; */
-            display: inline-block;
-        }
-
-        .tabs-reverse div {
-            animation: 11s slide infinite linear;
-            animation-direction: reverse;
-            /* animation-direction: alternate-reverse; */
-        }
-
-        .tabs-box:hover div {
-            animation-play-state: paused;
-        }
-
-        .tabs-box a {
-            padding: 30px 40px;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 22px;
-            line-height: 19px;
-            color: #000;
-            border: 1.5px solid #000000;
-            border-radius: 200px;
-            margin-right: 30px;
             user-select: none;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-            height: 79px;
-            display: inline-flex;
+            gap: var(--_gap);
+        }
+
+        .hr__marqueeItem {
+            display: flex;
+            justify-content: space-around;
             align-items: center;
-            justify-content: center;
-            width: max-content;
-            margin-right: 10px;
-        }
+            flex-shrink: 0;
 
-        .tabs-box a:hover {
-            background: #000;
-            color: #fff;
-        }
+            gap: var(--_gap);
 
+            min-width: 100%;
 
-        .tabs-box a:hover {
-            background-color: var(--fc-primary);
-            color: #fff !important;
-        }
-
-        .tabs .tabs-box a {
-            padding: 30px 40px;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 22px;
-            line-height: 19px;
-            color: #000000;
-            border: 1.5px solid #000000;
-            border-radius: 200px;
-            margin-right: 30px;
-
+            animation: scroll 10s linear infinite;
         }
     </style>
 
@@ -116,80 +47,41 @@
 
 <body>
 
-    <div class="tabs">
-        <div class="tabs-box">
-            <div>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
+    <div class="hr__marquee">
+        <div class="hr__marqueeItem">
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-1.png" alt="">
             </div>
-            <div>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-2.png" alt="">
+            </div>
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-3.png" alt="">
+            </div>
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-4.png" alt="">
+            </div>
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-5.png" alt="">
             </div>
         </div>
-        <div class="tabs-box tabs-reverse">
-            <div>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
+        <div class="hr__marqueeItem" aria-hidden="true">
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-1.png" alt="">
             </div>
-            <div>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-2.png" alt="">
+            </div>
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-3.png" alt="">
+            </div>
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-4.png" alt="">
+            </div>
+            <div class="img__wrap">
+                <img src="assets/images/b-logo-5.png" alt="">
             </div>
         </div>
-        <div class="tabs-box">
-            <div>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-            </div>
-            <div>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-                <a href="#">Product Design</a>
-            </div>
-        </div>
-
     </div>
 
 

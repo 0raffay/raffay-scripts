@@ -1,0 +1,24 @@
+  <!-- OG INFO -->
+  <meta property="og:url" content="https://resourcepad.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Empowering Your Workforce with HRM Excellence  ">
+  <meta property="og:description" content="Quickly pay your team, no matter where they are">
+  <meta property="og:image" content="assets/images/hrm-og.png">
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="resourcepad.io">
+  <meta property="twitter:url" content="https://resourcepad.io/">
+  <meta name="twitter:title" content="Empowering Your Workforce with HRM Excellence ">
+  <meta name="twitter:description" content="Quickly pay your team, no matter where they are">
+  <meta name="twitter:image" content="assets/images/hrm-og.png">
+  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+  <meta property="og:image" content="assets/images/hrm-og.png" />
+  <meta property="og:image:secure_url" content="assets/images/hrm-og.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="600" />
+  <meta property="og:image:height" content="330" />
+  <meta property="og:image:alt" content="Empowering Your Workforce with HRM Excellence" />
+  <meta name="image" property="og:image" content="assets/images/hrm-og.png">
+  <meta name="author" content="resourcepad">
+  <meta name="description" property="og:description" content="Empowering Your Workforce with HRM Excellence">
+  <!-- OG INFO -->
