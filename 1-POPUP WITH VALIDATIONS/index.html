@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- ------------jquery Start -------------->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<!-- ------------jquery Start -------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- ------------jquery Start -------------->
 
 
 
@@ -808,221 +808,32 @@
 
 </body>
 <script>
-$(document).ready(function () {
- 
-    customSelect();
-    popUpBasicFunctions();
-    popUpValidation();
-});
+    $(document).ready(function () {
 
-function customSelect() {
-    $(".selectContainer .purposeSelectContainer").slideUp();
-    let isOpen = false;
-    $(".purposeSelect").click(function () {
+        customSelect();
+        popUpBasicFunctions();
+        popUpValidation();
+    });
+
+    function customSelect() {
         $(".selectContainer .purposeSelectContainer").slideUp();
-        if (isOpen) {
-            $(this).next().slideUp();
-            isOpen = false;
-        } else {
-            $(this).next().slideDown();
-            isOpen = true;
-        }
-    });
-
-    const allFieldsNotEmpty = $("input[data-not-empty]");
-    const numberField = $("input[data-number]");
-    const emailField = $("input[data-email]");
-    const selectField = $('.step2Select')
-    const $submitButton = $(".amountStep2 .popUpButton");
-
-    function updateButtonStatus() {
-        let errorClassOnEmpty = allFieldsNotEmpty.hasClass("error");
-        let errorClassOnRegex = $(
-            "input[data-regex-required-field]"
-        ).hasClass("error");
-        let errorClassOnSelect = selectField.hasClass('error')
-
-        if (errorClassOnEmpty || errorClassOnRegex || errorClassOnSelect) {
-            $submitButton.prop("disabled", true);
-            switchThisStep = false;
-        } else {
-            $submitButton.prop("disabled", false);
-            switchThisStep = true;
-        }
-    }
-
-    function selectTheText() {
-        $(".purposeSelectContainer span").click(function () {
-            $(this).parent().prev().addClass("selected");
-            let itsText = $(this).text();
-            // $(".purposeSelect").text(itsText);
-            $(this).parent().prev().val(itsText).removeClass("error");
+        let isOpen = false;
+        $(".purposeSelect").click(function () {
             $(".selectContainer .purposeSelectContainer").slideUp();
-            updateButtonStatus()
-            // selectUpdate();
-        });
-    }
-    selectTheText();
-}
-    function popUpBasicFunctions() {
-    var backButton = $(".popUpbackButton");
-
-    // INTITAIL SETTINGS"
-    $(".thankYouPopUp").hide();
-    $('.popUpRightMain').hide()
-    $('.amountStep1').show()
-
-    backButton.click(function () {
-        $(this).parent().hide();
-        $(this).parent().prev().show();
-        console.log('hidden')
-    });
-
-
-    $(".showPopUp").click(function (e) {
-        $(".donationPopUp").show();
-        e.preventDefault();
-    });
-
-    $(".closePopUp").click(function () {
-        $(".donationPopUp").hide();
-    });
-}
-
-function popUpValidation() {
-    function step1() {
-        const step1Button = $(".amountStep1 .popUpButton");
-        const otherInput = $(".otherAmountInput input");
-        var selects = $("input[data-required]");
-
-        function radioButtonsUpdate() {
-            $(".selectAmountContainer input[type='checkbox']").change(
-                function () {
-                    if ($(this).is(":checked")) {
-                        $(".selectAmountContainer input[type='checkbox']")
-                            .not(this)
-                            .prop("checked", false);
-                    }
-                    radioButtonAndInputUpdate();
-                    inputUpdate();
-                }
-            );
-        }
-        radioButtonsUpdate();
-
-        function radioButtonAndInputUpdate() {
-            let anyCheckboxChecked = $(
-                ".selectAmountContainer input[type='checkbox']"
-            ).is(":checked");
-            otherInput.prop("disabled", anyCheckboxChecked);
-        }
-
-        function inputUpdate() {
-            if (otherInput.val() === "" && !otherInput.prop("disabled")) {
-                otherInput.addClass("error");
-                step1Button.prop("disabled", true);
+            if (isOpen) {
+                $(this).next().slideUp();
+                isOpen = false;
             } else {
-                otherInput.removeClass("error");
-                step1Button.prop("disabled", false);
-            }
-        }
-
-        function selectUpdate() {
-            // let selects = $("input[data-required]");
-            selects.each(function () {
-                let itsValue = $(this).val();
-                let initalValue = $(this).attr("initialValue");
-                if (itsValue === initalValue) {
-                    $(this).addClass("error");
-                    step1Button.prop("disabled", true);
-                } else {
-                    $(this).removeClass("error");
-                    step1Button.prop("disabled", false);
-                }
-            });
-        }
-
-        step1Button.click(function () {
-            selectUpdate();
-            inputUpdate();
-
-            if (otherInput.prop("disabled")) {
-                if (
-                    !step1Button.prop("disabled") &&
-                    !selects.hasClass("error")
-                ) {
-                    $(this).parent().hide();
-                    $(this).parent().next().show();
-                }
-            } else {
-                if (
-                    !step1Button.prop("disabled") &&
-                    otherInput.val() !== "" &&
-                    !selects.hasClass("error")
-                ) {
-                    $(this).parent().hide();
-                    $(this).parent().next().show();
-                }
+                $(this).next().slideDown();
+                isOpen = true;
             }
         });
 
-        otherInput.change(function () {
-            inputUpdate();
-        });
-    }
-    step1();
-
-    function step2() {
         const allFieldsNotEmpty = $("input[data-not-empty]");
         const numberField = $("input[data-number]");
         const emailField = $("input[data-email]");
         const selectField = $('.step2Select')
         const $submitButton = $(".amountStep2 .popUpButton");
-
-        var switchThisStep = false;
-
-        function checkSelectField() {
-            if(selectField.val()=== selectField.attr('data-inital-value')) {
-                selectField.addClass('error')
-                $submitButton.prop('disabled', true)
-            }
-            else {
-                selectField.removeClass('error')
-                $submitButton.prop('disabled', false)
-            }
-        }
-
-        function checkIfEmpty() {
-            allFieldsNotEmpty.each(function () {
-                const itsValue = $(this).val();
-                if (itsValue === "") {
-                    $(this).addClass("error");
-                } else {
-                    $(this).removeClass("error");
-                }
-            });
-        }
-
-        function numberFieldValidation() {
-            const numberFieldValue = numberField.val();
-            const numberRegex = /^\d{9,}$/;
-            if (!numberRegex.test(numberFieldValue)) {
-                numberField.addClass("error");
-            } else {
-                numberField.removeClass("error");
-            }
-        }
-
-        function emailFieldValidation() {
-            const emailFieldValue = emailField.val();
-            const emailRegex =
-                /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailRegex.test(emailFieldValue)) {
-                emailField.addClass("error");
-            } else {
-                emailField.removeClass("error");
-            }
-        }
 
         function updateButtonStatus() {
             let errorClassOnEmpty = allFieldsNotEmpty.hasClass("error");
@@ -1040,56 +851,245 @@ function popUpValidation() {
             }
         }
 
-        function switchSteps() {
-            // if (switchThisStep) {
-            //     $(this).parent().hide();
-            //     $(this).parent().next().show();
-            // }
-            if (!$submitButton.prop("disabled")) {
-                // $(this).parent().hide();
-                // $(this).parent().next().show();
-                $(".amountStep2").hide();
-                $(".amountStep3").show();
-            }
+        function selectTheText() {
+            $(".purposeSelectContainer span").click(function () {
+                $(this).parent().prev().addClass("selected");
+                let itsText = $(this).text();
+                // $(".purposeSelect").text(itsText);
+                $(this).parent().prev().val(itsText).removeClass("error");
+                $(".selectContainer .purposeSelectContainer").slideUp();
+                updateButtonStatus()
+                // selectUpdate();
+            });
         }
+        selectTheText();
+    }
+    function popUpBasicFunctions() {
+        var backButton = $(".popUpbackButton");
 
-        $submitButton.click(function (e) {
-            checkIfEmpty();
-            numberFieldValidation();
-            emailFieldValidation();
-            checkSelectField()
-            updateButtonStatus();
-            switchSteps();
+        // INTITAIL SETTINGS"
+        $(".thankYouPopUp").hide();
+        $('.popUpRightMain').hide()
+        $('.amountStep1').show()
 
+        backButton.click(function () {
+            $(this).parent().hide();
+            $(this).parent().prev().show();
+            console.log('hidden')
+        });
+
+
+        $(".showPopUp").click(function (e) {
+            $(".donationPopUp").show();
             e.preventDefault();
         });
 
-        allFieldsNotEmpty.change(function () {
-            $(this).removeClass("error");
-            updateButtonStatus();
-        });
-
-        numberField.change(function () {
-            numberFieldValidation();
-            updateButtonStatus();
-        });
-
-        emailField.change(function () {
-            emailFieldValidation();
-            updateButtonStatus();
+        $(".closePopUp").click(function () {
+            $(".donationPopUp").hide();
         });
     }
-    step2();
 
-    function step3() {
-        $(".amountStep3 .popUpButton").click(function () {
-            $(".popUpAmountPanel").hide();
-            $(".popUpInfoPanel").hide();
-            $(".thankYouPopUp").show();
-        });
+    function popUpValidation() {
+        function step1() {
+            const step1Button = $(".amountStep1 .popUpButton");
+            const otherInput = $(".otherAmountInput input");
+            var selects = $("input[data-required]");
+
+            function radioButtonsUpdate() {
+                $(".selectAmountContainer input[type='checkbox']").change(
+                    function () {
+                        if ($(this).is(":checked")) {
+                            $(".selectAmountContainer input[type='checkbox']")
+                                .not(this)
+                                .prop("checked", false);
+                        }
+                        radioButtonAndInputUpdate();
+                        inputUpdate();
+                    }
+                );
+            }
+            radioButtonsUpdate();
+
+            function radioButtonAndInputUpdate() {
+                let anyCheckboxChecked = $(
+                    ".selectAmountContainer input[type='checkbox']"
+                ).is(":checked");
+                otherInput.prop("disabled", anyCheckboxChecked);
+            }
+
+            function inputUpdate() {
+                if (otherInput.val() === "" && !otherInput.prop("disabled")) {
+                    otherInput.addClass("error");
+                    step1Button.prop("disabled", true);
+                } else {
+                    otherInput.removeClass("error");
+                    step1Button.prop("disabled", false);
+                }
+            }
+
+            function selectUpdate() {
+                // let selects = $("input[data-required]");
+                selects.each(function () {
+                    let itsValue = $(this).val();
+                    let initalValue = $(this).attr("initialValue");
+                    if (itsValue === initalValue) {
+                        $(this).addClass("error");
+                        step1Button.prop("disabled", true);
+                    } else {
+                        $(this).removeClass("error");
+                        step1Button.prop("disabled", false);
+                    }
+                });
+            }
+
+            step1Button.click(function () {
+                selectUpdate();
+                inputUpdate();
+
+                if (otherInput.prop("disabled")) {
+                    if (
+                        !step1Button.prop("disabled") &&
+                        !selects.hasClass("error")
+                    ) {
+                        $(this).parent().hide();
+                        $(this).parent().next().show();
+                    }
+                } else {
+                    if (
+                        !step1Button.prop("disabled") &&
+                        otherInput.val() !== "" &&
+                        !selects.hasClass("error")
+                    ) {
+                        $(this).parent().hide();
+                        $(this).parent().next().show();
+                    }
+                }
+            });
+
+            otherInput.change(function () {
+                inputUpdate();
+            });
+        }
+        step1();
+
+        function step2() {
+            const allFieldsNotEmpty = $("input[data-not-empty]");
+            const numberField = $("input[data-number]");
+            const emailField = $("input[data-email]");
+            const selectField = $('.step2Select')
+            const $submitButton = $(".amountStep2 .popUpButton");
+
+            var switchThisStep = false;
+
+            function checkSelectField() {
+                if (selectField.val() === selectField.attr('data-inital-value')) {
+                    selectField.addClass('error')
+                    $submitButton.prop('disabled', true)
+                }
+                else {
+                    selectField.removeClass('error')
+                    $submitButton.prop('disabled', false)
+                }
+            }
+
+            function checkIfEmpty() {
+                allFieldsNotEmpty.each(function () {
+                    const itsValue = $(this).val();
+                    if (itsValue === "") {
+                        $(this).addClass("error");
+                    } else {
+                        $(this).removeClass("error");
+                    }
+                });
+            }
+
+            function numberFieldValidation() {
+                const numberFieldValue = numberField.val();
+                const numberRegex = /^\d{9,}$/;
+                if (!numberRegex.test(numberFieldValue)) {
+                    numberField.addClass("error");
+                } else {
+                    numberField.removeClass("error");
+                }
+            }
+
+            function emailFieldValidation() {
+                const emailFieldValue = emailField.val();
+                const emailRegex =
+                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(emailFieldValue)) {
+                    emailField.addClass("error");
+                } else {
+                    emailField.removeClass("error");
+                }
+            }
+
+            function updateButtonStatus() {
+                let errorClassOnEmpty = allFieldsNotEmpty.hasClass("error");
+                let errorClassOnRegex = $(
+                    "input[data-regex-required-field]"
+                ).hasClass("error");
+                let errorClassOnSelect = selectField.hasClass('error')
+
+                if (errorClassOnEmpty || errorClassOnRegex || errorClassOnSelect) {
+                    $submitButton.prop("disabled", true);
+                    switchThisStep = false;
+                } else {
+                    $submitButton.prop("disabled", false);
+                    switchThisStep = true;
+                }
+            }
+
+            function switchSteps() {
+                // if (switchThisStep) {
+                //     $(this).parent().hide();
+                //     $(this).parent().next().show();
+                // }
+                if (!$submitButton.prop("disabled")) {
+                    // $(this).parent().hide();
+                    // $(this).parent().next().show();
+                    $(".amountStep2").hide();
+                    $(".amountStep3").show();
+                }
+            }
+
+            $submitButton.click(function (e) {
+                checkIfEmpty();
+                numberFieldValidation();
+                emailFieldValidation();
+                checkSelectField()
+                updateButtonStatus();
+                switchSteps();
+
+                e.preventDefault();
+            });
+
+            allFieldsNotEmpty.change(function () {
+                $(this).removeClass("error");
+                updateButtonStatus();
+            });
+
+            numberField.change(function () {
+                numberFieldValidation();
+                updateButtonStatus();
+            });
+
+            emailField.change(function () {
+                emailFieldValidation();
+                updateButtonStatus();
+            });
+        }
+        step2();
+
+        function step3() {
+            $(".amountStep3 .popUpButton").click(function () {
+                $(".popUpAmountPanel").hide();
+                $(".popUpInfoPanel").hide();
+                $(".thankYouPopUp").show();
+            });
+        }
+        step3();
     }
-    step3();
-}
 
 </script>
 

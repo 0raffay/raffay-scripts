@@ -1,0 +1,127 @@
+/**==== OTHER CSS INCLUDE ====*/
+@import url(libs.css);
+@import url(variables.css);
+/**==== OTHER CSS INCLUDE ====*/
+
+/**==== RESETS START ====*/
+* {
+    margin: 0;
+    padding: 0;
+}   
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--ff-primary);
+}
+
+img{
+    max-width: 100%;
+}
+
+button,
+input {
+    outline: none;
+    border: none;
+}
+
+input { 
+    width: 100%;
+}
+
+/**==== RESETS END ====*/
+
+
+/**==== GLOBAL CSS START ====*/
+
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.gap-5 {
+    gap: 5px;
+}
+.gap-10 {
+    gap: 10px;
+}
+.gap-15 {
+    gap: 15px;
+}
+.gap-20 {
+    gap: 20px;
+}
+.gap-25 {
+    gap: 25px;
+}
+.gap-30 {
+    gap: 30px;
+}
+
+.gap-40 {
+    gap: 40px;
+}
+
+.mb-2 {
+    margin-bottom: 2px;
+}
+.mb-5 {
+    margin-bottom: 5px;
+}
+.mb-10 {
+    margin-bottom: 10px;
+}
+.mb-15 {
+    margin-bottom: 15px;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+.mb-25 {
+    margin-bottom: 25px;
+}
+.mb-30 {
+    margin-bottom: 30px;
+}
+.mb-35 {
+    margin-bottom: 35px;
+}
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-space {
+    justify-content: space-between;
+}
+
+.util__panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media only screen and (max-width: 992px) {
+    .util__panel {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+}
+/**==== GLOBAL CSS END ====*/
