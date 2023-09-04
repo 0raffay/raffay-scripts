@@ -49,10 +49,6 @@ $og__filePath = $site__url  . "/assets/images/og.png";
 <!--==== FONTS END END ====-->
 
 
-<!--==== LIBS FILE START ====-->
-<link rel="stylesheet" href="assets/css/libs.css">
-<!--==== LIBS FILE END====-->
-
 <!--==== LOCAL FILE START ====-->
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
