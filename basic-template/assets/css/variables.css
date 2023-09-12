@@ -1,3 +1,18 @@
 :root {
-    --ff-primary: Arial;
+    --ff-primary: 'Plus Jakarta Sans', sans-serif;
+    
+
+    --clr-primary: #1D2557;
+    --clr-primary-300: #4A5179;
+    --clr-secondary: #DF353B;
+
+    --section-padding: 65px 0;
+
+    --fs-16: 16px;
+    --fs-18: 18px;
+    --fs-22: 22px;
+    --fs-25: 25px;
+    --fs-45: 45px;
+    --fs-40: 40px;
+    --fs-55: 55px;
 }
