@@ -10,197 +10,177 @@
 
 
     <style>
-        .acc-container:nth-of-type(1) { 
-            border-top: none;
-        }
-
-        .acc-container {
-            padding: 43px 0 22px;
-            /* border-top: 1px solid #353535; */
-            border-bottom: 1px solid #353535;
-        }
-
-
-        .acc-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-
-        .acc-head h5 {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 22px;
-            line-height: 120.5%;
-            color: var(--fc-primary);
-            margin-bottom: 24px;
-        }
-
-        .icon-up {
+        **====ACCORDION CSS START====*/ .accordion__panel {
             display: none;
         }
 
-        /* youBusiness */
+        .accordion {
+            --accordion-bd-radius: 8px;
+            --accordion-container-mb: 10px;
+            --accordion-container-width: 721px;
 
-        .how-steps .img-wrap {
-            width: 105%;
+            --button-bg: rgba(232, 233, 238, 0.50);
+            --button-padding: 20px 30px;
+            --button-mb: 0 0 10px;
+            --accordion-title-clr: var(--clr-primary);
+
+            --accordion-symbol-size: 24px;
+            --accordion-symbol-clr: var(--clr-primary);
+
+            --panel-bg: rgba(232, 233, 238, 0.50);
+            --panel-padding: 20px 26px 23px 30px;
+            --panel-text-clr: #4A5179;
         }
 
-        .how-steps .img-wrap img {
-            min-height: 305px;
+        .accordion__container {
+            margin-bottom: var(--accordion-container-mb);
+            width: 100%;
+            margin-inline: auto;
         }
 
-        .steps-text {
-            padding: 20px 30px;
+        .accordion__button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            background: var(--button-bg);
+            padding: var(--button-padding);
+            margin: var(--button-mb);
+            border-radius: var(--accordion-bd-radius);
         }
 
-        .steps-text .btn {
-            /* scale: 0.8; */
+        .accordion__button .accordion__symbol.active {
+            display: none;
         }
 
-        .sub-heading {
-            font-style: normal;
+        .accordion__button.active .accordion__symbol.active {
+            display: block;
+        }
+
+        .accordion__panel {
+            background: var(--panel-bg);
+            padding: var(--panel-padding);
+            border-radius: var(--accordion-bd-radius);
+        }
+
+        .accordion__title {
+            color: var(--accordion-title-clr);
+            font-size: var(--fs-22);
             font-weight: 700;
-            font-size: var(--fs-large-sub-heading);
-            line-height: 42px;
-            color: var(--fc-primary);
-            margin-bottom: 35px;
+            line-height: 135%;
+            margin: 0;
         }
 
-        .sub-heading+p {
-            font-style: normal;
+        .accordion__text {
+            color: var(--panel-text-clr);
+            font-size: var(--fs-18);
             font-weight: 400;
-            font-size: var(--fs-sm);
-            line-height: 27px;
-            color: var(--fc-secondary);
-            margin-bottom: 24px;
-
+            line-height: 135%;
+            margin: 0;
         }
+
+        .accordion__symbol i {
+            color: var(--accordion-symbol-clr);
+            font-size: var(--accordion-symbol-size);
+        }
+
+        /**==== ACCORDION CSS END ====*/
     </style>
+
 
 </head>
 
 
 
 <body>
-
-    <section class="faq" id="faqs">
-        <h4>FAQs</h4>
-        <div class="container">
-
-            <div class="accordian">
-                <div class="acc-container">
-                    <div class="acc-head">
-                        <h5>Is Loogo.io suitable for beginners with no design experience?</h5>
-                        <div class="icon-down">
-                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
-                        </div>
-                        <div class="icon-up">
-                            <ion-icon name="chevron-up-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <p>Absolutely! Loogo.io is designed to be user-friendly, making it accessible for beginners and
-                            professionals. Our intuitive interface and the step-by-step process will guide you through
-                            the logo creation journey, allowing you to design impressive logos even without prior design
-                            experience..</p>
-                    </div>
-                </div>
-                <div class="acc-container">
-                    <div class="acc-head">
-                        <h5>What if I'm not satisfied with the logo I create on Loogo.io?</h5>
-                        <div class="icon-down">
-                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
-                        </div>
-                        <div class="icon-up">
-                            <ion-icon name="chevron-up-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <p>Your satisfaction is our priority! While we strive to provide you with a seamless logo
-                            creation experience, we offer a satisfaction guarantee if you're not entirely satisfied with
-                            your design. You can customize the designed logo according to your likes, and if that’s not
-                            enough, you can generate a wholly new logo!</p>
-                    </div>
-                </div>
-                <div class="acc-container">
-                    <div class="acc-head">
-                        <h5>Are the logos created on Loogo.io high-resolution and suitable for both digital and print
-                            use?</h5>
-                        <div class="icon-down">
-                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
-                        </div>
-                        <div class="icon-up">
-                            <ion-icon name="chevron-up-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <p>Yes, indeed! When you download your logo from Loogo.io, you'll receive high-resolution files
-                            that are perfect for both digital and print applications. Rest assured that your logo will
-                            look sharp and professional across various mediums.</p>
-                    </div>
-                </div>
-                <div class="acc-container">
-                    <div class="acc-head">
-                        <h5>How long does it take to create a logo on Loogo.io?</h5>
-                        <div class="icon-down">
-                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
-                        </div>
-                        <div class="icon-up">
-                            <ion-icon name="chevron-up-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <p>Just a few minutes! With our user-friendly interface and a vast library of design elements,
-                            you can create a basic or intricate logo in just a few minutes. </p>
-                    </div>
-                </div>
-                <div class="acc-container">
-                    <div class="acc-head">
-                        <h5>What file formats can I download my logo in from Loogo.io?</h5>
-                        <div class="icon-down">
-                            <ion-icon class="icon-icon" name="chevron-down-outline"></ion-icon>
-                        </div>
-                        <div class="icon-up">
-                            <ion-icon name="chevron-up-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <p>Once your logo design is complete, you can download it in various popular file formats,
-                            including PNG, JPEG, and SVG. These formats ensure compatibility across different platforms
-                            and allow easy integration into your website, social media profiles, business cards, and
-                            more.</p>
-                    </div>
-                </div>
-
-
+    <div class="accordion">
+        <div class="accordion__container">
+            <div class="accordion__button active">
+                <h6 class="accordion__title">What is Gbvlc and how does it work?</h6>
+                <span class="accordion__symbol">
+                    <i class="ri-add-circle-fill"></i>
+                </span>
+            </div>
+            <div class="accordion__panel active">
+                <p class="accordion__text">Gbvlc is a platform that offers verified certificates for courses provided by
+                    institutes and organizations. We partner with credible institutions to provide courses, and upon
+                    successful completion, you receive a certificate that's recognized and trusted.</p>
             </div>
         </div>
-    </section>
+        <div class="accordion__container">
+            <div class="accordion__button">
+                <h6 class="accordion__title">Why should I choose Gbvlc's verified certificates?</h6>
+                <span class="accordion__symbol">
+                    <i class="ri-add-circle-fill"></i>
+                </span>
+            </div>
+            <div class="accordion__panel">
+                <p class="accordion__text">Gbvlc is a platform that offers verified certificates for courses provided by
+                    institutes and organizations. We partner with credible institutions to provide courses, and upon
+                    successful completion, you receive a certificate that's recognized and trusted.</p>
+            </div>
+        </div>
+        <div class="accordion__container">
+            <div class="accordion__button">
+                <h6 class="accordion__title">How do I earn a verified certificate?</h6>
+                <span class="accordion__symbol">
+                    <i class="ri-add-circle-fill"></i>
+                </span>
+            </div>
+            <div class="accordion__panel">
+                <p class="accordion__text">Gbvlc is a platform that offers verified certificates for courses provided by
+                    institutes and organizations. We partner with credible institutions to provide courses, and upon
+                    successful completion, you receive a certificate that's recognized and trusted.</p>
+            </div>
+        </div>
+        <div class="accordion__container">
+            <div class="accordion__button">
+                <h6 class="accordion__title">Are Gbvlc's certificates recognized by employers?</h6>
+                <span class="accordion__symbol">
+                    <i class="ri-add-circle-fill"></i>
+                </span>
+            </div>
+            <div class="accordion__panel">
+                <p class="accordion__text">Gbvlc is a platform that offers verified certificates for courses provided by
+                    institutes and organizations. We partner with credible institutions to provide courses, and upon
+                    successful completion, you receive a certificate that's recognized and trusted.</p>
+            </div>
+        </div>
+        <div class="accordion__container">
+            <div class="accordion__button">
+                <h6 class="accordion__title">Can I take Gbvlc courses at my own pace?</h6>
+                <span class="accordion__symbol">
+                    <i class="ri-add-circle-fill"></i>
+                </span>
+            </div>
+            <div class="accordion__panel">
+                <p class="accordion__text">Gbvlc is a platform that offers verified certificates for courses provided by
+                    institutes and organizations. We partner with credible institutions to provide courses, and upon
+                    successful completion, you receive a certificate that's recognized and trusted.</p>
+            </div>
+        </div>
+    </div>
+
 
 
     <script>
-        const allPanels = $('.acc-container .panel').hide();
-        const allhead = $('.acc-container .acc-head')
-        $('.acc-container:nth-of-type(1) .panel').show();
+        function accordion() {
+            let accordionButton = $(".accordion__button");
+            let panel = $(".accordion__panel");
+            let activePanel = $(".accordion__panel.active");
+            activePanel.slideDown();
 
-        $('.acc-container > .acc-head').click(function () {
-            if ($(this).hasClass("active")) {
-                return true;
-            }
-            else {
-                allPanels.slideUp();
-                $(this).next().slideDown();
-                allhead.removeClass('active');
-                $('.icon-up').css('display', 'none');
-                $('.icon-down').css('display', 'block');
-                $(this).addClass('active');
-                $(this).find('.icon-up').css('display', 'block');
-                $(this).find('.icon-down').css('display', 'none');
-                return false;
-            }
-        });
+            accordionButton.click(function () {
+                let isActive = $(this).hasClass("active");
+                if (!isActive) {
+                    accordionButton.removeClass("active");
+                    $(this).addClass("active");
+                    panel.slideUp();
+                    $(this).next().slideDown();
+                }
+            });
+        }
     </script>
 
 </body>

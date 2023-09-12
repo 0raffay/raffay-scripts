@@ -7,7 +7,7 @@
 * {
     margin: 0;
     padding: 0;
-}   
+}
 
 *,
 *::before,
@@ -29,10 +29,14 @@ body {
     font-family: var(--ff-primary);
 }
 
+section {
+    padding: var(--section-padding);
+}
 
 input[type='number']::-webkit-inner-spin-button {
     appearance: none;
 }
+
 
 /* scoll bar */
 ::-webkit-scrollbar {
@@ -63,7 +67,7 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 
-img{
+img {
     max-width: 100%;
 }
 
@@ -76,13 +80,28 @@ ol {
     margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    padding: 0;
+    margin-bottom: .6em;
+}
+
+button:disabled {
+    background: gray !important;
+}
+
 button,
 input {
     outline: none;
     border: none;
 }
 
-input { 
+input {
     width: 100%;
 }
 
@@ -125,8 +144,30 @@ input {
 
 /**==== GLOBAL CSS START ====*/
 
+.hidden {
+    display: none;
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.error {
+    outline: 2px solid red;
+}
+
+
+.btn-lg {
+    width: 100%;
+    max-width: 100%;
+}
+
 .flex {
     display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
 }
 
 .flex-1 {
@@ -136,18 +177,23 @@ input {
 .gap-5 {
     gap: 5px;
 }
+
 .gap-10 {
     gap: 10px;
 }
+
 .gap-15 {
     gap: 15px;
 }
+
 .gap-20 {
     gap: 20px;
 }
+
 .gap-25 {
     gap: 25px;
 }
+
 .gap-30 {
     gap: 30px;
 }
@@ -157,31 +203,39 @@ input {
 }
 
 .mb-2 {
-    margin-bottom: 2px;
+    margin-bottom: 2px !important;
 }
+
 .mb-5 {
-    margin-bottom: 5px;
+    margin-bottom: 5px !important;
 }
+
 .mb-10 {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
+
 .mb-15 {
-    margin-bottom: 15px;
+    margin-bottom: 15px !important;
 }
+
 .mb-20 {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
+
 .mb-25 {
-    margin-bottom: 25px;
+    margin-bottom: 25px !important;
 }
+
 .mb-30 {
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
 }
+
 .mb-35 {
-    margin-bottom: 35px;
+    margin-bottom: 35px !important;
 }
+
 .mb-40 {
-    margin-bottom: 40px;
+    margin-bottom: 40px !important;
 }
 
 .align-items-center {
@@ -210,4 +264,50 @@ input {
         gap: 20px;
     }
 }
+
 /**==== GLOBAL CSS END ====*/
+
+/**==== PROJECT UTILITES START ====*/
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.container__csWidth {
+    max-width: 1310px;
+}
+
+.clr-secondary {
+    color: var(--clr-secondary);
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.btn-primary {
+    outline: none;
+    border: none;
+}
+
+.btn-primary:focus,
+.btn-primary:hover,
+.btn-primary {
+    outline: none !important;
+    color: #FFF !important;
+    background: var(--clr-secondary) !important;
+}
+
+/**==== PROJECT UTILITES END ====*/
