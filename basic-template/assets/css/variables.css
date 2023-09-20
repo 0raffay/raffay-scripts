@@ -1,18 +1,28 @@
 :root {
     --ff-primary: 'Plus Jakarta Sans', sans-serif;
-    
 
-    --clr-primary: #1D2557;
-    --clr-primary-300: #4A5179;
-    --clr-secondary: #DF353B;
+
+    --clr-primary: #015AAC;
+    --clr-secondary: #F9CD00;
+
+    --fc-neutral-700: #262626;
+    --fc-neutral-400: #616161;
+
+    --fc-accent: #FFF;
+
 
     --section-padding: 65px 0;
 
+    --fs-14: 14px;
     --fs-16: 16px;
     --fs-18: 18px;
     --fs-22: 22px;
+    --fs-24: 24px;
     --fs-25: 25px;
+    --fs-30: 30px;
     --fs-45: 45px;
     --fs-40: 40px;
+    --fs-50: 50px;
     --fs-55: 55px;
+    --fs-60: 60px;
 }
