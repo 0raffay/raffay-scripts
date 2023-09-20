@@ -3,17 +3,19 @@
 <link rel="icon" type="image/png" href="assets/images/favicon/favicon.png">
 <!--==== FAVICON END ====-->
 
+
 <!--==== OFINFO START ====-->
 <?php
-$site__email='email.com';
-$site__phone='123';
+$site__email='';
+$site__phone='';
 
 
-$site__name = 'SiteName';
-$site__url = 'https://localhost/Whatever.com';
-$og__content1 = "Content1";
-$og__content2 = "Content2";
-$og__filePath = $site__url  . "/assets/images/og.png";
+$site__name = '';
+$site__url = '';
+$og__content1 = "";
+$og__content2 = "";
+$og__filePath = get_template_directory_uri() . "/assets/images/og.png";
+
 ?>
 
 <meta property="og:url" content="<?php echo $site__url?>">
@@ -39,6 +41,7 @@ $og__filePath = $site__url  . "/assets/images/og.png";
 <meta name="author" content="<?php echo $site__name?>">
 <meta name="description" property="og:description" content="<?php echo $og__content2 ?>">
 <!--==== OFINFO END ====-->
+
 
 <!--==== REMIX ICONS START ====-->
 <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
