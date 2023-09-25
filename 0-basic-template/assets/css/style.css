@@ -101,6 +101,10 @@ input {
     border: none;
 }
 
+label {
+    display: block;
+}
+
 input {
     width: 100%;
 }
@@ -143,6 +147,69 @@ input {
 
 
 /**==== GLOBAL CSS START ====*/
+/* INPUT CSS START */
+.form__wrap {
+    --input-height: 55px;
+    --input-bd-radius: 10px;
+    --input-bd: 1px solid rgba(221, 221, 221, 0.87);
+    --input-bg: #FFF;
+    --input-padding: 10px;
+    --input-width: 100%;
+    --input-display: block;
+
+    --form-grid-template: repeat(2, 1fr);
+    --form-grid-gap: 30px;
+
+    --input-wrap-margin: 0 0 30px;
+
+    --text-area-height: 181px;
+
+    --label-mb: 10px;
+    --label-display: block;
+}
+
+@media screen and (max-width: 767px) {
+    .span-two {
+        grid-column: span 1;
+    }
+}
+
+.form__grid {
+    display: grid;
+    grid-template-columns: var(--form-grid-template);
+    column-gap: var(--form-grid-gap);
+}
+
+.form__wrap label {
+    color: var(--clr-primary);
+    font-size: var(--fs-18);
+    font-weight: 600;
+    line-height: 135%;
+    margin: var(--label-mb);
+    display: var(--label-display);
+}
+
+.form__wrap input,
+.form__wrap select,
+.form__wrap textarea {
+    height: var(--input-height);
+    border-radius: var(--input-bd-radius);
+    border: var(--input-bd);
+    background: var(--input-bg);
+    padding: var(--input-padding);
+    width: var(--input-width);
+    display: var(--input-display);
+}
+
+.form__wrap textarea {
+    height: var(--text-area-height);
+}
+
+.input__wrap {
+    margin: var(--input-wrap-margin);
+}
+
+/* INPUT CSS END */
 
 .hidden {
     display: none;
