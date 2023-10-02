@@ -10,7 +10,8 @@
 
 
     <style>
-        **====ACCORDION CSS START====*/ .accordion__panel {
+        /**====ACCORDION CSS START====*/
+        .accordion__panel {
             display: none;
         }
 
@@ -175,12 +176,16 @@
                 let isActive = $(this).hasClass("active");
                 if (!isActive) {
                     accordionButton.removeClass("active");
-                    $(this).addClass("active");
                     panel.slideUp();
+                    $(this).addClass("active");
                     $(this).next().slideDown();
+                } else {
+                    $(this).next().slideUp()
+                    $(this).removeClass("active")
                 }
             });
         }
+        accordion();
     </script>
 
 </body>
