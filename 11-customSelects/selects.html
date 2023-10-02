@@ -1,3 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
 <style>
     /* CUSTOM SELECT CSS START*/
     .cs__selectMain {
@@ -22,10 +25,15 @@
         user-select: none;
     }
 
+
+
     .cs__selectDropDown {
         position: absolute;
         top: 100%;
         width: 100%;
+
+
+        display: none;
 
         max-height: var(--dropDownHeight);
 
@@ -70,33 +78,54 @@
         const cusSelectDropDown = $("[data-cus-select-dropdown]");
         const cusSelectOptions = $("[data-cus-select-item]")
 
-
-        cusSelectDropDown.slideUp();
-        let isOpen = false;
-        selects.click(function() {
-            cusSelectDropDown.slideUp();
-            if (isOpen) {
-                $(this).next().slideUp();
-                isOpen = false;
-            } else {
-                $(this).next().slideDown();
-                isOpen = true;
-            }
+        selects.click(function () {
+            $(this).next().toggle();
         });
 
-        cusSelectOptions.click(function() {
-            if ($(this).hasClass('selected')) {
-                return;
-            } else {
+        cusSelectOptions.click(function () {
+            cusSelectOptions.removeClass("selected")
+            if (!$(this).hasClass("selected")) {
                 $(this).addClass('selected')
             }
-
             $(this).parent().prev().addClass("selected");
             let itsText = $(this).text();
             $(this).parent().prev().val(itsText).removeClass("error");
-            cusSelectDropDown.slideUp();
-            // updateButtonStatus();
+            cusSelectDropDown.hide();
         });
     }
     customSelect()
+    // function customSelect() {
+    //     const selects = $("[data-cus-select]");
+    //     const cusSelectDropDown = $("[data-cus-select-dropdown]");
+    //     const cusSelectOptions = $("[data-cus-select-item]")
+
+
+    //     cusSelectDropDown.slideUp();
+    //     let isOpen = false;
+    //     selects.click(function() {
+    //         cusSelectDropDown.slideUp();
+    //         if (isOpen) {
+    //             $(this).next().slideUp();
+    //             isOpen = false;
+    //         } else {
+    //             $(this).next().slideDown();
+    //             isOpen = true;
+    //         }
+    //     });
+
+    //     cusSelectOptions.click(function() {
+    //         if ($(this).hasClass('selected')) {
+    //             return;
+    //         } else {
+    //             $(this).addClass('selected')
+    //         }
+
+    //         $(this).parent().prev().addClass("selected");
+    //         let itsText = $(this).text();
+    //         $(this).parent().prev().val(itsText).removeClass("error");
+    //         cusSelectDropDown.slideUp();
+    //         // updateButtonStatus();
+    //     });
+    // }
+    // customSelect()
 </script>
