@@ -8,133 +8,144 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-   <style>
-    
-/**==== HEADER START ====*/
-header {
-    --header-padding: 36px 0;
+    <style>
+        /**==== HEADER START ====*/
+        header {
+            --header-padding: 36px 0;
 
-    --gap-between-li: 30px;
-    --header-li-clr: var(--clr-neutral-700);
-    --header-li-hover-state-clr: var(--clr-primary);
-    --header-li-hover-state-fw: 700;
-}
+            --gap-between-li: 30px;
+            --header-li-clr: var(--clr-neutral-700);
+            --header-li-hover-state-clr: var(--clr-primary);
+            --header-li-hover-state-fw: 700;
+        }
 
-.headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        .headerContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-    padding: var(--header-padding);
-}
+            padding: var(--header-padding);
+        }
 
-.nav__list {
-    list-style-type: none;
-    display: flex;
-    gap: var(--gap-between-li);
-}
+        .nav__list {
+            list-style-type: none;
+            display: flex;
+            gap: var(--gap-between-li);
+        }
 
-.nav__list li a {
-    color: var(--header-li-clr);
-    font-size: var(--fs-16);
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
+        .nav__list li a {
+            color: var(--header-li-clr);
+            font-size: var(--fs-16);
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
 
-.nav__list li:hover a {
-    color: var(--header-li-hover-state-clr);
-    font-weight: var(--header-li-hover-state-fw);
-    position: relative;
-}
+        .nav__list li:hover a {
+            color: var(--header-li-hover-state-clr);
+            font-weight: var(--header-li-hover-state-fw);
+            position: relative;
+        }
 
-.nav__list li a::after {
-    content: "";
-    background: var(--clr-primary);
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -9px;
-    left: 0;
-    right: 0;
-    transform: scaleX(0);
-    transition: 200ms;
-}
+        .nav__list li a::after {
+            content: "";
+            background: var(--clr-primary);
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -9px;
+            left: 0;
+            right: 0;
+            transform: scaleX(0);
+            transition: 200ms;
+        }
 
-.nav__list li:hover a::after {
-    transform: scaleX(1);
-}
+        .nav__list li:hover a::after {
+            transform: scaleX(1);
+        }
 
-.burgerButton {
-    display: none;
-    width: 40px;
-}
+        .burgerButton {
+            display: none;
+            width: 40px;
+        }
 
-.burgerButton div {
-    margin-bottom: 4px;
-    background: var(--clr-primary);
-    border-radius: 1px;
-    display: block;
-    width: 100%;
-    height: 6px;
-}
+        .burgerButton div {
+            margin-bottom: 4px;
+            background: var(--clr-primary);
+            border-radius: 1px;
+            display: block;
+            width: 100%;
+            height: 6px;
+        }
 
-.mobileMenu {
-    display: none;
-    --mobile-menu-bg: var(--clr-primary);
-    position: fixed;
-    top: 0;
-    height: 100vh;
-    padding: 30px;
-    width: max(50%, 385px);
-    background: var(--mobile-menu-bg);
+        .mobileMenu {
+            display: none;
+            --mobile-menu-bg: var(--clr-primary);
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            padding: 30px;
+            width: max(50%, 385px);
+            background: var(--mobile-menu-bg);
 
-    transform: translateX(-100%);
-    transition: transform 400ms ease;
-}
+            transform: translateX(-100%);
+            transition: transform 400ms ease;
+        }
 
-.mobileMenu.active {
-    transform: translateX(0);
-}
+        .mobileMenu.active {
+            transform: translateX(0);
+        }
 
-.mobileMenuHeader {
-    display: flex;
-    justify-content: space-between;
+        .mobileMenuHeader {
+            display: flex;
+            justify-content: space-between;
 
-    margin-bottom: 40px;
-}
+            margin-bottom: 40px;
+        }
 
-.mobileMenuClose i {
-    color: var(--fc-accent);
-    font-size: 2rem;
-}
+        .mobileMenuClose i {
+            color: var(--fc-accent);
+            font-size: 2rem;
+        }
 
-.mobile__list li  a{
-color: var(--fc-accent);
-}
+        .mobile__list li a {
+            color: var(--fc-accent);
+        }
 
-.mobile__list li {
-    padding: 10px 0 15px;
-    list-style: none;
-}
-.mobile__list li:not(:nth-last-of-type(1)) {
-    border-bottom: 1px solid #ddd;
-}
+        .mobile__list li {
+            padding: 10px 0 15px;
+            list-style: none;
+        }
 
-@media screen and (max-width: 767px) {
-    nav,
-    header .button__wrap {
-        display: none;
-    }
+        .mobile__list li:not(:nth-last-of-type(1)) {
+            border-bottom: 1px solid #ddd;
+        }
 
-    .mobileMenu,
-    .burgerButton {
-        display: block;
-    }
-}
 
-/**==== HEADER END ====*/
-   </style>
+        .li--has-submenu.active .closeIcon,
+        .li--has-submenu .openIcon {
+            display: none;
+        }
+
+        .li--has-submenu.active .openIcon {
+            display: block;
+        }
+
+        @media screen and (max-width: 767px) {
+
+            nav,
+            header .button__wrap {
+                display: none;
+            }
+
+            .mobileMenu,
+            .burgerButton {
+                display: block;
+            }
+        }
+
+        /**==== HEADER END ====*/
+    </style>
 
 </head>
 
@@ -165,7 +176,7 @@ color: var(--fc-accent);
             </div>
         </div>
     </header>
-    
+
     <div class="mobileMenu">
         <div class="mobileMenuHeader">
             <div class="logo">
@@ -175,11 +186,28 @@ color: var(--fc-accent);
                 <button><i class="ri-close-line"></i></button>
             </div>
         </div>
-    
+
         <ul class="mobile__list">
             <li><a href="#">Home</a></li>
             <li><a href="#">About Us</a></li>
-            <li><a href="#">Appeals</a></li>
+            <li class="li--has-submenu">
+
+                <span class="closeIcon">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </span>
+                <span class="openIcon">
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                </span>
+
+                <a href="attractions">Attractions</a>
+                <ul class="mobile--submenu">
+                    <li><a href="#">Trampoline Park</a></li>
+                    <li><a href="wall-climbing">Wall climbing</a></li>
+                    <li><a href="ninja-course/">Ninja Course</a></li>
+                    <li><a href="softplay/">Indoor Playground</a></li>
+                    <li><a href="#">Arcade Games </a></li>
+                </ul>
+            </li>
             <li><a href="#">Get Involved</a></li>
         </ul>
     </div>
@@ -199,6 +227,17 @@ color: var(--fc-accent);
 
             closeButton.click(function () {
                 mobileMenu.removeClass('active')
+            })
+
+            let mobileSubmenuButton = $('.li--has-submenu')
+            let mobileSubmenu = '.mobile--submenu'
+            $(mobileSubmenu).slideUp();
+
+            mobileSubmenuButton.click(function (e) {
+                e.preventDefault();
+
+                $(this).toggleClass('active')
+                $(this).find(mobileSubmenu).slideToggle();
             })
         }
     </script>
