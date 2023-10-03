@@ -40,32 +40,20 @@ input[type='number']::-webkit-inner-spin-button {
 
 /* scoll bar */
 ::-webkit-scrollbar {
-    width: 8px;
-    /* Adjust the width as needed */
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #70B3F2 0%, #4437FF 100%);
-    opacity: 0.8;
+    background: var(--clr-primary);
     border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    opacity: 1;
-}
-
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track-piece,
 ::-webkit-scrollbar-track {
     background-color: #e0e0e0;
 }
-
-::-webkit-scrollbar-track-piece {
-    background-color: #e0e0e0;
-}
-
-::-webkit-scrollbar-corner {
-    background-color: #f0f0f0;
-}
-
 
 img {
     max-width: 100%;
@@ -73,6 +61,7 @@ img {
 
 button {
     background: none;
+    outline: none;
 }
 
 ul,
@@ -88,10 +77,10 @@ h5,
 h6,
 p {
     padding: 0;
-    margin-bottom: .6em;
+    margin-bottom: .5em;
 }
 
-button:disabled {
+:disabled {
     background: gray !important;
 }
 
@@ -269,6 +258,14 @@ input {
     gap: 40px;
 }
 
+.gap-50 {
+    gap: 50px;
+}
+
+.gap-60 {
+    gap: 60px;
+}
+
 .mb-2 {
     margin-bottom: 2px !important;
 }
@@ -303,6 +300,14 @@ input {
 
 .mb-40 {
     margin-bottom: 40px !important;
+}
+
+.mb-45 {
+    margin-bottom: 45px !important;
+}
+
+.mb-50 {
+    margin-bottom: 50px !important;
 }
 
 .align-items-center {
@@ -343,11 +348,6 @@ input {
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
-}
-
-
-.container__csWidth {
-    max-width: 1310px;
 }
 
 .clr-secondary {
