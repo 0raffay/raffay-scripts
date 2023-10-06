@@ -3,19 +3,21 @@
 
 <style>
     /* CUSTOM SELECT CSS START*/
+    /* CUSTOM SELECT CSS START*/
     .cs__selectMain {
         position: relative;
 
-        --dropDownHeight: 400px;
+        --dropDownHeight: 150px;
         --dropDownBg: #FFF;
 
-        --optionHeight: 56px;
+        --optionHeight: 52px;
         --optionBg: #FFF;
-        --optionPadding: 18px 0 18px 23px;
+        --optionPadding: 14px 12px 14px;
         --optionColor: var(--clr-neutral-700);
         --optionFs: var(--fs-16);
 
-        --activeOptionBg: #EBF1FD;
+        --activeOptionBg: #EAF1FA;
+        --activeOptionClr: #114084;
         --activeOptionBorder: 1px solid var(--clr-primary);
     }
 
@@ -32,13 +34,24 @@
         top: 100%;
         width: 100%;
 
-
+        z-index: 2;
         display: none;
 
-        max-height: var(--dropDownHeight);
+        min-height: var(--dropDownHeight);
 
         background: var(--dropDownBg);
         box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.20);
+        border-radius: 8px;
+        padding: 9px;
+    }
+
+
+    .cs__selectDropDown [data-cus-select-item]:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .cs__selectDropDown [data-cus-select-item]:last-child {
+        border-radius: 0 0 8px 8px;
     }
 
     [data-cus-select-item] {
@@ -58,8 +71,11 @@
     [data-cus-select-item].selected,
     [data-cus-select-item]:hover {
         background: var(--activeOptionBg);
-        border-bottom: var(--activeOptionBorder);
+        /* border-bottom: var(--activeOptionBorder); */
+        color: var(--activeOptionClr);
+        font-weight: 800;
     }
+
 
     /* CUSTOM SELECT CSS END*/
 </style>
