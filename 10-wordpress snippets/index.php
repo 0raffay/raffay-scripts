@@ -14,7 +14,7 @@
     1- ACF - For custom fields
     2- Classic Editor
     3- WP migration
-    4- Contact Form 7 --- ASK chat gpt how to Implement it there is a function : echo dot() something like that.
+    4- Contact Form 7 --- ASK chat gpt how to Implement it there is a function :do_shortcode(); something like that.
     5- icegram express for newsletter
 
     BASIC HEADER AND FOOTER TEMPLATE --- HEADER AND FOOTER SHOULD
