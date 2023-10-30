@@ -12,7 +12,7 @@ function validateForm(options, action) {
         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     let telephone = $(options.telephone.selector);
-    let telephoneRegex = options.telephone.regex || /^\d{3}-\d{3}-\d{4}$/;
+    let telephoneRegex = options.telephone.regex || /^\d{9,}$/;
 
     let checkValidateType = {
         inputs: "empty",
@@ -117,7 +117,7 @@ validateForm(
         },
         telephone: {
             selector: "[data-telephone-field]",
-            regex: /^\d{3}-\d{3}-\d{4}$/,
+            regex: /^\d{9,}$/,
         },
         errorClass: "error",
         disableClass: "disabled",
