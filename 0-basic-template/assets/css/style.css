@@ -1,9 +1,10 @@
-/**==== OTHER CSS INCLUDE ====*/
+/**--- OTHER CSS INCLUDE ---*/
 @import url(libs.css);
 @import url(variables.css);
-/**==== OTHER CSS INCLUDE ====*/
+/**--- OTHER CSS INCLUDE ---*/
 
-/**==== RESETS START ====*/
+
+/**--- RESETS START ---*/
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +23,7 @@ a:hover {
 html,
 body {
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -33,12 +35,12 @@ section {
     padding: var(--section-padding);
 }
 
-input[type='number']::-webkit-inner-spin-button {
+input[type='number'].hide-arrow::-webkit-inner-spin-button {
     appearance: none;
 }
 
+/* SCROLL BAR RESET START */
 
-/* scoll bar */
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -55,18 +57,19 @@ input[type='number']::-webkit-inner-spin-button {
     background-color: #e0e0e0;
 }
 
+/* SCROLL BAR RESET END */
+
+
+
 img {
     max-width: 100%;
+    height: auto;
 }
 
 button {
     background: none;
     outline: none;
-}
-
-
-button:focus {
-    outline: none !important;
+    border: none;
 }
 
 ul,
@@ -82,12 +85,10 @@ h5,
 h6,
 p {
     padding: 0;
-    margin-bottom: .5em;
-    color: var(--clr-neutral-700);
+    margin-bottom: 0;
 }
 
 p {
-    color: var(--fc-neutral-400);
     font-size: var(--fs-16);
     font-weight: 400;
     line-height: normal;
@@ -97,21 +98,16 @@ p {
     background: gray !important;
 }
 
-button,
 input {
     outline: none;
-    border: none;
+    width: 100%;
 }
 
 label {
     display: block;
 }
 
-input {
-    width: 100%;
-}
-
-/* CUSTOM DOTS START*/
+/* SLICK RESET */
 
 .slick-dots li {
     padding: 0;
@@ -125,17 +121,14 @@ input {
 }
 
 .slick-dots li button {
-
     --_size: 16px;
     display: block;
     background: #D9D9D9;
     height: var(--_size);
     width: var(--_size);
     border-radius: 100%;
-
     margin: 0 2px;
     padding: 0;
-
     transition: width 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
     transform-origin: center;
 }
@@ -152,13 +145,59 @@ input {
     --_size: 12px;
 }
 
-/* CUSTOM DOTS END */
-
-/**==== RESETS END ====*/
+/* SLICK RESET */
 
 
-/**==== GLOBAL CSS START ====*/
-/* INPUT CSS START */
+/* LOADER */
+
+*:has(> .loader.center) {
+    position: relative;
+}
+
+@-webkit-keyframes loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    display: none;
+    --size: 50px;
+    height: var(--size);
+    width: var(--size);
+    border: calc(var(--size) * .16) solid #f3f3f3;
+    border-radius: 100%;
+    border-top: calc(var(--size) * .16) solid var(--clr-secondary);
+    animation: loader 2s linear infinite;
+}
+
+.loader.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* LOADER */
+
+/**--- RESETS END ---*/
+
+
+/**--- CUSTOM LAYOUT CSS START ---*/
 .form__wrap {
     --input-height: 57px;
     --input-bd-radius: 8px;
@@ -167,14 +206,10 @@ input {
     --input-padding: 10px;
     --input-width: 100%;
     --input-display: block;
-
     --form-grid-template: repeat(2, 1fr);
     --form-grid-gap: 30px;
-
     --input-wrap-margin: 0 0 30px;
-
     --text-area-height: 181px;
-
     --label-mb: 10px;
     --label-display: block;
 }
@@ -183,12 +218,6 @@ input {
     .span-two {
         grid-column: span 1;
     }
-}
-
-.form__grid {
-    display: grid;
-    grid-template-columns: var(--form-grid-template);
-    column-gap: var(--form-grid-gap);
 }
 
 .form__wrap label {
@@ -218,175 +247,6 @@ input {
 
 .input__wrap {
     margin: var(--input-wrap-margin);
-}
-
-/* INPUT CSS END */
-
-.hidden {
-    display: none;
-}
-
-.span-two {
-    grid-column: span 2;
-}
-
-.error {
-    outline: 2px solid red;
-}
-
-.border-right {
-    border-right: 1px solid var(--fc-accent);
-    padding-right: 10px;
-}
-
-.border-right+* {
-    padding-left: 10px;
-}
-
-.no-padding {
-    padding: 0 !important;
-    padding-block: 0;
-    padding-inline: 0;
-}
-
-
-.bg-primary {
-    background-color: var(--clr-primary) !important;
-}
-
-.bg-primary-300 {
-    background-color: var(--clr-primary-300) !important;
-}
-
-.bg-accent {
-    background-color: var(--fc-accent) !important;
-}
-
-.bg-white {
-    background: #FFF !important;
-}
-
-.bg-black {
-    background: #000 !important;
-}
-
-.clr-accent {
-    color: var(--fc-accent);
-}
-
-.clr-white {
-    color: #FFF;
-}
-
-.clr-primary {
-    color: var(--clr-primary);
-}
-
-.clr-primary-300 {
-    color: var(--clr-primary-300);
-}
-
-
-
-.fc-neutral-700 {
-    color: var(--fc-neutral-700);
-}
-
-.fc-neutral-400 {
-    color: var(--fc-neutral-400);
-}
-
-.fc-secondary {
-    color: #646363;
-}
-
-.fw-300 {
-    font-weight: 300;
-}
-
-.fw-400 {
-    font-weight: 400;
-}
-
-.fw-500 {
-    font-weight: 500;
-}
-
-.fw-600 {
-    font-weight: 600;
-}
-
-.fw-700 {
-    font-weight: 700;
-}
-
-.fw-800 {
-    font-weight: 800;
-}
-
-.fw-900 {
-    font-weight: 900;
-}
-
-.fs-16 {
-    font-size: var(--fs-16) !important;
-}
-
-.fs-18 {
-    font-size: var(--fs-18) !important;
-}
-
-.fs-20 {
-    font-size: var(--fs-20) !important;
-}
-
-.fs-22 {
-    font-size: var(--fs-22) !important;
-}
-
-.fs-24 {
-    font-size: var(--fs-24) !important;
-}
-
-.fs-25 {
-    font-size: var(--fs-25) !important;
-}
-
-.fs-30 {
-    font-size: var(--fs-30) !important;
-}
-
-.fs-35 {
-    font-size: var(--fs-35) !important;
-}
-
-.fs-40 {
-    font-size: var(--fs-40) !important;
-}
-
-.fs-45 {
-    font-size: var(--fs-45) !important;
-}
-
-.fs-50 {
-    font-size: var(--fs-50) !important;
-}
-
-.fs-55 {
-    font-size: var(--fs-55) !important;
-}
-
-.btn-lg {
-    width: 100%;
-    max-width: 100%;
-}
-
-.flex {
-    display: flex;
-}
-
-.flex-wrap {
-    flex-wrap: wrap;
 }
 
 .flex-1 {
@@ -429,14 +289,6 @@ input {
     gap: 60px;
 }
 
-.mb-2 {
-    margin-bottom: 2px !important;
-}
-
-.mb-5 {
-    margin-bottom: 5px !important;
-}
-
 .mb-10 {
     margin-bottom: 10px !important;
 }
@@ -473,16 +325,20 @@ input {
     margin-bottom: 50px !important;
 }
 
-.align-items-center {
-    align-items: center;
+.pt-0 {
+    padding-top: 0 !important;
 }
 
-.justify-content-center {
-    justify-content: center;
+.pb-0 {
+    padding-bottom: 0 !important;
 }
 
-.justify-content-space {
-    justify-content: space-between;
+.mt-0 {
+    margin-top: 0 !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
 }
 
 .util__panel {
@@ -500,10 +356,9 @@ input {
     }
 }
 
-/**==== GLOBAL CSS END ====*/
+/**--- CUSTOM LAYOUT CSS START ---*/
 
-/**==== PROJECT UTILITES START ====*/
-
+/**--- UTLITIY CLASSES START ---*/
 .btn {
     padding: 15px 30px;
     border-radius: 8px;
@@ -511,10 +366,6 @@ input {
     font-size: var(--fs-16);
     font-weight: 600;
     line-height: normal;
-}
-
-.clr-secondary {
-    color: var(--clr-secondary);
 }
 
 .btn {
@@ -529,6 +380,10 @@ input {
     transition: all 250ms ease;
 }
 
+.btn-lg {
+    width: 100%;
+    max-width: 100%;
+}
 
 .btn-primary {
     outline: none;
@@ -544,31 +399,10 @@ input {
 
 .btn-primary:hover {
     outline: 1px solid var(--clr-primary) !important;
-    /* color: var(--clr-neutral-700) !important; */
     color: var(--clr-primary) !important;
     background: #cdd2e0 !important;
 }
 
-.small__heading {
-    color: var(--clr-neutral-700);
-    font-size: var(--fs-24);
-    font-weight: 700;
-    line-height: normal;
-}
-
-.loader {
-    animation: rotate 2s linear infinite;
-}
-
-@keyframes rotate {
-    0% {
-        transform: rotate(0);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
 
 .section__label {
     color: var(--clr-primary-300);
@@ -598,12 +432,196 @@ input {
     margin-inline: auto;
 }
 
-
-
 .grey__main {
     padding: 50px 0;
     background: #FAFAFA;
 }
 
+.hidden {
+    display: none;
+}
 
-/**==== PROJECT UTILITES END ====*/
+.span-two {
+    grid-column: span 2;
+}
+
+.error {
+    outline: 1px solid red;
+}
+
+.border-right {
+    border-right: 1px solid var(--fc-accent);
+    padding-right: 10px;
+}
+
+.border-right+* {
+    padding-left: 10px;
+}
+
+.no-padding {
+    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
+}
+
+/* BACKGROUNDS START */
+
+.bg-primary {
+    background-color: var(--clr-primary) !important;
+}
+
+.bg-secondary-400 {
+    background-color: var(--clr-secondary-400) !important;
+}
+
+.bg-secondary {
+    background-color: var(--clr-secondary) !important;
+}
+
+.bg-white {
+    background: #FFF !important;
+}
+
+.bg-black {
+    background: #000 !important;
+}
+
+/* BACKGROUNDS END */
+
+/* FONT FAMILIES START */
+
+.ff-primary {
+    font-family: var(--ff-primary);
+}
+
+.ff-secondary {
+    font-family: var(--ff-secondary);
+}
+
+/* FONT FAMILIES END */
+
+/* FONT COLORS START */
+
+.fc-white {
+    color: #FFF;
+}
+
+.fc-black {
+    color: #000;
+}
+
+.fc-primary {
+    color: var(--clr-primary);
+}
+
+.fc-secondary {
+    color: var(--clr-secondary);
+}
+
+.fc-secondary-400 {
+    color: var(--clr-secondary-400);
+}
+
+/* FONT COLORS END */
+
+/* FONT WEIGHTS START */
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+.fw-900 {
+    font-weight: 900;
+}
+
+/* FONT WEIGHTS END */
+
+/* FONT SIZES START */
+
+.fs-13 {
+    font-size: var(--fs-13);
+}
+
+.fs-14 {
+    font-size: var(--fs-14);
+}
+
+.fs-16 {
+    font-size: var(--fs-16);
+}
+
+.fs-18 {
+    font-size: var(--fs-18);
+}
+
+.fs-20 {
+    font-size: var(--fs-20);
+}
+
+.fs-22 {
+    font-size: var(--fs-22);
+}
+
+.fs-24 {
+    font-size: var(--fs-24);
+}
+
+.fs-25 {
+    font-size: var(--fs-25);
+}
+
+.fs-30 {
+    font-size: var(--fs-30);
+}
+
+.fs-35 {
+    font-size: var(--fs-35);
+}
+
+.fs-40 {
+    font-size: var(--fs-40);
+}
+
+.fs-45 {
+    font-size: var(--fs-45);
+}
+
+.fs-50 {
+    font-size: var(--fs-50);
+}
+
+.fs-55 {
+    font-size: var(--fs-55);
+}
+
+.fs-60 {
+    font-size: var(--fs-60);
+}
+
+.fs-65 {
+    font-size: var(--fs-65);
+}
+/* FONT SIZES END */
+
+
+/**--- UTLITIY CLASSES END ---*/

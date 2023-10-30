@@ -2,9 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- Header styles file should have a name like "header-styles.php" for this to work. -->
     <?php get_header('styles') ?>
 </head>
 
@@ -15,12 +14,21 @@
     2- Classic Editor
     3- WP migration
     4- Contact Form 7 --- ASK chat gpt how to Implement it there is a function :do_shortcode(); something like that.
+            //FLAG INPUT PLUGIN FOR ACF:
+            Country & Phone Field Contact Form 7
+            //CONDITIONAL FIELDS:
+            Conditional Fields for Contact Form 7
+
+
+
     5- icegram express for newsletter
 
     BASIC HEADER AND FOOTER TEMPLATE --- HEADER AND FOOTER SHOULD
     BE IN ROOT--- IF NOT THEN YOU WILL HAVE TO USE:
     get_template_part('include/header') -- donts mention .php just header
-	<!-- <?php  include(get_template_directory() . '/includes/mri-sections.php'); ?>-->
+
+    
+    <!-- <?php include(get_template_directory() . '/includes/mri-sections.php'); ?>-->
 
     <!-- //menu: -->
     <!-- Functions.php -->
@@ -206,37 +214,38 @@
         8- Display Post type as Loop:
         // Always Use wp_reset_postdata(); because it causes trouble with data base without it/
         <?php
-                $args = array(
-                    'post_type' => 'appeals',
-                 
-                );
-                $loop = new WP_Query($args);
-                if ($loop->have_posts()) :
-                    while ($loop->have_posts()) : $loop->the_post();
-                ?>
-                        <div class="appealCards">
-                            <div class="appealCardText">
-                                <h4> <?php the_title() //the_field('appeal_title') ?></h4>
-                                <p><?php the_excerpt(); ?></p>
-                                <div class="button__wrap"><a href="<?php the_permalink(); ?>" class="btn btn-primary">Donate Now</a></div>
-                            </div>
-                            <div class="img__wrap">
-                                <?php
-                                if (has_post_thumbnail()) {
-                                    the_post_thumbnail('full');
-                                } else {
-                                    echo '<img src="' . get_template_directory_uri() . '/assets/images/custom-img.png" alt="Default Image">';
-                                }
-                                ?>
-                            </div>
-                        </div>
-                <?php
-                    endwhile;
-                    //wp_reset_postdata();
-                else :
-                    echo 'No appeals found.';
-                endif;
-                ?>
+        $args = array(
+            'post_type' => 'appeals',
+
+        );
+        $loop = new WP_Query($args);
+        if ($loop->have_posts()) :
+            while ($loop->have_posts()) : $loop->the_post();
+        ?>
+                <div class="appealCards">
+                    <div class="appealCardText">
+                        <h4> <?php the_title() //the_field('appeal_title') 
+                                ?></h4>
+                        <p><?php the_excerpt(); ?></p>
+                        <div class="button__wrap"><a href="<?php the_permalink(); ?>" class="btn btn-primary">Donate Now</a></div>
+                    </div>
+                    <div class="img__wrap">
+                        <?php
+                        if (has_post_thumbnail()) {
+                            the_post_thumbnail('full');
+                        } else {
+                            echo '<img src="' . get_template_directory_uri() . '/assets/images/custom-img.png" alt="Default Image">';
+                        }
+                        ?>
+                    </div>
+                </div>
+        <?php
+            endwhile;
+        //wp_reset_postdata();
+        else :
+            echo 'No appeals found.';
+        endif;
+        ?>
 
 
         //9: Go to Single Appeal Page Paste this in Single php
