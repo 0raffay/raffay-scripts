@@ -1,14 +1,20 @@
 <?php
 // SITE DATA:
-$siteEmail ="";
-$sitePhone="";
+$siteEmail = "";
+$sitePhone = "";
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+    $siteURL = "https://";
+else
+    $siteURL = "http://";
+$siteURL .= $_SERVER['HTTP_HOST'];;
+
 
 // OG DATA:
 $siteName = "";
 $siteURL = "";
 $ogContent1 = "";
 $ogContent2 = "";
-$ogImgPath =  "/assets/images/og.png";
+$ogImgPath =  "$siteURL/FOLDERNAME/assets/images/og.png";
 ?>
 
 
