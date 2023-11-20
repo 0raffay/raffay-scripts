@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    
-});
-
 function validateForm(options, action) {
     let errorClass = options.errorClass || "error";
     let disableClass = options.disableClass || "disabled";
@@ -102,50 +98,11 @@ validateForm(
 );
 
 
-function tabbing(
-    buttonClassByContainer,
-    panelClassByContainer,
-    utilityClassToAdd
-) {
-    let activeClass = utilityClassToAdd ? utilityClassToAdd : "active";
-    let buttons = $(buttonClassByContainer);
-    let panels = $(panelClassByContainer);
-
-    panels.not(panels.eq(0)).hide();
-
-    buttons.click(function () {
-        let itsIndex = $(this).index();
-        if (panels.eq(itsIndex).length != 0) {
-            buttons.removeClass(activeClass);
-            $(this).addClass(activeClass);
-            panels.hide();
-            panels.eq(itsIndex).show().addClass(activeClass);
-        } else {
-            $(this).addClass("disabled");
-        }
-    });
-}
-
-function toggler(options) {
-    const button = $(options.button);
-    const action = $(options.actionContainer);
-    const classToAdd = options.actionClass || "active";
-
-    if (options.removeAction) {
-        let _eventTrigger = $(options.removeAction.eventTrigger);
-        let event = options.removeAction.event;
-
-        _eventTrigger.on(event, function () {
-            action.removeClass(classToAdd);
-        });
-    }
-
-    button.click(function (e) {
-        console.log("workign");
-        if (options.preventDefault) {
-            e.preventDefault();
-        }
-        button.toggleClass(classToAdd);
-        action.toggleClass(classToAdd);
-    });
-}
+let example =
+    `    <div class="form">
+<input data-validate type="text" placeholder="name">
+<input data-validate validate-regex="^\d{10}$" type="tel" placeholder="telephone">
+<input data-validate validate-regex="^[^\s@]+@[^\s@]+\.[^\s@]+$" type="email" placeholder="Email">
+<input data-validate validate-regex="^[1-9]\d*$" type="number" placeholder="Custom Number input">
+<button data-submit>Submit Form</button>
+</div>`;
