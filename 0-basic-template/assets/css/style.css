@@ -559,6 +559,34 @@ label {
 
 /* FONT WEIGHTS END */
 
+/* LINE HEIGHT START */
+.lh-1 {
+    line-height: 1;
+}
+
+.lh-1-1 {
+    line-height: 1.1;
+}
+
+.lh-1-2 {
+    line-height: 1.2;
+}
+
+.lh-1-3 {
+    line-height: 1.3;
+}
+
+.lh-1-4 {
+    line-height: 1.4;
+}
+
+.lh-1-5 {
+    line-height: 1.5;
+}
+
+/* LINE HEIGHT END */
+
+
 /* FONT SIZES START */
 
 .fs-13 {
