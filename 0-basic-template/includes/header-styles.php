@@ -1,22 +1,42 @@
+// <?php
+// // SITE DATA:
+// $siteEmail = "";
+// $sitePhone = "";
+// if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+//     $siteURL = "https://";
+// else
+//     $siteURL = "http://";
+// $siteURL .= $_SERVER['HTTP_HOST'];;
+
+
+// // OG DATA:
+// $siteName = "";
+// $siteURL = "";
+// $ogContent1 = "";
+// $ogContent2 = "";
+// $ogImgPath =  "$siteURL/FOLDERNAME/assets/images/og.png";
+// ?>
 <?php
-// SITE DATA:
-$siteEmail = "";
-$sitePhone = "";
-if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+if (isset($_SERVER['HTTPS']))
     $siteURL = "https://";
 else
     $siteURL = "http://";
-$siteURL .= $_SERVER['HTTP_HOST'];;
-
+$siteURL .= $_SERVER['HTTP_HOST'];
 
 // OG DATA:
 $siteName = "";
-$siteURL = "";
+$folderName = "";
+$siteURL .= "/" . $folderName;
+
+$siteEmail = " ";
+$sitePhone = "";
+$siteAddress = "";
+
+
 $ogContent1 = "";
 $ogContent2 = "";
-$ogImgPath =  "$siteURL/FOLDERNAME/assets/images/og.png";
+$ogImgPath =  "$siteURL/assets/images/og.png";
 ?>
-
 
 <!--==== FAVICON START ====-->
 <link rel="icon" type="image/png" href="assets/images/favicon/favicon.png">
