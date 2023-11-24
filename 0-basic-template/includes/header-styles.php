@@ -1,21 +1,3 @@
-// <?php
-// // SITE DATA:
-// $siteEmail = "";
-// $sitePhone = "";
-// if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-//     $siteURL = "https://";
-// else
-//     $siteURL = "http://";
-// $siteURL .= $_SERVER['HTTP_HOST'];;
-
-
-// // OG DATA:
-// $siteName = "";
-// $siteURL = "";
-// $ogContent1 = "";
-// $ogContent2 = "";
-// $ogImgPath =  "$siteURL/FOLDERNAME/assets/images/og.png";
-// ?>
 <?php
 if (isset($_SERVER['HTTPS']))
     $siteURL = "https://";
@@ -23,9 +5,14 @@ else
     $siteURL = "http://";
 $siteURL .= $_SERVER['HTTP_HOST'];
 
+$documentRoot = $_SERVER['DOCUMENT_ROOT'];
+$currentScriptPath = $_SERVER['SCRIPT_FILENAME'];
+$relativePath = str_replace($documentRoot, '', $currentScriptPath);
+$pathParts = explode("/", $relativePath);
+$folderName = $pathParts[1];
+
 // OG DATA:
 $siteName = "";
-$folderName = "";
 $siteURL .= "/" . $folderName;
 
 $siteEmail = " ";
@@ -37,7 +24,6 @@ $ogContent1 = "";
 $ogContent2 = "";
 $ogImgPath =  "$siteURL/assets/images/og.png";
 ?>
-
 <!--==== FAVICON START ====-->
 <link rel="icon" type="image/png" href="assets/images/favicon/favicon.png">
 <!--==== FAVICON END ====-->
