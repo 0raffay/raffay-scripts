@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <style>
-        /**==== HEADER START ====*/
+        /**==== BASIC HEADER START ====*/
         header {
             --header-padding: 36px 0;
 
@@ -78,18 +78,98 @@
             height: 6px;
         }
 
+        /* BASIC HEADER END */
+
+
+        /* HEADER SUBMENU START */
+        .rf--header-submenu-button {
+            position: relative;
+
+            --width-of-submenu: max-content;
+            --height-of-submenu: 180px;
+
+            --spacing-from-top: 5px;
+
+            --bg: #fff;
+            --ul-padding: 20px;
+            --ul-bd-radius: 8px;
+            --ul-bd: 1px solid #e7e7e7;
+
+
+            --li-padding: 10px 100px 10px 12px;
+            --li-bd: 1px solid #e7e7e7;
+            --first-last-child-padding: 12px;
+
+            --li-hover-clr: #fff;
+            --li-hover-bg: #e1e1e1;
+        }
+
+        .rf--header-submenu-button:hover .rf-header-submenu {
+            display: block;
+        }
+
+        .rf-header-submenu {
+            position: absolute;
+            left: 0;
+            padding-top: var(--spacing-from-top);
+            width: var(--width-of-submenu);
+
+
+            z-index: 10;
+            display: none;
+        }
+
+        .rf-header-submenu ul {
+            border-radius: var(--ul-bd-radius);
+            padding: var(--ul-padding);
+            background-color: var(--bg);
+            border: var(--ul-bd);
+
+            height: var(--height-of-submenu);
+            overflow-y: scroll;
+        }
+
+        .rf-header-submenu ul li {
+            display: block;
+            border-bottom: var(--li-bd);
+            padding: var(--li-padding);
+            transition: all 259ms ease;
+        }
+
+        .rf-header-submenu ul li:hover {
+            background: var(--li-hover-bg);
+        }
+
+        .rf-header-submenu ul li:hover a {
+            color: var(--li-hover-clr);
+        }
+
+        .rf-header-submenu ul li:first-child {
+            padding-top: var(--first-last-child-padding);
+        }
+
+        .rf-header-submenu ul li:last-child {
+            border: none;
+            padding-bottom: var(--first-last-child-padding);
+        }
+
+        /* HEADER SUBMENU END */
+
+
+        /* MOBILE MENU START */
         .mobileMenu {
             display: none;
-            --mobile-menu-bg: var(--clr-primary);
             position: fixed;
             top: 0;
             height: 100vh;
             padding: 30px;
             width: max(50%, 385px);
-            background: var(--mobile-menu-bg);
+            background: #FFF;
+            border-right: 1px solid #e7e7e7;
 
             transform: translateX(-100%);
             transition: transform 400ms ease;
+            z-index: 10;
         }
 
         .mobileMenu.active {
@@ -104,12 +184,12 @@
         }
 
         .mobileMenuClose i {
-            color: var(--fc-accent);
+            color: #000;
             font-size: 2rem;
         }
 
         .mobile__list li a {
-            color: var(--fc-accent);
+            color: #000;
         }
 
         .mobile__list li {
@@ -121,15 +201,15 @@
             border-bottom: 1px solid #ddd;
         }
 
-
-        .li--has-submenu.active .closeIcon,
-        .li--has-submenu .openIcon {
+        .rf--mobileSubmenu-button.active .closeIcon,
+        .rf--mobileSubmenu-button .openIcon {
             display: none;
         }
 
-        .li--has-submenu.active .openIcon {
+        .rf--mobileSubmenu-button.active .openIcon {
             display: block;
         }
+
 
         @media screen and (max-width: 767px) {
 
@@ -161,8 +241,29 @@
                     <ul class="nav__list">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About Us</a></li>
-                        <li><a href="#">Appeals</a></li>
-                        <li><a href="#">Get Involved</a></li>
+
+                        <!--HEADER LI WITH SUBMENU -->
+                        <li class="rf--header-submenu-button">
+                            <a aria-label="Industries" href="javascipt:;">Industry</a>
+                            <div class="rf-header-submenu">
+                                <ul>
+                                    <li><a href="#">Food & Beverage</a></li>
+                                    <li><a href="#">Construction</a></li>
+                                    <li><a href="#">Agriculture & Farm</a></li>
+                                    <li><a href="#">Fashion & Esthetics</a></li>
+                                    <li><a href="#">Beauty</a></li>
+                                    <li><a href="#">Music Industry</a></li>
+                                    <li><a href="#">Photography</a></li>
+                                    <li><a href="#">Real Estate</a></li>
+                                    <li><a href="#">Education</a></li>
+                                    <li><a href="#">Automotive</a></li>
+                                    <li><a href="#">Healthcare</a></li>
+                                    <li><a href="#">Finance</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--HEADER LI WITH SUBMENU -->
+
                     </ul>
                 </nav>
                 <div class="button__wrap">
@@ -190,24 +291,22 @@
         <ul class="mobile__list">
             <li><a href="#">Home</a></li>
             <li><a href="#">About Us</a></li>
-            <li class="li--has-submenu">
 
+            <!-- LI FOR MOBILE SUBMENU -->
+            <li class="rf--mobileSubmenu-button">
                 <span class="closeIcon">
                     <i class="fa fa-angle-down" aria-hidden="true"></i>
                 </span>
                 <span class="openIcon">
                     <i class="fa fa-angle-up" aria-hidden="true"></i>
                 </span>
-
-                <a href="attractions">Attractions</a>
-                <ul class="mobile--submenu">
-                    <li><a href="#">Trampoline Park</a></li>
-                    <li><a href="wall-climbing">Wall climbing</a></li>
-                    <li><a href="ninja-course/">Ninja Course</a></li>
-                    <li><a href="softplay/">Indoor Playground</a></li>
-                    <li><a href="#">Arcade Games </a></li>
+                <a aria-label="Industries" href="javascipt:;">Industry</a>
+                <ul class="rf--mobile-submenu">
+                    <li><a href="">Agriculture</a></li>
                 </ul>
             </li>
+            <!-- LI FOR MOBILE SUBMENU -->
+
             <li><a href="#">Get Involved</a></li>
         </ul>
     </div>
@@ -229,8 +328,8 @@
                 mobileMenu.removeClass('active')
             })
 
-            let mobileSubmenuButton = $('.li--has-submenu')
-            let mobileSubmenu = '.mobile--submenu'
+            let mobileSubmenuButton = $('.rf--mobileSubmenu-button')
+            let mobileSubmenu = '.rf--mobile-submenu'
             $(mobileSubmenu).slideUp();
 
             mobileSubmenuButton.click(function (e) {
