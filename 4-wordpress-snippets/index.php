@@ -14,10 +14,10 @@
     2- Classic Editor
     3- WP migration
     4- Contact Form 7 --- ASK chat gpt how to Implement it there is a function :do_shortcode(); something like that.
-            //FLAG INPUT PLUGIN FOR ACF:
-            Country & Phone Field Contact Form 7
-            //CONDITIONAL FIELDS:
-            Conditional Fields for Contact Form 7
+    //FLAG INPUT PLUGIN FOR ACF:
+    Country & Phone Field Contact Form 7
+    //CONDITIONAL FIELDS:
+    Conditional Fields for Contact Form 7
 
 
 
@@ -27,7 +27,7 @@
     BE IN ROOT--- IF NOT THEN YOU WILL HAVE TO USE:
     get_template_part('include/header') -- donts mention .php just header
 
-    
+
     <!-- <?php include(get_template_directory() . '/includes/mri-sections.php'); ?>-->
 
     <!-- //menu: -->
@@ -248,6 +248,8 @@
         ?>
 
 
+
+        //! This is the wrong way to do it.
         //9: Go to Single Appeal Page Paste this in Single php
         this takes user from single php to single appeal if post type matches it
         <?php
@@ -281,6 +283,11 @@
             // Do nothing if the post ID does not match any of the specified IDs
         }
         ?>
+
+
+
+        //? The better way to redirect to the single page is just add the id of your post type to the file name like is appeals is your custom post type and the slug/id of it is 'appeal'
+        //? then to make the_permalink(); redirect to single page only requires you to add single-slugname for appeals it's going to be single-appeal where (appeal is the id/slug);
 
 
         <!--============= FOOTER START ========== -->
