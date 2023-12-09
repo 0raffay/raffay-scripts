@@ -29,32 +29,38 @@ $(window).on("scroll", function () {
 });
 
 //WITH COMMMAS:
-$(window).on("scroll", function () {
-   var section = $(".cta-states");
+
+$(window).on("scroll", function() {
+    var section = $(".counterSection");
     var windowHeight = $(window).height();
     var windowScrollTop = $(window).scrollTop();
     var sectionOffset = section.offset().top;
-    if (windowScrollTop + windowHeight > sectionOffset) {
-        // Main Animation Code:
-        $(".count").each(function () {
-            var $this = $(this);
-            var countValue = $this.text().replace(/,/g, ''); // Remove commas
-            $({ Counter: 0 }).animate(
-                {
-                    Counter: countValue,
-                },
-                {
-                    duration: 2000,
-                    easing: "swing",
-                    step: function () {
-                        $this.text(Math.ceil(this.Counter).toLocaleString()); // Add commas back
-                    },
-                    complete: function () {
-                        $this.text(this.Counter.toLocaleString()); // Ensure the final value has commas
-                    },
-                }
-            );
-        });
-        $(window).off("scroll");
+    if (windowScrollTop + (windowHeight / 2) > sectionOffset) {
+      $(".count").each(function() {
+        var $this = $(this);
+        // Check if the counter has already been animated
+        if (!$this.data("animated")) {
+          var countValue = $this.text().replace(/,/g, '');
+          $this.text("0");
+          $this.data("animated", true); // Mark as animated to avoid resetting
+          $({
+            Counter: 0
+          }).animate(
+            {
+              Counter: countValue,
+            },
+            {
+              duration: 2000,
+              easing: "swing",
+              step: function() {
+                $this.text(Math.ceil(this.Counter).toLocaleString());
+              },
+              complete: function() {
+                $this.text(this.Counter.toLocaleString());
+              },
+            }
+          );
+        }
+      });
     }
-});
+  });
