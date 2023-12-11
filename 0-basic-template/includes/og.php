@@ -1,29 +1,3 @@
-<?php
-if (isset($_SERVER['HTTPS']))
-    $siteURL = "https://";
-else
-    $siteURL = "http://";
-$siteURL .= $_SERVER['HTTP_HOST'];
-
-$documentRoot = $_SERVER['DOCUMENT_ROOT'];
-$currentScriptPath = $_SERVER['SCRIPT_FILENAME'];
-$relativePath = str_replace($documentRoot, '', $currentScriptPath);
-$pathParts = explode("/", $relativePath);
-$folderName = $pathParts[1];
-
-// OG DATA:
-$siteName = "";
-$siteURL .= "/" . $folderName;
-
-$siteEmail = " ";
-$sitePhone = "";
-$siteAddress = "";
-
-
-$ogContent1 = "";
-$ogContent2 = "";
-$ogImgPath =  "$siteURL/assets/images/og.png";
-?>
 
 
 <!--==== OFINFO START ====-->

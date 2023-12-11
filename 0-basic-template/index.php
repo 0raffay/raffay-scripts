@@ -1,7 +1,12 @@
+<?php
+include("includes/site-info.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <title>Home | <?php echo $siteName;?></title>
 
     <?php include("includes/compatibility.php"); ?>
     <?php include("includes/og.php"); ?>
@@ -12,10 +17,9 @@
     <!-- META TITLE AND DESCRIPTION -->
 
 
-    <!--==== HEADER STYLES START ====-->
+    <!--==== STYLES START ====-->
     <?php include('includes/header-styles.php') ?>
-    <!--==== HEADER STYLES END ====-->
-    <title>Home</title>
+    <!--==== STYLES END ====-->
 </head>
 
 <body>
@@ -29,6 +33,10 @@
     <!--==== FOOTER START ====-->
     <?php include('includes/footer.php') ?>
     <!--==== FOOTER END ====-->
+    
+    <!--==== SCRIPTS START ====-->
+    <?php include('includes/footer-scripts.php') ?>
+    <!--==== SCRIPTS END ====-->
 </body>
 
 </html>
