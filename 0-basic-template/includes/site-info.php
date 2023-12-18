@@ -5,20 +5,25 @@ else
     $siteURL = "http://";
 $siteURL .= $_SERVER['HTTP_HOST'];
 
-//local:
+/* --- Site urls --- */
+//Local
 $siteURL = "https://localhost/";
 
 //Live:
 $siteURL = "https://live.com/";
+/* --- Site urls --- */
 
 
-// OG DATA:
+/* --- Site data --- */
 $siteName = "";
 $siteEmail = " ";
 $sitePhone = "";
 $siteAddress = "";
+/* --- Site data --- */
 
 
+/* --- Og data --- */
 $ogContent1 = "";
 $ogContent2 = "";
 $ogImgPath =  "$siteURL/assets/images/og.png";
+/* --- Og data --- */
