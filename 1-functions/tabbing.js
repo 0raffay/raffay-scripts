@@ -1,8 +1,7 @@
 function tabbing(
     buttonClassByContainer,
     panelClassByContainer,
-    utilityClassToAdd
-) {
+    utilityClassToAdd, callback) {
     let activeClass = utilityClassToAdd ? utilityClassToAdd : "active";
     let buttons = $(buttonClassByContainer);
     let panels = $(panelClassByContainer);
@@ -16,6 +15,9 @@ function tabbing(
             $(this).addClass(activeClass);
             panels.hide();
             panels.eq(itsIndex).show().addClass(activeClass);
+            if (callback) {
+                callback();
+            }
         } else {
             $(this).addClass("disabled");
         }
