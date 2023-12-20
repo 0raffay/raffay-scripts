@@ -7,21 +7,25 @@
 
 
     --section-padding: 65px 0;
+    
+    --font-controller: 0px;
 
-    --fs-10: 10px;
-    --fs-11: 11px;
-    --fs-12: 12px;
-    --fs-14: 14px;
-    --fs-16: 16px;
-    --fs-18: 18px;
-    --fs-22: 22px;
-    --fs-24: 24px;
-    --fs-25: 25px;
-    --fs-30: 30px;
-    --fs-35: 35px;
-    --fs-45: 45px;
-    --fs-40: 40px;
-    --fs-50: 50px;
-    --fs-55: 55px;
-    --fs-60: 60px;
+    --fs-10: calc(10px - calc(var(--font-controller) * -1 ));
+    --fs-11: calc(11px - calc(var(--font-controller) * -1 ));
+    --fs-12: calc(12px - calc(var(--font-controller) * -1 ));
+    --fs-13: calc(13px - calc(var(--font-controller) * -1 ));
+    --fs-14: calc(14px - var(--font-controller));
+    --fs-16: calc(16px - var(--font-controller));
+    --fs-18: calc(18px - var(--font-controller));
+    --fs-20: calc(20px - var(--font-controller));
+    --fs-22: calc(22px - var(--font-controller));
+    --fs-24: calc(24px - var(--font-controller));
+    --fs-25: calc(25px - var(--font-controller));
+    --fs-30: calc(30px - var(--font-controller));
+    --fs-35: calc(35px - var(--font-controller));
+    --fs-45: calc(45px - var(--font-controller));
+    --fs-40: calc(40px - var(--font-controller));
+    --fs-50: calc(50px - var(--font-controller));
+    --fs-55: calc(55px - var(--font-controller));
+    --fs-60: calc(60px - var(--font-controller));
 }
