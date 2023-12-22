@@ -373,6 +373,27 @@ label {
     padding-left: 10px;
 }
 
+@media only screen and (min-width: 1550px) {
+	.text-md-nowrap {
+		text-wrap: nowrap;
+	}
+}
+
+.fixed {
+	position: fixed;
+}
+
+.stickyTop {
+	position: fixed;
+	top: 0;
+}
+
+.absoluteBottom {
+	position: absolute;
+	bottom: 0;
+	top: unset;
+}
+
 /* BACKGROUNDS START */
 
 .bg-primary {
