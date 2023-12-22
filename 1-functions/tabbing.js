@@ -29,7 +29,7 @@ tabbing(".tabbingButtons button", ".tabbingPanels .tabbingPanel");
 
 
 
-function tabbingByTarget(buttonDataAttribute, targetsDataAttribute, initalHide = false, callback ) {
+function tabbingByTarget(buttonDataAttribute, targetsDataAttribute, initalHide = false, nothingOnActive = true, callback) {
     const selector = {
         button: buttonDataAttribute ? buttonDataAttribute : "rf-tabbing-button",
         target: targetsDataAttribute ? targetsDataAttribute : "rf-tabbing-target",
@@ -39,8 +39,8 @@ function tabbingByTarget(buttonDataAttribute, targetsDataAttribute, initalHide =
 
     if (initalHide) {
         buttons.eq(0).addClass("active");
-        targets.eq(1).addClass("active");
-        targets.not(":nth-of-type(1)").hide();
+        targets.eq(0).addClass("active").show();
+        targets.not(":first-of-type").hide();
     }
 
 
@@ -55,8 +55,15 @@ function tabbingByTarget(buttonDataAttribute, targetsDataAttribute, initalHide =
     }
 
     buttons.click(function () {
+        if (nothingOnActive) {
+            if ($(this).hasClass("active")) {
+                return;
+            }
+        }
+
+        let clickCount = 1;
         if ($(this).hasClass("active")) {
-            return;
+            clickCount++
         }
 
         let thisButton = $(this);
@@ -66,7 +73,7 @@ function tabbingByTarget(buttonDataAttribute, targetsDataAttribute, initalHide =
             if (target == thisTarget) {
                 hideShow(thisButton, $(this));
                 if (callback) {
-                    callback(thisButton, $(this), thisTarget);
+                    callback(thisButton, $(this), thisTarget, clickCount);
                 }
                 return;
             }
