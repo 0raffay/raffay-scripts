@@ -28,57 +28,98 @@ tabbing(".tabbingButtons button", ".tabbingPanels .tabbingPanel");
 
 
 
+/******************
+   tabbingByTarget 
+ ******************/
+tabbingByTarget({
+  buttonAttr: "mobile-inner-tabbing-button", //Define Button
+  targetAttr: "mobile-inner-tabbing-target", //Define Target Which Button Interacts with
+  initialHideAll: true, //Hides All Targets And Removes Active Class Initally From all buttons
+  initialHide: true, //Hide All Targets Execept From 1st one
+  nothingOnActive: true, // Removes Hide Show Functionality if Button is clicked once
 
-function tabbingByTarget(buttonDataAttribute, targetsDataAttribute, initalHide = false, nothingOnActive = true, callback) {
-    const selector = {
-        button: buttonDataAttribute ? buttonDataAttribute : "rf-tabbing-button",
-        target: targetsDataAttribute ? targetsDataAttribute : "rf-tabbing-target",
+}, function (button, target, targetName, clickCount) {
+
+  //do something 
+  if (clickCount > 1) {
+    //do something else if button was clicked before.
+  }
+})
+
+function tabbingByTarget(options, callback) {
+  const selector = {
+    button: options.buttonAttr ? options.buttonAttr : "rf-tabbing-button",
+    target: options.targetAttr ? options.targetAttr : "rf-tabbing-target",
+  }
+  const buttons = $(`[${selector.button}]`);
+  const targets = $(`[${selector.target}]`);
+
+  if (options.initialHideAll) {
+    buttons.removeClass("active");
+    targets.removeClass("active").hide();
+  }
+  else if (options.initialHide) {
+    buttons.eq(0).addClass("active");
+    targets.eq(0).addClass("active").show();
+    targets.not(":first-of-type").hide();
+  }
+
+
+
+  const hide = (button, target) => {
+    //buttons
+    buttons.removeClass("active");
+    button.addClass("active");
+
+    //targets:
+    targets.removeClass("active").hide();
+    target.addClass("active").show();
+  }
+
+  const show = (button, target) => {
+    button.removeClass("active");
+    target.removeClass("active").hide();
+  }
+
+  // const 
+
+  buttons.click(function () {
+
+    let wasActive = $(this).hasClass("active");
+
+    if (options.nothingOnActive) {
+      if (wasActive) {
+        return;
+      }
     }
-    const buttons = $(`[${selector.button}]`);
-    const targets = $(`[${selector.target}]`);
 
-    if (initalHide) {
-        buttons.eq(0).addClass("active");
-        targets.eq(0).addClass("active").show();
-        targets.not(":first-of-type").hide();
+    let clickCount = 1;
+    if (wasActive) {
+      clickCount++
     }
 
+    let thisButton = $(this);
+    let target = $(this).attr(`${selector.button}`).trim().toLowerCase();
 
-    const hideShow = (button, target) => {
-        //buttons
-        buttons.removeClass("active");
-        button.addClass("active");
+    targets.each(function () {
+      let thisTarget = $(this).attr(`${selector.target}`).trim().toLowerCase();
+      if (target == thisTarget) {
 
-        //targets:
-        targets.removeClass("active").hide();
-        target.addClass("active").show();
-    }
 
-    buttons.click(function () {
-        if (nothingOnActive) {
-            if ($(this).hasClass("active")) {
-                return;
-            }
+        if (wasActive) {
+          show(thisButton, $(this))
+        } else {
+          hide(thisButton, $(this));
         }
 
-        let clickCount = 1;
-        if ($(this).hasClass("active")) {
-            clickCount++
+
+        if (callback) {
+          callback(thisButton, $(this), thisTarget, clickCount);
         }
+        return;
+      }
 
-        let thisButton = $(this);
-        let target = $(this).attr(`${selector.button}`);
-        targets.each(function () {
-            let thisTarget = $(this).attr(`${selector.target}`);
-            if (target == thisTarget) {
-                hideShow(thisButton, $(this));
-                if (callback) {
-                    callback(thisButton, $(this), thisTarget, clickCount);
-                }
-                return;
-            }
-
-            thisButton.addClass("disabled");
-        })
+      thisButton.addClass("disabled");
     })
+  })
 }
