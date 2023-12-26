@@ -26,26 +26,26 @@
 // }
 
 function addStickyClass(element, container) {
-      const containerOffset = container.offsetTop;
+  const containerOffset = container.offsetTop;
 
-      window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
+  window.addEventListener('scroll', function () {
+    const scrollPosition = window.scrollY;
 
-        if (scrollPosition >= containerOffset) {
-          element.classList.add('stickyTop');
-          element.classList.remove("absoluteBottom")
-          if (scrollPosition + element.offsetHeight >= containerOffset + container.offsetHeight) {
-            element.classList.remove('stickyTop');
-            element.classList.add("absoluteBottom")
-          }
-        } else {
-          element.classList.remove('stickyTop');
-          element.classList.remove("absoluteBottom")
-        }
-      });
+    if (scrollPosition >= containerOffset) {
+      element.classList.add('stickyTop');
+      element.classList.remove("absoluteBottom")
+      if (scrollPosition + element.offsetHeight >= containerOffset + container.offsetHeight) {
+        element.classList.remove('stickyTop');
+        element.classList.add("absoluteBottom")
+      }
+    } else {
+      element.classList.remove('stickyTop');
+      element.classList.remove("absoluteBottom")
     }
+  });
+}
 
-    const stickyElement = document.querySelector('.aboutusListContainer');
-    const containerElement = document.getElementById('aboutSectionRow');
+const stickyElement = document.querySelector('.aboutusListContainer');
+const containerElement = document.getElementById('aboutSectionRow');
 
-    addStickyClass(stickyElement, containerElement);
+addStickyClass(stickyElement, containerElement);
