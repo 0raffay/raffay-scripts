@@ -297,6 +297,18 @@ label {
     }
 }
 
+/* left || Right Sided Containers */
+@media only screen and (min-width: 1200px) {
+	.container-left {
+    margin-right: 0;
+    max-width: calc(1320px + ((100% - 1320px) / 2));
+	}
+	.container-right {
+    margin-left: 0;
+    max-width: calc(1320px + ((100% - 1320px) / 2));
+	}
+}
+
 /**--- CUSTOM LAYOUT CSS START ---*/
 
 /**--- UTLITIY CLASSES START ---*/
