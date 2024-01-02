@@ -1,4 +1,4 @@
-    <!--==== OFINFO START ====-->
+    <!----Og info ---->
     <meta property="og:url" content="<?php echo $siteURL ?>">
     <meta property="og:type" content="website">
     <meta property="og:title" content="<?php echo $ogContent1 ?>">
@@ -21,4 +21,4 @@
     <meta name="image" property="og:image" content="<?php echo $ogImgPath ?>">
     <meta name="author" content="<?php echo $siteName ?>">
     <meta name="description" property="og:description" content="<?php echo $ogContent2 ?>">
-    <!--==== OFINFO END ====-->
+    <!-- Og info end -->

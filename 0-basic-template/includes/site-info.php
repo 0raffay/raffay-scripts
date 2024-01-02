@@ -1,10 +1,3 @@
-<?php
-if (isset($_SERVER['HTTPS']))
-    $siteURL = "https://";
-else
-    $siteURL = "http://";
-$siteURL .= $_SERVER['HTTP_HOST'];
-
 /* --- Site urls --- */
 //Local
 $siteURL = "https://localhost/";
