@@ -46,57 +46,47 @@ tabbingByTarget({
   }
 })
 
- function tabbingByTarget(options, callback) {
-            const selector = {
-                button: options.buttonAttr ? options.buttonAttr : "rfTabbing-open",
-                target: options.targetAttr ? options.targetAttr : "rfTabbing-target",
-            }
-            const buttons = $(`[${selector.button}]`);
-            const targets = $(`[${selector.target}]`);
-
-            if (options.initialHideAll) {
-                buttons.removeClass("active");
-                targets.removeClass("active").hide();
-            }
-            else if (options.initialHide) {
-                buttons.eq(0).addClass("active");
-                targets.not(":first-of-type").hide();
-                targets.eq(0).addClass("active").show();
-            }
-
-            buttons.click(function () {
-                let wasActive = $(this).hasClass("active");
-
-                if (options.nothingOnActive && wasActive) {
-                    return;
-                }
-
-                let clickCount = 1;
-                if (wasActive) {
-                    clickCount++
-                }
-
-                let thisButton = $(this);
-                let target = thisButton.attr(`${selector.button}`).trim().toLowerCase();
-
-                let allElementsToShow = targets.filter(`[${selector.target}="${target}"]`);
-
-                if (allElementsToShow.length) {
-                    buttons.removeClass("active");
-                    thisButton.addClass("active");
-
-                    targets.removeClass("active").hide();
-
-                    allElementsToShow.each(function () {
-                        $(this).show();
-                    });
-
-                    if (callback) {
-                        callback(thisButton, allElementsToShow, clickCount ,target);
-                    }
-                } else {
-                    thisButton.addClass("disabled")
-                }
-                thisButton.removeClass("disabled");
-            });
+function tabbingByTarget(options, callback) {
+    const selector = {
+        button: options.buttonAttr ? options.buttonAttr : "rfTabbing-open",
+        target: options.targetAttr ? options.targetAttr : "rfTabbing-target",
+    }
+    const buttons = $(`[${selector.button}]`);
+    const targets = $(`[${selector.target}]`);
+    if (options.initialHideAll) {
+        buttons.removeClass("active");
+        targets.removeClass("active").hide();
+    }
+    else if (options.initialHide) {
+        buttons.eq(0).addClass("active");
+        targets.not(":first-of-type").hide();
+        targets.eq(0).addClass("active").show();
+    }
+    buttons.click(function () {
+        let wasActive = $(this).hasClass("active");
+        if (options.nothingOnActive && wasActive) {
+            return;
         }
+        let clickCount = 1;
+        if (wasActive) {
+            clickCount++
+        }
+        let thisButton = $(this);
+        let target = thisButton.attr(`${selector.button}`);
+        let allElementsToShow = targets.filter(`[${selector.target}="${target}"]`);
+        if (allElementsToShow.length != 0 ) {
+            buttons.removeClass("active");
+            thisButton.addClass("active");
+            targets.removeClass("active").hide();
+            allElementsToShow.each(function () {
+                $(this).show();
+            });
+            if (callback) {
+                callback(thisButton, allElementsToShow, clickCount, target);
+            }
+        } else {
+            thisButton.addClass("disabled")
+        }
+        thisButton.removeClass("disabled");
+    });
+}
