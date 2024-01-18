@@ -1,134 +1,193 @@
 <style>
     /* rf Modal */
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1;
-        }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
     }
 
-    .rfModal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        backdrop-filter: brightness(0.5) blur(5px);
-        z-index: 10000;
+    100% {
+      opacity: 1;
     }
+  }
 
-    .rfModalMain {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #fff;
-        max-width: 600px;
-        width: 100%;
-        border-radius: 25px;
-        padding: 40px 25px;
+  .rfModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    backdrop-filter: brightness(0.5) blur(5px);
+    z-index: 10000;
 
+    overflow-y: scroll;
+    padding: 80px 10px;
+  }
 
+  .rfModal::-webkit-scrollbar {
+    display: none;
+    appearance: none;
+  }
 
-        animation: fadeIn 500ms ease forwards;
-        animation-play-state: paused;
-    }
+  .rfModalMain {
+    background: #fff;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 25px;
+    padding: 40px 25px;
+    margin: 0 auto;
+    animation: fadeIn 500ms ease forwards;
+    animation-play-state: paused;
+  }
 
-    .rfModal.active .rfModalMain {
-        animation-play-state: running;
-    }
+  .rfModalMain.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-    .rfModalWrapper {
-        position: relative;
-    }
+  .rfModalMain.rfModal-lg {
+    max-width: 750px;
+    width: 100%;
+  }
 
-    .rfModalClose {
-        position: absolute;
-        top: -37px;
-        right: -27px;
-        border-radius: 100%;
-        height: 30px;
-        width: 30px;
-        display: block;
-        outline: none;
-        border: 1px solid #e7e7e7;
-        background: #fafafa;
-        color: #555;
-        font-weight: 400;
-        font-size: 1.5rem;
+  .rfModalMain.rfModal-xs {
+    max-width: 431px;
+    width: 100%;
+  }
 
-        transition: all 250ms ease;
-    }
+  .rfModalMain.rfModal-xl {
+    max-width: 1240px;
+    width: 100%;
+  }
 
-    .rfModalClose:hover {
-        background-color: #8300c5;
-        border: 1px solid #8300c5;
-        color: #fff;
-    }
+  .rfModal.active .rfModalMain {
+    animation-play-state: running;
+  }
 
-    .rfModalHeader {
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-    }
+  .rfModalWrapper {
+    position: relative;
+  }
+
+  .rfModalClose {
+    position: absolute;
+    top: -37px;
+    right: -27px;
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    display: block;
+    outline: none;
+    border: 1px solid #e7e7e7;
+    background: #fafafa;
+    color: #555;
+    font-weight: 400;
+    font-size: 1.5rem;
+
+    transition: all 250ms ease;
+  }
+
+  .rfModalClose:hover {
+    background-color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+    color: #fff;
+  }
+
+  .rfModalHeader {
+    margin-bottom: 20px;
+  }
 </style>
+<!-- Volunteer Modal Main -->
+<div class="rfModal" id="someid">
+  <div class="rfModalMain rfModal-xl">
+    <div class="rfModalWrapper">
+      <button class="rfModalClose" data-close-rf-modal="someid"><i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+      <div class="rfModalbody">
+      </div>
+    </div>
+  </div>
+</div>
 <script>
     /******************
    RFModal
  ******************/
-    class RFmodal {
-        constructor(button, closeButton) {
-            this.button = button ? button : "[data-open-rf-modal]";
-            this.closeButton = closeButton ? closeButton : "[data-close-rf-modal]";
-            this.modal = null;
+   class RFmodal {
+	constructor() {
+		this.button = "[data-open-rf-modal]";
+		this.closeButton = "[data-close-rf-modal]";
+		this.modal = null;
 
-            document.querySelectorAll(this.button).forEach(btn => {
-                btn.addEventListener("click", () => this.openModal(btn));
-            });
+		document.querySelectorAll(this.button).forEach(btn => {
+			btn.addEventListener("click", () => this.openModal(btn));
+		});
 
-            document.querySelectorAll(this.closeButton).forEach(closeBtn => {
-                closeBtn.addEventListener("click", () => this.closeModal());
-            });
+		document.querySelectorAll(this.closeButton).forEach(closeBtn => {
+			closeBtn.addEventListener("click", () => this.closeModal());
+		});
+	}
 
-            this.closeModalOnClickOfBody();
-        }
+	openModal(clickedButton) {
+		const modalId = clickedButton.getAttribute("data-open-rf-modal");
+		this.setCurrentModal(modalId);
+		if (this.modal) {
+			this.hideAll();
+			this.show();
+		}
+	}
 
-        show() {
-            this.modal.style.display = "block";
-            this.modal.classList.add("active");
-        }
+	closeModal() {
+		if (this.modal) {
+			this.hide();
+		}
+	}
 
-        hide() {
-            this.modal.style.display = "none";
-            this.modal.classList.remove("active");
-        }
+	setCurrentModal(modalId) {
+		if (modalId == null) {
+			this.modal == null;
+			return;
+		}
+		this.modal = document.getElementById(modalId);
+	}
 
-        openModal(clickedButton) {
-            const modalId = clickedButton.getAttribute("data-open-rf-modal");
-            this.modal = document.getElementById(modalId);
+	hideAll() {
+		document.querySelectorAll(this.button).forEach(btn => {
+			document.getElementById(btn.getAttribute("data-open-rf-modal")).style.display = "none";
+			document.getElementById(btn.getAttribute("data-open-rf-modal")).classList.remove("active");
+		})
+	}
 
-            if (this.modal) {
-                this.show();
-            }
-        }
+	show(modalId) {
+		if (modalId) {
+			let m = document.getElementById(modalId);
+			if (m == null) {
+				console.error('Invalid Modal ID on Function Show')
+				return;
+			}
+			this.hideAll();
+			this.setCurrentModal(modalId);
+			m.classList.add("active");
+			m.style.display = "block";
+			return;
+		}
+		this.modal.style.display = "block";
+		this.modal.classList.add("active");
+	}
 
-        closeModal() {
-            if (this.modal) {
-                this.hide();
-            }
-        }
-
-        closeModalOnClickOfBody() {
-            let _this = this;
-            if (this.modal) {
-                document.body.addEventListener("click", function (e) {
-                    if (!_this.modal.contains(e.target)) {
-                        _this.closeModal();
-                    }
-                });
-            }
-        }
-    }
+	hide(modalId) {
+		if (modalId) {
+			let m = document.getElementById(modalId);
+			if (m == null) {
+				console.error("Invalid Modal ID on Function Hide");
+				return;
+			}
+			this.setCurrentModal(null);
+			m.style.display = "none";
+			m.classList.remove("active");
+			return;
+		}
+		this.modal.style.display = "none";
+		this.modal.classList.remove("active");
+	}
+}
 
     const modalInstance = new RFmodal();
 
