@@ -1,3 +1,4 @@
+<?php
 /* --- Site urls --- */
 //Local
 $siteURL = "https://localhost/";
