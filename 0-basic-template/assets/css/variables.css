@@ -5,26 +5,32 @@
     --clr-primary: #114084;
     --clr-secondary: #000;
 
+    --clr-grey-400: #FAFAFA;
+    --clr-grey-500: #F7F7F7;
+    --clr-grey-600: #EBEBE4;
+    --clr-grey-650: #B5B5B3;
+    --clr-grey-700: #555;
+
 
     --section-padding: 65px 0;
-    
+
     --font-controller: 0px;
 
 
-    --fs-10: calc(10px - calc(var(--font-controller) * -1 ));
-    --fs-11: calc(11px - calc(var(--font-controller) * -1 ));
-    --fs-12: calc(12px - calc(var(--font-controller) * -1 ));
-    --fs-13: calc(13px - calc(var(--font-controller) * -1 ));
+    --fs-10: calc(10px - calc(var(--font-controller) * -1));
+    --fs-11: calc(11px - calc(var(--font-controller) * -1));
+    --fs-12: calc(12px - calc(var(--font-controller) * -1));
+    --fs-13: calc(13px - calc(var(--font-controller) * -1));
     --fs-14: calc(14px - var(--font-controller));
     --fs-15: calc(15px - var(--font-controller));
     --fs-16: calc(16px - var(--font-controller));
     --fs-18: calc(18px - var(--font-controller));
     --fs-20: calc(20px - var(--font-controller));
     --fs-22: calc(22px - var(--font-controller));
-    --fs-24: calc(24px - var(--font-controller));
-    --fs-25: calc(25px - var(--font-controller));
-    --fs-30: calc(30px - var(--font-controller));
 
+    --fs-24: clamp(16px, 5vw, 24px);
+    --fs-25: clamp(17px, 5vw, 25px);
+    --fs-30: clamp(24px, 5vw, 30px);
     --fs-35: clamp(26px, 5vw, 35px);
     --fs-45: clamp(28px, 5vw, 45px);
     --fs-40: clamp(28px, 5vw, 40px);
@@ -33,5 +39,7 @@
     --fs-60: clamp(32px, 5vw, 60px);
     --fs-65: clamp(35px, 5vw, 65px);
     --fs-70: clamp(35px, 5vw, 70px);
+    --fs-80: clamp(35px, 5vw, 80px);
     --fs-90: clamp(38px, 10vw, 90px);
+    --fs-100: clamp(38px, 10vw, 100px);
 }
