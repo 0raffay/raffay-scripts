@@ -94,22 +94,78 @@
         const cusSelectDropDown = $("[data-cus-select-dropdown]");
         const cusSelectOptions = $("[data-cus-select-item]")
 
-        selects.click(function () {
-            $(this).next().toggle();
+        selects.each(function () {
+            $(this).attr("tabindex", "0");
+        })
+        cusSelectOptions.each(function () {
+            $(this).attr("tabindex", "0")
+        })
+
+        selects
+
+        selects.on('click keydown', function (e) {
+            if (e.type === 'keydown' && e.keyCode !== 13) {
+                return;
+            }
+
+            e.preventDefault();
+
+            let currentSelect = $(this);
+            selects.not(currentSelect).next().hide();
+            let displayPropertyValue = currentSelect.next().css('display');
+
+            if (displayPropertyValue === 'block') {
+                currentSelect.next().hide();
+            } else {
+                currentSelect.next().show();
+            }
         });
 
-        cusSelectOptions.click(function () {
+        cusSelectOptions.on('click keydown', function (e) {
+            if (e.type === 'keydown' && e.keyCode !== 13) {
+                return;
+            }
+
             cusSelectOptions.removeClass("selected")
             if (!$(this).hasClass("selected")) {
                 $(this).addClass('selected')
             }
             $(this).parent().prev().addClass("selected");
             let itsText = $(this).text();
-            $(this).parent().prev().val(itsText).removeClass("error");
+            $(this).parent().prev().text(itsText).removeClass("error");
+
+            $(this).closest(".rf-custom-select").find("input").val(itsText).removeClass("error");
+            $(this).closest(".rf-custom-select").find("input").trigger("change")
+
             cusSelectDropDown.hide();
         });
+        $(document).on("click", function (event) {
+            if (!$(event.target).closest("[data-cus-select]").length) {
+                cusSelectDropDown.hide();
+            }
+        });
     }
-    customSelect()
+    // function customSelect() {
+    //     const selects = $("[data-cus-select]");
+    //     const cusSelectDropDown = $("[data-cus-select-dropdown]");
+    //     const cusSelectOptions = $("[data-cus-select-item]")
+
+    //     selects.click(function () {
+    //         $(this).next().toggle();
+    //     });
+
+    //     cusSelectOptions.click(function () {
+    //         cusSelectOptions.removeClass("selected")
+    //         if (!$(this).hasClass("selected")) {
+    //             $(this).addClass('selected')
+    //         }
+    //         $(this).parent().prev().addClass("selected");
+    //         let itsText = $(this).text();
+    //         $(this).parent().prev().val(itsText).removeClass("error");
+    //         cusSelectDropDown.hide();
+    //     });
+    // }
+    // customSelect()
     // function customSelect() {
     //     const selects = $("[data-cus-select]");
     //     const cusSelectDropDown = $("[data-cus-select-dropdown]");

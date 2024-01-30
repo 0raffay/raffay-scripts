@@ -3,10 +3,11 @@ function validateForm(options, action) {
     let disableClass = options.disableClass || "disabled";
 
     let isValid = false;
-    let button = $(options.button);
+    let form = $(options.form);
+    let button = options.button ? $(options.button) : form.find("button[type='submit']");
     let inputs = $(options.inputs);
 
-    let specialFields = options.specialFields.selector;
+    let specialFields = options?.specialFields?.selector;
 
     function checkInputs(_this) {
         let isSpecial = undefined;
@@ -22,7 +23,7 @@ function validateForm(options, action) {
         }
 
         function validateSpecialFields(field, regex) {
-            let fieldValue = field.val();
+            let fieldValue = field.val().trim();
             let test = regex.test(fieldValue) && fieldValue !== "";
             if (!test) {
                 field.addClass(errorClass);
@@ -34,7 +35,7 @@ function validateForm(options, action) {
         if (_this) {
             checkIfSpecialFields(_this);
             if (!isSpecial) {
-                if (_this.val() == "") {
+                if (_this.val().trim() == "") {
                     _this.addClass(errorClass);
                 } else {
                     _this.removeClass(errorClass);
@@ -44,7 +45,7 @@ function validateForm(options, action) {
             inputs.each(function () {
                 checkIfSpecialFields($(this));
                 if (!isSpecial) {
-                    if ($(this).val() == "") {
+                    if ($(this).val().trim() == "") {
                         $(this).addClass(errorClass);
                     } else {
                         $(this).removeClass(errorClass);
@@ -69,7 +70,7 @@ function validateForm(options, action) {
         checkErrorClass();
     });
 
-    button.on("click", function (e) {
+    form.on("submit", function (e) {
         e.preventDefault();
         checkInputs();
         checkErrorClass();
@@ -77,32 +78,31 @@ function validateForm(options, action) {
         if (isValid) {
             action();
         } else {
-            $(this).addClass(disableClass);
+            button.addClass(disableClass);
         }
     });
 }
-
-validateForm(
-    {
-        button: "[data-submit]",
-        inputs: "[data-validate]",
-        specialFields: {
-            selector: 'validate-regex',
-        },
-        errorClass: "error",
-        disableClass: "disabled",
+validateForm({
+    form: "#form",
+    inputs: "[validate-form]",
+    button: "[validate-submit-form]",
+    specialFields: {
+        selector: 'validate-form-regex',
     },
-    function () {
-        alert("working peacefullty");
-    }
-);
+    errorClass: "error", //Optional
+    disableClass: "disabled", //Optional
+}, function () {
+    alert("working peacefully");
+})
 
+const example = `
+<form id="form">
+    <input type="text" validate-form >
+    <input type="email" validate-form-regex="^[^\s@]+@[^\s@]+\.[^\s@]+$" >
+    <input type="rel" validate-form-regex="^\d{8,}$" >
+    <button type="submit" validate-submit-form >Submit</button>
+</form>
+`;
 
-let example =
-    `    <div class="form">
-<input data-validate type="text" placeholder="name">
-<input data-validate validate-regex="^\d{10}$" type="tel" placeholder="telephone">
-<input data-validate validate-regex="^[^\s@]+@[^\s@]+\.[^\s@]+$" type="email" placeholder="Email">
-<input data-validate validate-regex="^[1-9]\d*$" type="number" placeholder="Custom Number input">
-<button data-submit>Submit Form</button>
-</div>`;
+const emailRegex = "^[^\s@]+@[^\s@]+\.[^\s@]+$";
+const telephoneRegex = "^\d{8,}$";
