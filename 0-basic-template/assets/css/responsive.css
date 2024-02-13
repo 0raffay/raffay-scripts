@@ -16,6 +16,7 @@
 
 @media only screen and (max-width: 767px) {
     :root {
+        --section-padding: 40px 0; 
         --font-controller: 3px;
     }
 }

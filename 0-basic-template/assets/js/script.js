@@ -1,11 +1,5 @@
 $(document).ready(function () {
-  $("input[type='tel'], input[type='number']").on("keyup", function () {
-    var regex = /^[1-9][0-9]*$/;
-
-    if (!regex.test($(this).val())) {
-      $(this).val($(this).val().replace(/[^1-9]/g, ''));
-    }
-  });
+  validateNumberinputs();
 });
 
 
@@ -19,5 +13,15 @@ function header() {
       scroll = $(window).scrollTop();
     if (scroll >= stickyOffset) sticky.addClass(stickyClass);
     else sticky.removeClass(stickyClass);
+  });
+}
+
+function validateNumberinputs() {
+  $("input[type='tel'], input[type='number']").on("keyup", function () {
+    var regex = /^[1-9][0-9]*$/;
+
+    if (!regex.test($(this).val())) {
+      $(this).val($(this).val().replace(/[^1-9]/g, ''));
+    }
   });
 }

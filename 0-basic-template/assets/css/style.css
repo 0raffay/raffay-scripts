@@ -16,6 +16,11 @@
     box-sizing: border-box;
 }
 
+*:not(.no-focus-reset):where(:focus) {
+    outline: none;
+    border-bottom: 1px solid currentColor;
+}
+
 a,
 a:hover {
     color: #000;
@@ -27,9 +32,6 @@ body {
     scroll-behavior: smooth;
 }
 
-#main {
-    overflow-x: hidden;
-}
 
 body {
     -webkit-font-smoothing: antialiased;
@@ -344,13 +346,17 @@ label {
 /* left || Right Sided Containers */
 @media only screen and (min-width: 1200px) {
     .container-left {
+        --container-size: 1320px;
+        margin-inline: auto;
         margin-right: 0;
-        max-width: calc(1320px + ((100% - 1320px) / 2));
+        max-width: calc(var(--container-size) + ((100% - var(--container-size)) / 2));
     }
-
+    
     .container-right {
+        --container-size: 1320px;
+        margin-inline: auto;
         margin-left: 0;
-        max-width: calc(1320px + ((100% - 1320px) / 2));
+        max-width: calc(var(--container-size) + ((100% - var(--container-size)) / 2));
     }
 }
 
@@ -516,6 +522,14 @@ label {
 .mw-1100 {
     max-width: 1100px;
     width: 100%;
+}
+
+.hover-opacity:hover {
+    opacity: .8;
+}
+
+.hover-underline:hover {
+    text-decoration: underline;
 }
 
 /* BACKGROUNDS START */

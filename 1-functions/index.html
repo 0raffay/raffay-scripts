@@ -1,21 +1,22 @@
 <style>
     .box {
-        height: 50px;
-        width: 50px;
+        padding: 50px;
+        font-size: 8rem;
         display: block;
         background-color: #999;
+        border: 1px solid;
     }
 
     .red {
-        background-color: red;
+        background-color: #fff;
     }
 
     .orange {
-        background-color: orange;
+        background-color: #ffff;
     }
 
     .blue {
-        background-color: blue;
+        background-color: #fff;
     }
 
     .flex {
@@ -28,16 +29,35 @@
 </style>
 
 <button rf-tabbing-button="a">a</button>
-<button rf-tabbing-button="B">b</button>
+<button rf-tabbing-button="a">b</button>
+<button rf-tabbing-button="a">c</button>
+<button rf-tabbing-button="a">d</button>
+<button rf-tabbing-button="a">e</button>
 
 <div class="flex">
-    <div class="box red" rf-tabbing-target="a" rf-tabbing-group-by="1">1</div>
-    <div class="box blue" rf-tabbing-target="a" rf-tabbing-group-by="2">2</div>
+    <div class="box red" rf-tabbing-target="a" rf-tabbing-group-by="appeals">
+        a
+    </div>
+    <div class="box red" rf-tabbing-target="a" rf-tabbing-group-by="appeals">
+        a
+    </div>
+    <div class="box blue" rf-tabbing-target="b" rf-tabbing-group-by="appeals">
+        b
+    </div>
+    <div class="box blue" rf-tabbing-target="c" rf-tabbing-group-by="appeals">
+        c
+    </div>
+    <div class="box blue" rf-tabbing-target="d" rf-tabbing-group-by="appeals">
+        d
+    </div>
+    <div class="box blue" rf-tabbing-target="e" rf-tabbing-group-by="appeals">
+        e
+    </div>
 </div>
-<div class="flex">
+<!-- <div class="flex">
     <div class="box red" rf-tabbing-target="b">1</div>
     <div class="box blue" rf-tabbing-target="b" style="display: none">2</div>
-</div>
+</div> -->
 
 <script>
     class rfTabbing {
@@ -66,6 +86,8 @@
             ];
             this.targets = this.setTargets();
 
+            this.buttonClicked = null;
+
             this.addEventOnButton();
         }
 
@@ -81,8 +103,6 @@
                         return;
                     }
 
-                    console.log("matching targets", targets);
-
                     const groupByError = this.checkIfBelongToSameGroup(targets);
                     if (groupByError) {
                         console.error(
@@ -90,36 +110,57 @@
                         );
                         return;
                     }
-
-                    this.toggle(targets);
+                    this.buttonClicked = b;
+                    this.toggle(targets)
                 });
             });
         }
 
-        toggle(targets) {
-            const hidden = this.checkIfHidden(targets);
-            targets.forEach((t) => {
-                if (hidden) {
-                    t.target.style.display = "block";
-                } else {
+        toggle(matchingTargets) {
+            this.hideGroup(matchingTargets[0].group);
+            // this.hideGroup();
+            // const hidden = this.checkIfHidden(targets);
+            // targets.forEach((t) => {
+            //     if (hidden) {
+            //         t.target.style.display = "block";
+            //     } else {
+            //         t.target.style.display = "none";
+            //     }
+            // });
+        }
+
+        hideGroup(groupName) {
+            this.targets.forEach((t) => {
+                if (
+                    t.group.trim().toLowerCase() ==
+                    groupName.toLowerCase().trim() && this.buttonClicked.getAttribute(this.buttonSelector) != t.target.getAttribute(this.targetSelector)
+                ) {
                     t.target.style.display = "none";
                 }
             });
         }
 
-        returnMatchingTargets(button) {
-            const s = button
+        getButtonsTarget(button) {
+            return button
                 .getAttribute(this.buttonSelector)
                 .toLowerCase()
                 .trim();
-            const matchingTargets = this.targets.filter((t) => {
+        }
+
+        getMatchingTargets(targetName) {
+            return this.targets.filter((t) => {
                 return (
                     t.target
                         .getAttribute(this.targetSelector)
                         .toLowerCase()
-                        .trim() == s
+                        .trim() == targetName
                 );
             });
+        }
+
+        returnMatchingTargets(button) {
+            const s = this.getButtonsTarget(button);
+            const matchingTargets = this.getMatchingTargets(s);
             return matchingTargets.length ? matchingTargets : false;
         }
 
