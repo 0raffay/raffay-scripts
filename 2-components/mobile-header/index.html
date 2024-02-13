@@ -1,0 +1,169 @@
+<style>
+  .burgerButton {
+    width: 30px;
+    padding: 2px !important;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: none;
+  }
+
+  /* Rf Mobile  Menu */
+  .rfMobileMenu {
+    display: none;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    padding: 0px;
+    width: 100%;
+    background: #FFF;
+    border-right: 1px solid #e7e7e7;
+    transform: translateX(-100%);
+    transition: transform 200ms ease;
+    z-index: 10;
+  }
+
+  .rfMobileMenu.active {
+    transform: translateX(0);
+  }
+
+  .rfMobileMenuHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid #E3E4E6;
+  }
+
+  .rfMobileMenuClose i {
+    color: #000;
+    font-size: 2rem;
+  }
+
+  .rfMobileMenuButton {
+    font-size: 19px;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 1px solid #E3E4E6;
+    padding-block: 1rem;
+    padding-inline: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .rfMobileMenuButton.active {
+    background-color: #F4F5F6;
+  }
+
+  .rfMobileMenuButton i.icon {
+    font-family: 'remixicon' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .rfMobileMenuButton i.icon::before {
+    content: "\ea4e";
+  }
+
+  .rfInnerMobileMenuList {
+    padding-block: 0.25rem;
+    border-bottom: 1px solid #E3E4E6;
+  }
+
+  .rfInnerMobileMenuButton {
+    font-size: 16px;
+    padding-block: 12px;
+    font-weight: 500;
+    padding-inline: 1.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media only screen and (max-width: 767px) {
+
+    .rfMobileMenu,
+    .burgerButton {
+      display: block;
+    }
+  }
+</style>
+<div class="burgerButton">
+  <svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-18xo6c6" aria-hidden="true">
+    <path fill="currentColor"
+      d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z">
+    </path>
+  </svg>
+</div>
+<div class="rfMobileMenu ">
+  <div class="rfMobileMenuHeader">
+    <div class="mobileLogo">
+      <img src="assets/images/logo.png" alt="Reload Page">
+    </div>
+    <button class="rfMobileMenuClose"><i class="ri-close-line"></i></button>
+  </div>
+  <ul class="rfmobileMenuList">
+    <li>
+      <a href="" class="rfMobileMenuButton">Home</a>
+    </li>
+    <li>
+      <a href="" class="rfMobileMenuButton">About</a>
+    </li>
+    <li>
+      <button class="rfMobileMenuButton" mobile-button-accordion="appeals">Appeals <i class="icon"></i></button>
+      <ul class="rfInnerMobileMenuList" mobile-button-accordion-target="appeals">
+        <li>
+          <a href="" class="rfInnerMobileMenuButton">Zakat</a>
+        </li>
+        <li>
+          <a href="" class="rfInnerMobileMenuButton">Sadaqah</a>
+        </li>
+        <li>
+          <a href="" class="rfInnerMobileMenuButton">Qurbani</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="" class="rfMobileMenuButton">Contact</a>
+    </li>
+  </ul>
+</div>
+<script>
+  function header() {
+    let stickyElement = ".bottomHeader";
+    let stickyClass = "fixed";
+
+    let stickyOffset = $(stickyElement).offset().top;
+    $(document).scroll(function () {
+      var sticky = $(stickyElement),
+        scroll = $(window).scrollTop();
+      if (scroll >= stickyOffset) sticky.addClass(stickyClass);
+      else sticky.removeClass(stickyClass);
+    });
+
+
+    let burgerButton = $('.burgerButton')
+    let mobileMenu = $('.rfMobileMenu')
+    let closeButton = $('.rfMobileMenuClose')
+    burgerButton.click(function () {
+      mobileMenu.toggleClass('active')
+    })
+
+    closeButton.click(function () {
+      mobileMenu.removeClass('active')
+    })
+    tabbingByTarget({
+      buttonAttr: "mobile-button-accordion",
+      targetAttr: "mobile-button-accordion-target",
+      nothingOnActive: false,
+      initialHideAll: true,
+    })
+  }
+</script>
