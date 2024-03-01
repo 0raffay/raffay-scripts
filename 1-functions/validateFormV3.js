@@ -78,8 +78,8 @@ class RFvalidateForm {
 	}
 
 	setCheckbox() {
-		const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
-
+		const checkboxes = Array.from(this.form.querySelectorAll('input[type="checkbox"]'));
+		
 		if (!checkboxes || !checkboxes.length) {
 			return;
 		}
