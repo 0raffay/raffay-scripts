@@ -125,8 +125,10 @@
       this.button = "[data-open-rf-modal]";
       this.closeButton = "[data-close-rf-modal]";
       this.modal = null;
+      this.modals = [];
 
       document.querySelectorAll(this.button).forEach(btn => {
+        this.modals.push(document.getElementById(btn.getAttribute("data-open-rf-modal")));
         btn.addEventListener("click", () => this.openModal(btn));
       });
 
@@ -148,7 +150,6 @@
       if (this.modal) {
         this.hide();
       }
-      // 		this.onHide();
     }
 
     setCurrentModal(modalId) {
@@ -160,9 +161,11 @@
     }
 
     hideAll() {
-      document.querySelectorAll(this.button).forEach(btn => {
-        document.getElementById(btn.getAttribute("data-open-rf-modal")).style.display = "none";
-        document.getElementById(btn.getAttribute("data-open-rf-modal")).classList.remove("active");
+      this.modals.forEach(m => {
+        if (m) {
+          m.style.display = "none";
+          m.classList.remove("active");
+        }
       })
     }
 
@@ -214,6 +217,7 @@
       }
     }
   }
+
   const modalInstance = new RFmodal();
 
 </script>

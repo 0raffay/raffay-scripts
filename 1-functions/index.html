@@ -29,12 +29,12 @@
 </style>
 
 <button rf-tabbing-button="a">a</button>
-<button rf-tabbing-button="a">b</button>
-<button rf-tabbing-button="a">c</button>
-<button rf-tabbing-button="a">d</button>
-<button rf-tabbing-button="a">e</button>
+<button rf-tabbing-button="b">b</button>
+<button rf-tabbing-button="c">c</button>
+<button rf-tabbing-button="d">d</button>
+<button rf-tabbing-button="e">e</button>
 
-<div class="flex">
+<div class="flex" style="margin-bottom: 25px;">
     <div class="box red" rf-tabbing-target="a" rf-tabbing-group-by="appeals">
         a
     </div>
@@ -51,6 +51,26 @@
         d
     </div>
     <div class="box blue" rf-tabbing-target="e" rf-tabbing-group-by="appeals">
+        e
+    </div>
+</div>
+<div class="flex">
+    <div class="box red" rf-tabbing-target="a" rf-tabbing-group-by="solutions">
+        a
+    </div>
+    <div class="box red" rf-tabbing-target="a" rf-tabbing-group-by="solutions">
+        a
+    </div>
+    <div class="box blue" rf-tabbing-target="b" rf-tabbing-group-by="solutions">
+        b
+    </div>
+    <div class="box blue" rf-tabbing-target="c" rf-tabbing-group-by="solutions">
+        c
+    </div>
+    <div class="box blue" rf-tabbing-target="d" rf-tabbing-group-by="solutions">
+        d
+    </div>
+    <div class="box blue" rf-tabbing-target="e" rf-tabbing-group-by="solutions">
         e
     </div>
 </div>
@@ -106,10 +126,11 @@
                     const groupByError = this.checkIfBelongToSameGroup(targets);
                     if (groupByError) {
                         console.error(
-                            "Some targets belong to different groups please assign targets to same group."
+                            "Some targets with same name belong to different groups please assign targets to same group."
                         );
                         return;
                     }
+
                     this.buttonClicked = b;
                     this.toggle(targets)
                 });
@@ -136,6 +157,8 @@
                     groupName.toLowerCase().trim() && this.buttonClicked.getAttribute(this.buttonSelector) != t.target.getAttribute(this.targetSelector)
                 ) {
                     t.target.style.display = "none";
+                } else {
+                    t.target.style.display = "block";
                 }
             });
         }
