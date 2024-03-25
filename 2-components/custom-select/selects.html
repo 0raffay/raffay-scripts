@@ -1,203 +1,158 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-
 <style>
-    /* CUSTOM SELECT CSS START*/
-    /* CUSTOM SELECT CSS START*/
-    .cs__selectMain {
-        position: relative;
-
-        --dropDownHeight: 150px;
-        --dropDownBg: #FFF;
-
-        --optionHeight: 52px;
-        --optionBg: #FFF;
-        --optionPadding: 14px 12px 14px;
-        --optionColor: var(--clr-neutral-700);
-        --optionFs: var(--fs-16);
-
-        --activeOptionBg: #EAF1FA;
-        --activeOptionClr: #114084;
-        --activeOptionBorder: 1px solid var(--clr-primary);
-    }
-
-    [data-cus-select-item],
-    .cs__selectInput {
-        cursor: pointer;
-        user-select: none;
-    }
-
-
-
-    .cs__selectDropDown {
-        position: absolute;
-        top: 100%;
+    .custom-select {
+        min-height: 61px;
+        padding: 10px;
+        padding-left: 25px;
+        box-shadow: 0 4px 17px rgba(0, 0, 0, 0.20);
+        font-size: 16px;
+        color: #000;
+        font-weight: 400;
+        border-radius: 10px;
+        background-color: #FFF;
         width: 100%;
+        border: none;
+        outline: none;
+        background: url(../images/icons/custom-select-bg.svg);
+        background-position-x: 98%;
+        background-position-y: center;
+        background-repeat: no-repeat;
+        text-align: left;
+    }
 
-        z-index: 2;
+    .custom-select:is(:hover, :focus) {
+        outline: 1px solid blue;
+    }
+
+    .custom-select:not(.selected) {
+        color: rgba(132, 132, 132, 0.6);
+    }
+
+    .custom-select-group {
+        position: relative;
+    }
+
+    .custom-select-option {
+        list-style-type: none;
+        padding: 0;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        background-color: #FFF;
+        position: absolute;
+        top: 70px;
+        overflow-y: scroll;
+        width: 100%;
         display: none;
-
-        min-height: var(--dropDownHeight);
-
-        background: var(--dropDownBg);
-        box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.20);
-        border-radius: 8px;
-        padding: 9px;
+        max-height: 270px;
     }
 
-
-    .cs__selectDropDown [data-cus-select-item]:first-child {
-        border-radius: 8px 8px 0 0;
+    .custom-select-option::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
     }
 
-    .cs__selectDropDown [data-cus-select-item]:last-child {
-        border-radius: 0 0 8px 8px;
+    .custom-select-option.active {
+        display: block;
     }
 
-    [data-cus-select-item] {
-        height: var(--optionHeight);
-        padding: var(--optionPadding);
+    .custom-select-option button {
+        font-weight: 400;
+        color: #848484;
+        padding: 12px 15px;
+        border-block: 1px solid rgba(181, 181, 181, 0.5);
+        transition: all 250ms ease;
+        text-align: left;
         display: block;
         width: 100%;
+    }
 
-        background: var(--optionBg);
-
-        color: var(--optionColor);
-        font-size: var(--optionFs);
+    .custom-select-option button:is(:hover, :focus),
+    .custom-select-option button.selected {
+        background-color: #e7e7e7;
+        color: red;
         font-weight: 500;
-        line-height: normal;
     }
 
-    [data-cus-select-item].selected,
-    [data-cus-select-item]:hover {
-        background: var(--activeOptionBg);
-        /* border-bottom: var(--activeOptionBorder); */
-        color: var(--activeOptionClr);
-        font-weight: 800;
+    .custom-select-option li:nth-of-type(1) button {
+        padding-top: 15px;
+        border-top: none;
     }
 
-
-    /* CUSTOM SELECT CSS END*/
+    .custom-select-option li:nth-last-of-type(1) button {
+        border-bottom: none;
+        padding-bottom: 15px;
+    }
 </style>
-<div class="cs__selectMain">
-    <input class="cs__selectInput" initialValue="" data-cus-select value="" placeholder='Select Country' readonly>
-    <div class="cs__selectDropDown" data-cus-select-dropdown>
-        <span data-cus-select-item>General Or Sadaqah</span>
-        <span data-cus-select-item>Qurbani</span>
-        <span data-cus-select-item>Zakat</span>
-    </div>
-</div>
+
+<select  data-custom-select name="country" id="country_select">
+    <option value="US">USA</option>
+    <option value="UK">UK</option>
+    <option value="VALUE">TEXT</option>
+</select>
 
 <script>
     function customSelect() {
-        const selects = $("[data-cus-select]");
-        const cusSelectDropDown = $("[data-cus-select-dropdown]");
-        const cusSelectOptions = $("[data-cus-select-item]")
+        const selects = $("[data-custom-select]");
+        selects.hide();
 
         selects.each(function () {
-            $(this).attr("tabindex", "0");
-        })
-        cusSelectOptions.each(function () {
-            $(this).attr("tabindex", "0")
-        })
+            const $select = $(this);
+            const $group = $("<div>").addClass("custom-select-group").attr("data-name", $select.attr("name"));
+            const placeholderText = $select.attr("placeholder") || "Select Option";
+            const $button = $("<button>").addClass("custom-select").text(placeholderText).attr("type", "button");
+            const $listGroup = $("<ul>").addClass("custom-select-option");
 
-        selects
+            $select.find("option").each(function () {
+                const $option = $("<li>").append($("<button>").attr("type", "button").text($(this).text()));
+                $listGroup.append($option);
+            });
 
-        selects.on('click keydown', function (e) {
-            if (e.type === 'keydown' && e.keyCode !== 13) {
-                return;
-            }
+            $group.append($button).append($listGroup);
+            const $el = $("<input>").attr({ type: "hidden", name: $select.attr("name"), id: $select.attr("id") });
+            $group.prepend($el);
+            $select.parent().append($group);
 
-            e.preventDefault();
+            $button.click(function (e) {
+                e.preventDefault();
+                const $options = $(this).next();
+                $options.toggleClass("active").toggle();
+            });
 
-            let currentSelect = $(this);
-            selects.not(currentSelect).next().hide();
-            let displayPropertyValue = currentSelect.next().css('display');
+            const updateOption = (_this) => {
+                const $options = $group.find(".custom-select-option");
+                $options.find("button").removeClass("selected");
+                _this.addClass("selected");
+            };
 
-            if (displayPropertyValue === 'block') {
-                currentSelect.next().hide();
-            } else {
-                currentSelect.next().show();
-            }
+            $listGroup.on("click", "button", function (e) {
+                e.preventDefault();
+                const $selectGroup = $(this).closest(".custom-select-group");
+                const $button = $selectGroup.find(".custom-select");
+                const $optionGroup = $selectGroup.find(".custom-select-option");
+                const $input = $selectGroup.find("input");
+                updateOption($(this));
+                $button.addClass('selected').text($(this).text());
+                $input.val($(this).text());
+                $optionGroup.hide();
+            });
+
+            $listGroup.find("li:nth-last-of-type(1) button").blur(function () {
+                $(this).closest(".custom-select-option").hide();
+            });
+
         });
 
-        cusSelectOptions.on('click keydown', function (e) {
-            if (e.type === 'keydown' && e.keyCode !== 13) {
-                return;
-            }
-
-            cusSelectOptions.removeClass("selected")
-            if (!$(this).hasClass("selected")) {
-                $(this).addClass('selected')
-            }
-            $(this).parent().prev().addClass("selected");
-            let itsText = $(this).text();
-            $(this).parent().prev().text(itsText).removeClass("error");
-
-            $(this).closest(".rf-custom-select").find("input").val(itsText).removeClass("error");
-            $(this).closest(".rf-custom-select").find("input").trigger("change")
-
-            cusSelectDropDown.hide();
-        });
         $(document).on("click", function (event) {
-            if (!$(event.target).closest("[data-cus-select]").length) {
-                cusSelectDropDown.hide();
+            const $buttons = $(".custom-select");
+            const $options = $(".custom-select-option");
+            if (!$(event.target).closest($buttons).length) {
+                $options.hide();
             }
         });
+
+        selects.remove();
     }
-    // function customSelect() {
-    //     const selects = $("[data-cus-select]");
-    //     const cusSelectDropDown = $("[data-cus-select-dropdown]");
-    //     const cusSelectOptions = $("[data-cus-select-item]")
 
-    //     selects.click(function () {
-    //         $(this).next().toggle();
-    //     });
-
-    //     cusSelectOptions.click(function () {
-    //         cusSelectOptions.removeClass("selected")
-    //         if (!$(this).hasClass("selected")) {
-    //             $(this).addClass('selected')
-    //         }
-    //         $(this).parent().prev().addClass("selected");
-    //         let itsText = $(this).text();
-    //         $(this).parent().prev().val(itsText).removeClass("error");
-    //         cusSelectDropDown.hide();
-    //     });
-    // }
-    // customSelect()
-    // function customSelect() {
-    //     const selects = $("[data-cus-select]");
-    //     const cusSelectDropDown = $("[data-cus-select-dropdown]");
-    //     const cusSelectOptions = $("[data-cus-select-item]")
-
-
-    //     cusSelectDropDown.slideUp();
-    //     let isOpen = false;
-    //     selects.click(function() {
-    //         cusSelectDropDown.slideUp();
-    //         if (isOpen) {
-    //             $(this).next().slideUp();
-    //             isOpen = false;
-    //         } else {
-    //             $(this).next().slideDown();
-    //             isOpen = true;
-    //         }
-    //     });
-
-    //     cusSelectOptions.click(function() {
-    //         if ($(this).hasClass('selected')) {
-    //             return;
-    //         } else {
-    //             $(this).addClass('selected')
-    //         }
-
-    //         $(this).parent().prev().addClass("selected");
-    //         let itsText = $(this).text();
-    //         $(this).parent().prev().val(itsText).removeClass("error");
-    //         cusSelectDropDown.slideUp();
-    //         // updateButtonStatus();
-    //     });
-    // }
-    // customSelect()
+    customSelect();
 </script>
