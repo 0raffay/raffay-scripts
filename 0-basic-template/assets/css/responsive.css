@@ -9,23 +9,17 @@
 @media only screen and (max-width: 1170px) {}
 
 @media only screen and (max-width: 992px) {
-    :root {
-        --font-controller: 2px;
+    br {
+        display: none;
     }
 }
 
 @media only screen and (max-width: 767px) {
     :root {
-        --section-padding: 40px 0; 
-        --font-controller: 3px;
+        --section-padding: 40px 0;
     }
 }
 
-@media only screen and (max-width: 580px) {
-}
+@media only screen and (max-width: 580px) {}
 
-@media only screen and (max-width: 480px) {
-    :root {
-        --font-controller: 3.5px;
-    }
-}
+@media only screen and (max-width: 480px) {}

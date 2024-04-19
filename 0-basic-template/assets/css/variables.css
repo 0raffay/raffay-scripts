@@ -20,7 +20,7 @@
     --fs-14: 14px;
     --fs-15: clamp(14px, 3vw, 15px);
     --fs-16: clamp(14px, 3vw, 16px);
-    --fs-18: clamp(16px, 3vw, 18px);
+    --fs-18: clamp(14px, 3vw, 18px);
     --fs-20: clamp(18px, 3vw, 20px);
     --fs-22: clamp(20px, 3vw, 22px);
     --fs-24: clamp(16px, 5vw, 24px);
