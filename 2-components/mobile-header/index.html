@@ -159,11 +159,12 @@
     closeButton.click(function () {
       mobileMenu.removeClass('active')
     })
-    tabbingByTarget({
-      buttonAttr: "mobile-button-accordion",
-      targetAttr: "mobile-button-accordion-target",
-      nothingOnActive: false,
-      initialHideAll: true,
+    const mobileMenuToggleButtons = $(".rfMobileMenuButton");
+    const mobileSubMenus = $(".rfInnerMobileMenuList");
+    mobileSubMenus.hide();
+    mobileMenuToggleButtons.click(function () {
+      $(this).toggleClass("active");
+      $(this).next().toggleClass("active").toggle();
     })
   }
 </script>
