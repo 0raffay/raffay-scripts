@@ -1,19 +1,24 @@
+
 class RFvalidateForm {
-  constructor({
-    form = null,
-    inputs = null,
-    button = null,
-    specialFields = "validate-regex",
-    validateCheckbox = true,
-    errorClass = "error",
-    disableClass = "disabled",
-    exclude = "exclude",
-  },
+  constructor(
+    {
+      form = null,
+      inputs = null,
+      button = null,
+      specialFields = "validate-regex",
+      validateCheckbox = true,
+      validateRadio = true,
+      errorClass = "error",
+      disableClass = "disabled",
+      exclude = "exclude",
+      event = "submit",
+      onError = null,
+    },
     success
   ) {
     if (!form) {
       console.error(
-        "RfvalidateForm requires a form element. Please provide it's selector"
+        "RfvalidateForm requires a form element. Please provide its selector"
       );
       return;
     }
@@ -25,47 +30,93 @@ class RFvalidateForm {
 
     this.inputs = [];
     this.specialFields = [];
-    this.button = this.setButton(button);
+    if (button) {
+      this.button = this.setButton(button);
+    }
     this.errorClass = errorClass;
     this.disableClass = disableClass;
     this.success = success;
     this.exclude = exclude;
     this.validateCheckbox = validateCheckbox;
+    this.validateRadio = validateRadio;
     this.checkboxes = [];
+    this.event = event;
+    this.values = {};
+    this.specialFieldSelector = specialFields;
+    this.userInputSelector = inputs;
+
+    if (onError) {
+      this.onError = onError;
+    }
 
     this.form.setAttribute("novalidate", "true");
 
     this.setBasicInputs();
 
-    if (inputs) {
-      this.setUserInputs(inputs);
+    if (this.userInputSelector) {
+      this.setUserInputs(this.userInputSelector);
     }
 
     if (this.validateCheckbox) {
       this.setCheckbox();
     }
 
-    this.setSpecialFields(specialFields);
+    if (this.validateRadio) {
+      this.setRadioGroups();
+    }
+
+    this.setSpecialFields(this.specialFieldSelector);
 
     this.valid = false;
 
     this.#addEventListeners();
   }
-
-  #addEventListeners() {
-    this.form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      this.checkRegexValidity();
-      this.checkIfEmpty();
-      this.checkIfChecked();
-
-      if (this.valid) {
-        this.success(this.form);
+  collectCurrentValues() {
+    this.inputs.forEach((input) => {
+      this.values[input.name] = input.value;
+    });
+    this.checkboxes.forEach((checkbox) => {
+      this.values[checkbox.name] = checkbox.checked;
+    });
+    this.radioGroups.forEach((group) => {
+      const selectedRadio = group.find((radio) => radio.checked);
+      if (selectedRadio) {
+        this.values[selectedRadio.name] = selectedRadio.value;
       }
     });
+    this.specialFields.forEach((s) => {
+      this.values[s.input.name] = s.input.value;
+    });
+  }
 
-    this.inputs.forEach((i) => {
-      i.addEventListener("input", (e) => {
+  handleSuccess() {
+    this.collectCurrentValues();
+    this.triggerValidation();
+    if (this.valid) {
+      if (typeof this.success == "function") {
+        this.success(this);
+      }
+    }
+
+    return this.valid;
+  };
+
+  #addEventListeners() {
+    if (this.event == "submit") {
+      this.form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        this.handleSuccess();
+      });
+    } else {
+      this?.button?.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleSuccess();
+      });
+    }
+
+    this.inputs.forEach((input) => {
+      input.addEventListener("input", (e) => {
+        this.values[e.target.name] = e.target.value; // Save the value using e.target
         this.checkIfEmpty(e.target);
       });
     });
@@ -73,18 +124,102 @@ class RFvalidateForm {
     if (this.specialFields && this.specialFields.length) {
       this.specialFields.forEach((s) => {
         s.input.addEventListener("input", (e) => {
-          this.checkRegexValidity(s.input, s.regex);
+          this.values[e.target.name] = e.target.value; // Save the value using e.target
+          this.checkRegexValidity(e.target, s.regex);
         });
       });
     }
 
     if (this.checkboxes && this.checkboxes.length) {
-      this.checkboxes.forEach(c => {
-        c.addEventListener("input", (e) => {
-          this.checkIfChecked(c);
-        })
-      })
+      this.checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("input", (e) => {
+          this.values[e.target.name] = e.target.checked; // Save the checked status using e.target
+          this.checkIfChecked(e.target);
+        });
+      });
     }
+
+    if (this.radioGroups && this.radioGroups.length) {
+      this.radioGroups.forEach((group) => {
+        group.forEach((radio) => {
+          radio.addEventListener("change", (e) => {
+            this.values[e.target.name] = e.target.value; // Save the selected value using e.target
+            this.checkRadioGroups();
+          });
+        });
+      });
+    }
+  }
+
+
+
+  triggerValidation() {
+    this.checkIfEmpty();
+    this.checkRegexValidity();
+    this.checkIfChecked();
+    this.checkRadioGroups();
+    return this.valid;
+  }
+
+  reinitialize() {
+    // Re-get all inputs, special fields, checkboxes, and radio groups
+    this.inputs = [];
+    this.specialFields = [];
+    this.checkboxes = [];
+    this.radioGroups = [];
+
+    // Re-set basic inputs
+    this.setBasicInputs();
+
+    if (this.userInputSelector) {
+      this.setUserInputs(this.userInputSelector);
+    }
+
+    // Re-set special fields
+    this.setSpecialFields(this.specialFieldSelector);
+
+    // Re-set checkboxes
+    this.setCheckbox();
+
+    // Re-set radio groups
+    this.setRadioGroups();
+
+    // Re-add event listeners
+    this.#addEventListeners();
+  }
+
+  checkRadioGroups() {
+    if (!this.radioGroups.length) {
+      return;
+    }
+
+    this.radioGroups.forEach((group) => {
+      const isGroupChecked = group.some((radio) => radio.checked);
+      group.forEach((radio) => {
+        if (!isGroupChecked) {
+          this.addErrorClass(radio);
+        } else {
+          this.removeErrorClass(radio);
+        }
+      });
+    });
+
+    this.setValid();
+  }
+
+  setRadioGroups() {
+    const radios = Array.from(this.form.querySelectorAll('input[type="radio"]'));
+    const radioGroupsMap = {};
+
+    radios.forEach((radio) => {
+      const groupName = radio.name;
+      if (!radioGroupsMap[groupName]) {
+        radioGroupsMap[groupName] = [];
+      }
+      radioGroupsMap[groupName].push(radio);
+    });
+
+    this.radioGroups = Object.values(radioGroupsMap);
   }
 
   checkIfChecked(checkbox) {
@@ -102,7 +237,7 @@ class RFvalidateForm {
     if (!this.checkboxes || !this.checkboxes.length) {
       return;
     }
-    this.checkboxes.forEach(checkbox => {
+    this.checkboxes.forEach((checkbox) => {
       if (!checkbox.checked) {
         this.addErrorClass(checkbox);
         this.setValid();
@@ -111,7 +246,7 @@ class RFvalidateForm {
       this.removeErrorClass(checkbox);
       this.setValid();
       return;
-    })
+    });
   }
 
   checkRegexValidity(input, regex) {
@@ -176,25 +311,25 @@ class RFvalidateForm {
 
   removeField(input) {
     if (Array.isArray(input)) {
-      this.inputs.forEach(i => {
+      this.inputs.forEach((i) => {
         input.forEach((s) => {
           if (i == s) {
             this.inputs.splice(this.inputs.indexOf(i), 1);
           }
         });
-      })
+      });
       return;
     }
-    this.inputs.forEach(i => {
+    this.inputs.forEach((i) => {
       if (i == input) {
-        this.inputs.splice(this.inputs.indexOf(i), 1)
+        this.inputs.splice(this.inputs.indexOf(i), 1);
       }
-    })
-    this.specialFields.forEach(i => {
+    });
+    this.specialFields.forEach((i) => {
       if (i.input == input) {
-        this.specialFields = this.specialFields.filter(i => i.input !== input);
+        this.specialFields = this.specialFields.filter((i) => i.input !== input);
       }
-    })
+    });
   }
 
   addRegexField(input, regex) {
@@ -202,7 +337,7 @@ class RFvalidateForm {
     const f = {
       input: input,
       regex: new RegExp(regex),
-    }
+    };
     this.specialFields.push(f);
   }
 
@@ -210,55 +345,70 @@ class RFvalidateForm {
     const inputs = [
       ...this.inputs,
       ...this?.specialFields.map((i) => i.input),
-      ...this.checkboxes
+      ...this.checkboxes,
+      ...this.radioGroups?.flatMap(item => item)
     ];
 
     const validityStatus = inputs.every((i) => {
       return !this.checkErrorClass(i);
     });
+
+    if (!validityStatus) {
+      this.handleOnError();
+    }
+
     this.valid = validityStatus;
+  }
+
+  handleOnError() {
+    if (this.onError && typeof this.onError == "function") {
+      this.onError(this);
+    }
   }
 
   setBasicInputs() {
     const checkIncludeStatus = (input) => {
-      return !input.classList.contains(this.exclude) &&
+      return (
+        !input.classList.contains(this.exclude) &&
         !input.hasAttribute(this.exclude) &&
-        !(input.type === "hidden");
-    }
+        !(input.type === "hidden")
+      );
+    };
     const inputs = this.form.querySelectorAll(
       "input[type='text'], input[type='email'], input[type='number'], input[type='date'], select, textarea, input[type='file'], input[type='password']"
     );
-    if (!inputs.length) {
-      console.error("No input elements found in form.", this.form)
-      return;
-    }
+
     inputs.forEach((i) => {
       if (checkIncludeStatus(i)) {
         this.inputs.push(i);
       }
     });
 
-    const specialFields = [{
-      input: this.form.querySelector("input[type='tel']"),
-      regex: /^\d{8,}$/
-    },
-    {
-      input: this.form.querySelector("input[type='email']"),
-      regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    },
-    ]
-    specialFields.forEach(s => {
-
+    const specialFields = [
+      {
+        input: this.form.querySelector("input[type='tel']"),
+        regex: /^\d{8,}$/,
+      },
+      {
+        input: this.form.querySelector("input[type='email']"),
+        regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      },
+      {
+        input: this.form.querySelector("input[type='tel']"),
+        regex: /^\d{8,}$/,
+      },
+    ];
+    specialFields.forEach((s) => {
       if (s.input && checkIncludeStatus(s.input)) {
         this.addRegexField(s.input, s.regex);
       }
-    })
+    });
   }
 
   setUserInputs(inputSelector) {
     const inputs = this.form.querySelectorAll(inputSelector);
     if (!inputs.length) {
-      console.error("No input elements found with selector.")
+      console.error("No input elements found with selector.");
       return;
     }
     inputs.forEach((i) => {
@@ -270,13 +420,11 @@ class RFvalidateForm {
   }
 
   setSpecialFields(specialFieldSelector) {
-    const specialFields = this.form.querySelectorAll(
-      `[${specialFieldSelector}]`
-    );
+    const specialFields = this.form.querySelectorAll(`[${specialFieldSelector}]`);
     specialFields.forEach((s) => {
       const include = s.getAttribute(specialFieldSelector);
       if (include !== "") {
-        this.addRegexField(s, new RegExp(s.getAttribute(specialFieldSelector)))
+        this.addRegexField(s, new RegExp(s.getAttribute(specialFieldSelector)));
         return;
       }
       this.inputs.push(s);
@@ -290,17 +438,14 @@ class RFvalidateForm {
       return;
     }
 
-    checkboxes.forEach(checkbox => {
+    checkboxes.forEach((checkbox) => {
       this.checkboxes.push(checkbox);
     });
   }
 
   setButton(buttonSelector) {
-    return buttonSelector ?
-      this.form.querySelector(buttonSelector) :
-      this.form.querySelector("button[type='submit']");
+    return buttonSelector
+      ? this.form.querySelector(buttonSelector)
+      : this.form.querySelector("button[type='submit']");
   }
 }
-const validate = new RFvalidateForm({ form: "#form" }, function () {
-	alert("working peacefullyy");
-});

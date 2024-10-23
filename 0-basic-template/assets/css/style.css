@@ -103,7 +103,6 @@ p {
     color: #9D9D9D;
 }
 
-
 :disabled {
     background: gray;
 }
@@ -277,26 +276,26 @@ label {
 }
 
 
-.section_label {
+.section-label {
     color: var(--clr-primary-300);
     font-size: 15px;
     font-weight: 600;
     line-height: normal;
 }
 
-.section_heading {
+.section-heading {
     font-size: var(--fs-45);
     font-weight: 700;
     line-height: normal;
     margin-bottom: 15px;
 }
 
-.section_text.small {
+.section-text.small {
     max-width: 499px;
     width: 100%;
 }
 
-.grey_main {
+.grey-main {
     padding: 50px 0;
     background: #FAFAFA;
 }
