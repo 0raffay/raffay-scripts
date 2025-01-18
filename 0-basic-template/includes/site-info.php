@@ -1,23 +1,22 @@
 <?php
 /* --- Site urls --- */
-//Local
-$siteURL = "https://localhost/";
-
-//Live:
-$siteURL = "https://live.com/";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST'];
+$site_info = $protocol . $host ;
 /* --- Site urls --- */
 
 
 /* --- Site data --- */
-$siteName = "";
-$siteEmail = " ";
-$sitePhone = "";
-$siteAddress = "";
+$site_name = "";
+$site_email = " ";
+$site_phone = "";
+$site_address = "";
 /* --- Site data --- */
 
 
 /* --- Og data --- */
-$ogContent1 = "";
-$ogContent2 = "";
-$ogImgPath =  "$siteURL/assets/images/og.png";
+$meta_title = "";
+$meta_sub_title = "";
+$meta_description = "";
+$meta_image =  "$site_info/assets/images/og.png";
 /* --- Og data --- */

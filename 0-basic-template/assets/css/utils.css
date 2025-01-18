@@ -1,0 +1,349 @@
+@media only screen and (min-width: 1401px) {
+  :root {
+    --container-size: 1320px;
+  }
+
+  .container-left {
+    margin-inline: auto;
+    margin-right: 0;
+    max-width: calc(var(--container-size) + ((100% - var(--container-size)) / 2));
+  }
+
+  .container-right {
+    margin-inline: auto;
+    margin-left: 0;
+    max-width: calc(var(--container-size) + ((100% - var(--container-size)) / 2));
+  }
+}
+
+*:has(> .loader.center) {
+  position: relative;
+}
+
+.loader {
+  display: none;
+  --size: 50px;
+  height: var(--size);
+  width: var(--size);
+  border: calc(var(--size) * .16) solid #f3f3f3;
+  border-radius: 100%;
+  border-top: calc(var(--size) * .16) solid var(--clr-secondary);
+  animation: loader 2s linear infinite;
+}
+
+.loader.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@-webkit-keyframes loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn {
+  padding: 1em 2em;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-16);
+  font-weight: 600;
+  line-height: normal;
+  transition: all 250ms ease;
+}
+
+.btn-lg {
+  width: 100%;
+  max-width: 100%;
+}
+
+.section-label {
+  color: var(--clr-primary-300);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.section-heading {
+  font-size: var(--fs-45);
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 15px;
+}
+
+.grey-main {
+  padding: 50px 0;
+  background: #FAFAFA;
+}
+
+.column-span-two {
+  grid-column: span 2;
+}
+
+.row-span-two {
+  grid-column: span 2;
+}
+
+.error {
+  outline: 1px solid red;
+}
+
+*:has(> .error-message) {
+  position: relative;
+}
+
+*:has(> .success-message) {
+  position: relative;
+}
+
+.error-message {
+  position: absolute;
+  bottom: -18px;
+  left: 10px;
+  font-size: 11px;
+  color: crimson;
+  font-weight: 700;
+  display: none;
+}
+
+.success-message {
+  position: absolute;
+  bottom: -18px;
+  left: 10px;
+  font-size: 11px;
+  color: green;
+  font-weight: 700;
+  display: none;
+}
+
+.error+.error-message {
+  display: block;
+}
+
+.lines-count-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.lines-count-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hover-opacity-dim:hover {
+  opacity: .8;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+.bg-primary {
+  background-color: var(--clr-primary);
+}
+
+.bg-secondary {
+  background-color: var(--clr-secondary) !important;
+}
+
+.bg-white {
+  background: #FFF;
+}
+
+.bg-black {
+  background: #000;
+}
+
+.ff-primary {
+  font-family: var(--ff-primary);
+}
+
+.ff-secondary {
+  font-family: var(--ff-secondary);
+}
+
+.fc-white {
+  color: #FFF;
+}
+
+.fc-black {
+  color: #000;
+}
+
+.fc-primary {
+  color: var(--clr-primary);
+}
+
+.fc-secondary {
+  color: var(--clr-secondary);
+}
+
+.fw-300 {
+  font-weight: 300;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-800 {
+  font-weight: 800;
+}
+
+.fw-900 {
+  font-weight: 900;
+}
+
+.lh-normal {
+  line-height: normal;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.lh-1-1 {
+  line-height: 1.1;
+}
+
+.lh-1-2 {
+  line-height: 1.2;
+}
+
+.lh-1-3 {
+  line-height: 1.3;
+}
+
+.lh-1-4 {
+  line-height: 1.4;
+}
+
+.lh-1-5 {
+  line-height: 1.5;
+}
+
+.fs-10 {
+  font-size: var(--fs-10);
+}
+
+.fs-11 {
+  font-size: var(--fs-11);
+}
+
+.fs-12 {
+  font-size: var(--fs-12);
+}
+
+.fs-13 {
+  font-size: var(--fs-13);
+}
+
+.fs-14 {
+  font-size: var(--fs-14);
+}
+
+.fs-16 {
+  font-size: var(--fs-16);
+}
+
+.fs-18 {
+  font-size: var(--fs-18);
+}
+
+.fs-20 {
+  font-size: var(--fs-20);
+}
+
+.fs-22 {
+  font-size: var(--fs-22);
+}
+
+.fs-24 {
+  font-size: var(--fs-24);
+}
+
+.fs-25 {
+  font-size: var(--fs-25);
+}
+
+.fs-30 {
+  font-size: var(--fs-30);
+}
+
+.fs-35 {
+  font-size: var(--fs-35);
+}
+
+.fs-40 {
+  font-size: var(--fs-40);
+}
+
+.fs-45 {
+  font-size: var(--fs-45);
+}
+
+.fs-50 {
+  font-size: var(--fs-50);
+}
+
+.fs-55 {
+  font-size: var(--fs-55);
+}
+
+.fs-60 {
+  font-size: var(--fs-60);
+}
+
+.fs-65 {
+  font-size: var(--fs-65);
+}
+
+.fs-70 {
+  font-size: var(--fs-70);
+}
+
+.fs-80 {
+  font-size: var(--fs-80);
+}
+
+.fs-90 {
+  font-size: var(--fs-90);
+}
+
+.fs-100 {
+  font-size: var(--fs-90);
+}

@@ -1,42 +1,35 @@
 <?php
-include("includes/site-info.php");
+$include_path = "/";
+include($include_path . 'includes/site-info.php');
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Home | <?php echo $siteName;?></title>
+  <title>Home | <?php echo $site_name; ?></title>
 
-    <?php include("includes/compatibility.php"); ?>
-    <?php include("includes/og.php"); ?>
+  <?php include($include_path . 'includes/compatibility.php'); ?>
+  <?php include($include_path . 'includes/og.php'); ?>
 
-    <!-- META TITLE AND DESCRIPTION -->
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <!-- META TITLE AND DESCRIPTION -->
-
-
-    <!--==== STYLES START ====-->
-    <?php include('includes/header-styles.php') ?>
-    <!--==== STYLES END ====-->
+  <!----- Styles start ----->
+  <?php include($include_path . 'includes/header-styles.php') ?>
+  <!----- Styles end ----->
 </head>
 
 <body>
-
-    <!--==== HEADER START ====-->
-    <?php include('includes/header.php') ?>
-    <!--==== HEADER END ====-->
-
+  <!----- Header start ----->
+  <?php include($include_path . 'includes/header.php') ?>
+  <!----- Header end ----->
 
 
-    <!--==== FOOTER START ====-->
-    <?php include('includes/footer.php') ?>
-    <!--==== FOOTER END ====-->
-    
-    <!--==== SCRIPTS START ====-->
-    <?php include('includes/footer-scripts.php') ?>
-    <!--==== SCRIPTS END ====-->
+
+  <!----- Footer start ----->
+  <?php include($include_path . 'includes/footer.php') ?>
+  <!----- Footer end ----->
+  <!----- Scripts start ----->
+  <?php include($include_path . 'includes/footer-scripts.php') ?>
+  <!----- Scripts end ----->
 </body>
 
 </html>
